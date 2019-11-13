@@ -95,7 +95,7 @@ public class UserDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(id);
+                user.setId(resultSet.getInt("id_user"));
                 user.setName(resultSet.getString("name"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhoneNumber(resultSet.getString("phone_number"));
@@ -165,14 +165,14 @@ public class UserDao {
         } catch (SQLException ex) {
             System.err.println(ex);
         }
-        
+
         int id_user = 0;
         String sql2 = "select * from account where username = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql1);
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 id_user = rs.getInt("id_account");
             }
         } catch (SQLException ex) {
@@ -249,7 +249,7 @@ public class UserDao {
 
             ResultSet rs = ps.executeQuery();
             int id = 0;
-            while(rs.next()){
+            while (rs.next()) {
                 id = rs.getInt("id_account");
             }
             return getUserById(id);
@@ -261,17 +261,35 @@ public class UserDao {
         return null;
     }
 
-    public void changePassword(int id, String password) {
-        String sql = "update account set password = ? where id = ?";
+    public boolean changePassword(int id, String old, String newPas) {
+        int id_acc = 0;
+        String sql1 = "select * from account where id_account = ? and password = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql1)) {
+            ps.setInt(1, id);
+            ps.setString(2, Security.hashPassword(old));
 
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, Security.hashPassword(password));
-            ps.setInt(2, id);
-
-            int rs = ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                id_acc = rs.getInt("id_account");
+            }
         } catch (SQLException ex) {
-
+            System.err.println(ex);
         }
+
+        if (id_acc != 0) {
+            String sql = "update account set password = ? where id_account = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, Security.hashPassword(newPas));
+                ps.setInt(2, id);
+
+                int rs = ps.executeUpdate();
+                return true;
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return false;
     }
 
 }

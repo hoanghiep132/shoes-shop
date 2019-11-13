@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.DiscountCode;
@@ -53,7 +54,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        User user = new UserService().getAccount("hiep", "' or 1=1 --'");
-        System.out.println(user.getAddress());
+        boolean check = new UserService().changePassword(1, "admin", "hiep");
+        System.out.println(check);
     }
 }

@@ -61,8 +61,8 @@ public class UserService {
         return userDao.getAccount(username, password);
     }
     
-    public void changePassword(int id, String password){
-        userDao.changePassword(id, password);
+    public boolean changePassword(int id,String oldPassword, String newPassword){
+        return userDao.changePassword(id,oldPassword, newPassword);
     }
     
     
