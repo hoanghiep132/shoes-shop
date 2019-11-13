@@ -32,6 +32,10 @@ public class ProductService {
         return productDao.getAllProductForBrand(brand);
     }
     
+    public List<Product> getAllShoes(){
+        return productDao.getAllShoes();
+    }
+    
     public List<Product> getAllOthers(){
         return productDao.getAllOthers();
     }

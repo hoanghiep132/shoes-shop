@@ -1,20 +1,33 @@
 
+
+import connectionjdbc.product.ProductDao;
+import connectionjdbc.product.ProductService;
+import connectionjdbc.user.UserDao;
+import connectionjdbc.user.UserService;
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import model.DiscountCode;
+import model.Product;
+import model.User;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hiepnguyen
  */
 public class Test {
+
     int id;
     String name;
 
@@ -38,27 +51,9 @@ public class Test {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
+
     public static void main(String[] args) {
-        List<Test> list = new ArrayList();
-        
-        list.add(new Test(3,"C"));
-        list.add(new Test(5,"A"));
-        list.add(new Test(1,"D"));
-        list.add(new Test(4,"E"));
-        list.add(new Test(2,"B"));
-        
-        //List<Test> a = list.stream().sorted(Comparator.comparing(Test::getId)).collect(Collectors.toList());
-        //List<Test> a = list.stream().sorted((p1,p2) -> p1.getName().compareTo(p2.getName())).collect(Collectors.toList());
-        
-        List<Test> a = list.stream().sorted((t1, t2) -> t2.getId() - t1.getId()).collect(Collectors.toList());
-        a.forEach(n -> {
-            System.out.println("ID: " + n.getId() + "      Name : " + n.getName());
-        });
-        
-        
-        
+        User user = new UserService().getAccount("hiep", "' or 1=1 --'");
+        System.out.println(user.getAddress());
     }
 }

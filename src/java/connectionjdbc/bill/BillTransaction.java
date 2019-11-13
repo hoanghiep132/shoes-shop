@@ -5,10 +5,37 @@
  */
 package connectionjdbc.bill;
 
+import java.util.List;
+import model.Bill;
+
 /**
  *
  * @author hiepnguyen
  */
 public class BillTransaction {
+ 
+    
+    private final BillDao billDao;
+
+    public BillTransaction() {
+        billDao = new BillDao();
+    }
+    
+    public List<Bill> getListBill(int id){
+        return billDao.getAllBillForCustomer(id);
+    }
+    
+    public List<Bill> getListBillForDay(int day, int month, int year){
+        return billDao.getBillForDay(day, month, year);
+    }
+    
+    public List<Bill> getListBillForMonth(int month, int year){
+        return billDao.getBillForMonth(month, year);
+    }
+    
+    public void createBill(Bill bill){
+        billDao.createBill(bill);
+    }
+    
     
 }

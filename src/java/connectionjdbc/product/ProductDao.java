@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DetailProduct;
 import model.Product;
+import model.Shoes;
 import model.User;
 
 /**
@@ -34,7 +35,7 @@ public class ProductDao {
 
     public List<Product> getAllProduct() {
         List<Product> products = new ArrayList();
-        String sql = "Select * from ban_hang.product";
+        String sql = "Select * from product";
 
         try {
             Statement statement = connection.createStatement();
@@ -50,6 +51,7 @@ public class ProductDao {
                 product.setDiscount(resultSet.getInt("discount"));
                 product.setImg1(resultSet.getString("img1"));
                 product.setImg2(resultSet.getString("img2"));
+                product.setType(resultSet.getString("type"));
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -61,7 +63,7 @@ public class ProductDao {
 
     public List<Product> getAllProductForBrand(String brand) {
         List<Product> products = new ArrayList();
-        String sql = "Select * from ban_hang.product where brand = ?";
+        String sql = "Select * from product where brand = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -77,6 +79,7 @@ public class ProductDao {
                 product.setDiscount(resultSet.getInt("discount"));
                 product.setImg1(resultSet.getString("img1"));
                 product.setImg2(resultSet.getString("img2"));
+                product.setType(resultSet.getString("type"));
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -86,14 +89,15 @@ public class ProductDao {
         return products;
     }
     
-    public List<Product> getAllOthers(){
-        List<Product> products = new ArrayList();
-        String sql = "Select * from ban_hang.product where type = 0";
+    public List<Product> getAllShoes(){
+        List<Product> list = new ArrayList();
+        String sql = "Select * from product where type = ?";
 
         try {
-            Statement statement = connection.createStatement();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "shoes");
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
                 Product product = new Product();
@@ -104,6 +108,36 @@ public class ProductDao {
                 product.setDiscount(resultSet.getInt("discount"));
                 product.setImg1(resultSet.getString("img1"));
                 product.setImg2(resultSet.getString("img2"));
+                                product.setType(resultSet.getString("type"));
+                list.add(product);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return list;
+    }
+
+    public List<Product> getAllOthers() {
+        List<Product> products = new ArrayList();
+        String sql = "Select * from product where type = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "others");
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setBrand(resultSet.getString("brand"));
+                product.setDiscount(resultSet.getInt("discount"));
+                product.setImg1(resultSet.getString("img1"));
+                product.setImg2(resultSet.getString("img2"));
+                                product.setType(resultSet.getString("type"));
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -115,7 +149,7 @@ public class ProductDao {
 
     public List<Product> searchProductForName(String name) {
         List<Product> products = new ArrayList();
-        String sql = "Select * from ban_hang.product where name like %?%";
+        String sql = "Select * from product where name like %?%";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -131,6 +165,7 @@ public class ProductDao {
                 product.setDiscount(resultSet.getInt("discount"));
                 product.setImg1(resultSet.getString("img1"));
                 product.setImg2(resultSet.getString("img2"));
+                                product.setType(resultSet.getString("type"));
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -142,7 +177,7 @@ public class ProductDao {
 
     public Product searchProductById(int id) {
         Product product = new Product();
-        String sql = "Select * from ban_hang.product where id = ?";
+        String sql = "Select * from product where id = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -155,18 +190,19 @@ public class ProductDao {
             product.setDiscount(resultSet.getInt("discount"));
             product.setImg1(resultSet.getString("img1"));
             product.setImg2(resultSet.getString("img2"));
+                            product.setType(resultSet.getString("type"));
         } catch (SQLException ex) {
             System.out.println(ex);
         }
 
         return product;
     }
-    
+
     public List<Product> recommendProduct(Product product) {
         List<Product> products = new ArrayList();
         List<Integer> idList = new ArrayList();
         String tag = product.getTag();
-        String sql = "Select * from ban_hang.describe_product where tag like %?%";
+        String sql = "Select * from describe_product where tag like %?%";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, tag);
@@ -181,7 +217,7 @@ public class ProductDao {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         idList.forEach(i -> {
-            String sql2 = "Select * from ban_hang.product where id_product = ?";
+            String sql2 = "Select * from product where id_product = ?";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1, i);
@@ -193,6 +229,7 @@ public class ProductDao {
                 p.setDiscount(resultSet.getInt("discount"));
                 p.setImg1(resultSet.getString("img1"));
                 p.setImg2(resultSet.getString("img2"));
+                                product.setType(resultSet.getString("type"));
                 products.add(p);
             } catch (SQLException ex) {
                 Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +253,7 @@ public class ProductDao {
             preparedStatement.setString(4, product.getBrand());
             preparedStatement.setString(5, product.getImg1());
             preparedStatement.setString(6, product.getImg2());
-            preparedStatement.setBoolean(7, product.isType());
+            preparedStatement.setString(7, product.isType());
 
             int rs = preparedStatement.executeUpdate();
 
@@ -239,8 +276,8 @@ public class ProductDao {
     }
 
     public void updateProduct(Product product) {
-        String sql = "update ban_hang.product set name = ?, price = ?,"
-                + "discount = ?, brand = ?, img1 = ?, img2 = ? where id = ?";
+        String sql = "update product set name = ?, price = ?,"
+                + "discount = ?, brand = ?, img1 = ?, img2 = ?, type = ? where id = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -251,16 +288,17 @@ public class ProductDao {
             preparedStatement.setString(5, product.getImg1());
             preparedStatement.setString(6, product.getImg2());
             preparedStatement.setInt(7, product.getId());
-
+            preparedStatement.setString(8,product.isType());
+            
             int rs = preparedStatement.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
-    public DetailProduct getDescriptionProduct(int id){
-        String sql = "Select * from ban_hang.describe_product where id_product = ?";
+
+    public DetailProduct getDescriptionProduct(int id) {
+        String sql = "Select * from describe_product where id_product = ?";
         DetailProduct detailProduct = new DetailProduct();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -276,5 +314,5 @@ public class ProductDao {
         }
         return detailProduct;
     }
-   
+
 }

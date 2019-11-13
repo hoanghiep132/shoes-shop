@@ -5,22 +5,23 @@
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>ShoeShop</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <explicit-platform explicit-source-supported="true"/>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${file.reference.mysql-connector-mysql-connector-java-6.0.6}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
+                    <file>${file.reference.mysql-connector-java-5.1.47.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.java_lib-commons-fileupload-1.4}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
+                    <file>${file.reference.commons-fileupload-1.4.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.java_lib-commons-io-2.6}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
+                    <file>${file.reference.commons-io-2.6.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.java_lib-jstl-1.2}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
+                    <file>${file.reference.jstl-1.2.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>

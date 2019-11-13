@@ -15,6 +15,7 @@ public class DetailProduct {
     private String img1;
     private String img2;
     private String img3;
+    private String img4;
     private String tag;
 
     public DetailProduct() {
@@ -51,6 +52,16 @@ public class DetailProduct {
     public void setImg3(String img3) {
         this.img3 = img3;
     }
+
+    public String getImg4() {
+        return img4;
+    }
+
+    public void setImg4(String img4) {
+        this.img4 = img4;
+    }
+    
+    
 
     public String getTag() {
         return tag;

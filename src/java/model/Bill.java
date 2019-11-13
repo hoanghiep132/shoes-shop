@@ -18,8 +18,10 @@ public class Bill {
     private User employee;
     private String date;
     private String time;
-    private boolean status;
+    private String status;
     List<ProductInBill> list;
+    
+    
 
     public void addProductToBill(Product product, int quantity){
         ProductInBill pb = new ProductInBill(product, quantity);
@@ -31,6 +33,16 @@ public class Bill {
     }
 
     public void setList(List<ProductInBill> list) {
+        this.list = list;
+    }
+
+    public Bill(int id, User customer, User employee, String date, String time, String status, List<ProductInBill> list) {
+        this.id = id;
+        this.customer = customer;
+        this.employee = employee;
+        this.date = date;
+        this.time = time;
+        this.status = status;
         this.list = list;
     }
     
@@ -87,11 +99,11 @@ public class Bill {
         this.time = time;
     }
 
-    public boolean isStatus() {
+    public String isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
     

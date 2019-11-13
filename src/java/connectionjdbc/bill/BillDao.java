@@ -12,10 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +37,7 @@ public class BillDao {
     public List<Bill> getAllBillForCustomer(int id){
         List<Bill> bills = new ArrayList();
         
-        String sql = "Select * from ban_hang.bill where id_user = ?";
+        String sql = "Select * from bill where id_user = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -50,7 +47,7 @@ public class BillDao {
                 bill.setList(getDetailBill(id_bill));
                 bill.setDate(rs.getString("date"));
                 bill.setTime(rs.getString("time"));
-                bill.setStatus(rs.getBoolean("status"));
+                bill.setStatus(rs.getString("status"));
                 bills.add(bill);
             }
         } catch (SQLException ex) {
@@ -60,10 +57,10 @@ public class BillDao {
     }
     
     
-    //haven't yet done
+
     public List<ProductInBill> getDetailBill(int id){
         List<ProductInBill> list = new ArrayList();
-        String sql = "Select * from ban_hang.bill where id_bill = ?";
+        String sql = "Select * from list_product_bill where id_bill = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
@@ -87,7 +84,7 @@ public class BillDao {
         List<Bill> bills = new ArrayList();
         String date = year + "/" + month + "/" + day;
         
-        String sql = "Select * from ban_hang.bill where date = ?";
+        String sql = "Select * from bill where date = ?";
         
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -107,7 +104,7 @@ public class BillDao {
                 
                 bill.setDate(rs.getString("date"));
                 bill.setTime(rs.getString("time"));
-                bill.setStatus(rs.getBoolean("status"));
+                bill.setStatus(rs.getString("status"));
                 bill.setList(getDetailBill(id_bill));
                 
                 bills.add(bill);
@@ -118,11 +115,11 @@ public class BillDao {
         return bills;
     }
     
-    //haven't yet done
+
     public List<Bill> getBillForMonth(int month, int year){
         List<Bill> bills = new ArrayList();
         
-        String sql = "select * from ban_hang.bill where date >= ? and date <= ?"; 
+        String sql = "select * from bill where date >= ? and date <= ?"; 
         
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -143,7 +140,7 @@ public class BillDao {
                 
                 bill.setDate(rs.getString("date"));
                 bill.setTime(rs.getString("time"));
-                bill.setStatus(rs.getBoolean("status"));
+                bill.setStatus(rs.getString("status"));
                 bill.setList(getDetailBill(id_bill));
                 
                 bills.add(bill);
@@ -157,7 +154,7 @@ public class BillDao {
     //haven't yet done
     public void createBill(Bill bill){
         
-        String sql = "Select * from ban_hang.bill insert into bill(id_customer,id_employee,date,time,status)"
+        String sql = "insert into bill(id_customer,id_employee,date,time,status)"
                 + " values(?,?,?,?,?)";
         
         try {
@@ -166,7 +163,7 @@ public class BillDao {
             pst.setInt(2, bill.getEmployee().getId());
             pst.setString(3, bill.getDate());
             pst.setString(4, bill.getTime());
-            pst.setBoolean(5, bill.isStatus());
+            pst.setString(5, bill.isStatus());
             
             int rs = pst.executeUpdate(); 
         } catch (SQLException  ex) {

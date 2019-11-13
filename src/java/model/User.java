@@ -14,7 +14,7 @@ public class User {
     private String name;
     private String email;           // regex abc@gmail.com
     private String phoneNumber;
-    private boolean gender;         // 0 = female, 1 = male
+    private String gender;         
     private String address;          
     private String birthday;        // format dd/MM/yyyy
     private String avatar;          // link
@@ -53,11 +53,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isGender() {
+    public String isGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

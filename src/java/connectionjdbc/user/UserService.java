@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package connectionjdbc.user;
-
-import java.util.ArrayList;
 import java.util.List;
 import model.User;
 
@@ -39,8 +37,16 @@ public class UserService {
         return userDao.getUserById(id);
     }
     
-    public void addUser(User user){
-        userDao.addUser(user);
+    public User getUserByName(String name){
+        return userDao.getUserByName(name);
+    }
+    
+    public void updateAvatarUserById(User user){
+        userDao.UpdateAvatarUserByID(user);
+    }
+    
+    public void addUser(User user,String username, String password){
+        userDao.addUser(user,username,password);
     }
     
     public void deletaUser(int id){
@@ -53,6 +59,10 @@ public class UserService {
     
     public User getAccount(String username, String password){
         return userDao.getAccount(username, password);
+    }
+    
+    public void changePassword(int id, String password){
+        userDao.changePassword(id, password);
     }
     
     

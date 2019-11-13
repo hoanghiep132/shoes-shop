@@ -9,13 +9,13 @@ package model;
  *
  * @author hiepnguyen
  */
-public class Product implements Comparable<Product>{
+public class Product {
     private int id;
     private String name;
     private double price;
     private int discount;
     private String brand;
-    private boolean type;   // 1 is shoes, 0 is others
+    private String type;   
     private String img1;
     private String img2;
     private String description;
@@ -98,16 +98,16 @@ public class Product implements Comparable<Product>{
         this.brand = brand;
     }
 
-    public boolean isType() {
+    public String isType() {
         return type;
     }
 
-    public void setType(boolean type) {
+    public void setType(String type) {
         this.type = type;
     }
 
     public Product(int id, String name, double price, int discount, String brand, 
-            boolean type, String img1, String img2, String description, String tag,
+            String type, String img1, String img2, String description, String tag,
             DetailProduct detailProduct) {
         this.id = id;
         this.name = name;
@@ -126,11 +126,6 @@ public class Product implements Comparable<Product>{
         this.detailProduct.setTag(detailProduct.getTag());
     }
 
-    @Override
-    public int compareTo(Product t) {
-        return this.name.compareTo(t.getName());
-    }
-    
     
     
 }

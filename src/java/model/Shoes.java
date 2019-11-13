@@ -47,7 +47,7 @@ public class Shoes extends Product{
     public Shoes(int quantityOfSize36, int quantityOfSize37, int quantityOfSize38, 
             int quantityOfSize39, int quantityOfSize40, int quantityOfSize41, int quantityOfSize42, 
             int quantityOfSize43, int quantityOfSize44, int quantityOfSize45, int id, String name, 
-            double price, int discount, String brand, boolean type, String img1, String img2, 
+            double price, int discount, String brand, String type, String img1, String img2, 
             String description, String tag, DetailProduct detailProduct) {
         
         super(id, name, price, discount, brand, type, img1, img2, description, tag,detailProduct);
