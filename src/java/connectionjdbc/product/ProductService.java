@@ -52,8 +52,12 @@ public class ProductService {
         return productDao.searchProductById(id);
     }
     
-    public DetailProduct getDescriptionProduct(int id){
+    public Product getDescriptionProduct(int id){
         return productDao.getDescriptionProduct(id);
+    }
+    
+    public Product getProductById(int id){
+        return productDao.getProductById(id);
     }
     
     public void addProduct(Product product){

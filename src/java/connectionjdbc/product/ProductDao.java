@@ -7,7 +7,6 @@ package connectionjdbc.product;
 
 import connectionjdbc.GetConnection;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DetailProduct;
 import model.Product;
-import model.Shoes;
-import model.User;
 
 /**
  *
@@ -208,9 +205,13 @@ public class ProductDao {
             preparedStatement.setString(1, tag);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id_product");
-                if (id != product.getId()) {
-                    idList.add(id);
+                if(idList.size() <= 4){
+                    int id = resultSet.getInt("id_product");
+                    if (id != product.getId()) {
+                        idList.add(id);
+                    }
+                }else{
+                    break;
                 }
             }
         } catch (SQLException ex) {
@@ -297,7 +298,11 @@ public class ProductDao {
         }
     }
 
-    public DetailProduct getDescriptionProduct(int id) {
+    public Product getDescriptionProduct(int id) {
+        Product product = getProductById(id);
+        if(product == null) {
+            return null;
+        }
         String sql = "Select * from describe_product where id_product = ?";
         DetailProduct detailProduct = new DetailProduct();
         try {
@@ -309,10 +314,34 @@ public class ProductDao {
             detailProduct.setImg2(resultSet.getString("img2"));
             detailProduct.setImg3(resultSet.getString("img3"));
             detailProduct.setTag(resultSet.getString("tag"));
+            product.setDetailProduct(detailProduct);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return detailProduct;
+        return product;
+    }
+    
+    public Product getProductById(int id){
+        String sql = "Select * from product where id = ?";
+        Product product = new Product();
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                product.setId(rs.getInt("id_product"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setBrand(rs.getString("brand"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setImg1(rs.getString("img1"));
+                product.setImg2(rs.getString("img2"));
+                product.setType(rs.getString("type"));
+            }
+        }catch(SQLException ex){
+            
+        }
+        return  product;
     }
 
 }

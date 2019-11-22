@@ -20,6 +20,14 @@ public class Product {
     private String img2;
     private String description;
     private String tag;
+
+    public DetailProduct getDetailProduct() {
+        return detailProduct;
+    }
+
+    public void setDetailProduct(DetailProduct detailProduct) {
+        this.detailProduct = detailProduct;
+    }
     private DetailProduct detailProduct;
 
     public String getDescription() {
