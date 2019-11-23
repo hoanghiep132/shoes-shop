@@ -16,7 +16,7 @@ public class User {
     private String phoneNumber;
     private String gender;         
     private String address;          
-    private String birthday;        // format dd/MM/yyyy
+    private String birthday;        // format yyyy/MM/dd
     private String avatar;          // link
     private String role;            // customer, employee, manager
     private int point;
@@ -53,7 +53,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String isGender() {
+    public String getGender() {
         return gender;
     }
 

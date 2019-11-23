@@ -7,12 +7,47 @@ package connectionjdbc.user;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 /**
  *
  * @author hiepnguyen
  */
 public class Security {
+    
+    public static String confirmCode;
+
+    public static String getConfirmCode() {
+        return confirmCode;
+    }
+
+    public Security() {
+        randomCode();
+    }
+    
+    private void randomCode(){
+  
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz"; 
+  
+        int length = new Random(10).nextInt(10) + 10;
+        StringBuilder sb = new StringBuilder(length); 
+        
+        for (int i = 0; i < length; i++) { 
+  
+            // generate a random number between 
+            // 0 to AlphaNumericString variable length 
+            int index 
+                = (int)(AlphaNumericString.length() 
+                        * Math.random()); 
+  
+            // add Character one by one in end of sb 
+            sb.append(AlphaNumericString 
+                          .charAt(index)); 
+        } 
+        confirmCode = sb.toString();
+    }
     
     public static String hashPassword(String password){
         String newPassword = null;

@@ -23,7 +23,7 @@ import model.User;
 
 
 
-@WebFilter (urlPatterns = {"/filterJSP.jsp"} )
+@WebFilter (urlPatterns = {"/authenticAccount.jsp"} )
 public class AccountFilter implements Filter{
 
     private UserService userService;

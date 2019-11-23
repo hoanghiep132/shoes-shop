@@ -1,22 +1,11 @@
 
-
-import connectionjdbc.product.ProductDao;
-import connectionjdbc.product.ProductService;
-import connectionjdbc.user.UserDao;
-import connectionjdbc.user.UserService;
-import java.sql.Connection;
-
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-import model.DiscountCode;
-import model.Product;
-import model.User;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -54,7 +43,14 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        boolean check = new UserService().changePassword(1, "admin", "hiep");
-        System.out.println(check);
+        Cloudinary cloudinary = new Cloudinary();
+        //File file = new File("my_image.jpg");
+        File file = new File("/home/hiepnguyen/Pictures/Wallpapers/ubuntu.jpg");
+        try {
+            Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+            System.out.println(uploadResult.get("public_id"));
+        } catch (IOException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -4,6 +4,8 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="model.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -148,71 +150,26 @@
        </div>
     </div>
     <!-- end-linked -->
-    <div class="register">
-        <div class="package">
-           <a href="" style="text-decoration: none; font-weight: bold;font-size: 24px;
-           font-family:'Roboto Condensed', sans-serif; color: black;">
-            Đăng ký tài khoản
-           </a>
-           <div style="font-family: 'Roboto Condensed', sans-serif; font-size: 14px;
-           padding-top: 10px;">
-            Nếu chưa có tài khoản vui lòng đăng ký tại đây
-           </div>
-           <div class="box-register">
-               <form  action="AddUserPost.jsp" id="box-register" method="post">
-                   <div class="box1">
-                       Họ và tên:
-                       <br>
-                       <input type="text" name="FirstName" id="box1" title="Vui lòng điền vào trường này">
-                   </div>
-                   <div class="box1">
-                       Email:
-                       <br>
-                       <input type="email" name="Email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" 
-                       title="Vui lòng điền vào trường này" onclick="checkEmail()">
-                   </div>
-                   <div class="box1">
-                       Số điện thoại:
-                       <br>
-                       <input type="number_phone" name="number_phone" id="email" pattern="[0-9]{10}" 
-                       title="Vui lòng điền vào trường này" onclick="checkEmail()">
-                   </div>
-                   <div class="box1">
-                       Địa chỉ:
-                       <br>
-                       <input type="address" name="address" id="email" pattern="[0-9]{10}" 
-                       title="Vui lòng điền vào trường này" onclick="checkEmail()">
-                   </div>
-                   <div class="box1">
-                       Giới tính
-                       <input type="radio" value="Nam"name="gender" id="gender">
-                        <input type="radio" value="Nữ"name="gender" id="gender">
-                   </div>
-                   <div class="box1">
-                       Username:
-                       <br>
-                       <input type="text" name="Lastname" id="box1" title="Vui lòng điền vào trường này">
-                   </div>
-                   <div class="box1">
-                       Password:
-                       <br>
-                       <input type="password" name="Password" id="box1" title="Vui lòng điền vào trường này">
-                   </div>
-               </form>
-           </div>
-           <div class="box-send">
-               <div class="box-send1">
-                  <a href="" style="margin-top:10px; color:white; display:block;text-decoration: none;">Đăng ký</a>
-               </div>
-               <span class="box-send2">
-                  <a href="" style="text-decoration: none;color: black; 
-                  padding-top:10px; padding-left:30px;display: block;">
-                     Đăng nhập
-                  </a>
-               </span>
-           </div>
-        </div>
-    </div>
+    <%
+        String error = request.getParameter("error");
+        String username = "";
+        String password ="";
+        User user = null;
+        if(!"".equals(error)){
+            username = request.getParameter("username");
+            password = request.getParameter("password");
+            user = (User) request.getAttribute("user");
+            request.setAttribute("err", error);
+        }
+    %>
+  <c:choose>
+      <c:when test="${err eq '10'}">
+          
+      </c:when>
+      <c:otherwise>
+          
+      </c:otherwise>
+  </c:choose>
     <!-- end-register -->
     <div class="information">
         <div class="package">

@@ -187,7 +187,7 @@ public class UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPhoneNumber());
-            preparedStatement.setString(4, user.isGender());
+            preparedStatement.setString(4, user.getGender());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, user.getBirthday());
             preparedStatement.setString(7, user.getAvatar());
@@ -224,7 +224,7 @@ public class UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPhoneNumber());
-            preparedStatement.setString(4, user.isGender());
+            preparedStatement.setString(4, user.getGender());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, user.getBirthday());
             preparedStatement.setString(7, user.getAvatar());
