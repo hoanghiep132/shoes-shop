@@ -157,13 +157,13 @@
             int id = 5;
             User user = new UserService().getUserById(id);
             request.setAttribute("u", user);
-            String birth = user.getBirthday();
-            String year = birth.substring(0, 3);
-            String month = birth.substring(5,6);
-            String date = birth.substring(8,9);
-            request.setAttribute(date, "d");
-            request.setAttribute(month, "m");
-            request.setAttribute(year, "y");
+//            String birth = user.getBirthday();
+//            String year = birth.substring(0, 3);
+//            String month = birth.substring(5,6);
+//            String date = birth.substring(8,9);
+//            request.setAttribute(date, "d");
+//            request.setAttribute(month, "m");
+//            request.setAttribute(year, "y");
         %>
         
         <form action="EditUserPost.jsp?id=${u.id}" method="post" enctype="multipart/form-data" class="edit">
@@ -212,7 +212,7 @@
             </li>
             <li><a href="">Website:miashoes.vn</a></li>
            </ul>
-          </div>
+          </div>name
           <div class="information2">
             <h1>THÔNG TIN</h1>
             <ul>

@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -8,18 +14,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author hiepnguyen
  */
-public class Test {
-
-     public static void send(String from,String password,String to,String sub,String msg){  
+public class SendEmail {
+    
+    
+    public void send(String from,String password,String to,String subject,String msg){  
           //Get properties object    
           Properties props = new Properties();    
           props.put("mail.smtp.host", "smtp.gmail.com");    
@@ -32,14 +34,14 @@ public class Test {
           Session session = Session.getDefaultInstance(props,    
            new javax.mail.Authenticator() {    
            protected PasswordAuthentication getPasswordAuthentication() {    
-           return new PasswordAuthentication(from,password);  
+           return new PasswordAuthentication(from, password);
            }    
           });    
           //compose message    
           try {    
            MimeMessage message = new MimeMessage(session);    
            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
-           message.setSubject(sub);    
+           message.setSubject(subject);    
            message.setText(msg);    
            //send message  
            Transport.send(message);    
@@ -47,10 +49,4 @@ public class Test {
           } catch (MessagingException e) {throw new RuntimeException(e);}    
              
     }  
-
-    public static void main(String[] args) {
-        new Test().send("nguyenhoanghiep1302@gmail.com", "hiepga123", 
-                "hungtvhust@gmail.com", "Test", "Test");
-    }
 }
-

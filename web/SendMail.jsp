@@ -4,6 +4,8 @@
     Author     : hiepnguyen
 --%>
 
+
+<%@page import="model.MyGmail"%>
 <%@page import="model.User"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
@@ -15,6 +17,7 @@
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Session"%>
 <%@page import="java.util.Properties"%>
+<%@page import="javax.mail.PasswordAuthentication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,45 +41,34 @@
             request.setAttribute("user", user);
             Security security = new Security();
 
-            // Recipient's email ID needs to be mentioned.
-            String to = request.getParameter("email");
-
-            // Sender's email ID needs to be mentioned
-            String from = "nguyenhoanghiep@gmail.com";
-
-            // Assuming you are sending email from localhost
-            String host = "localhost";
-
-            // Get system properties object
-            Properties properties = System.getProperties();
-
-            // Setup mail server
-            properties.setProperty("mail.smtp.host", host);
-
-            // Get the default Session object.
-            Session mailSession = Session.getDefaultInstance(properties);
-
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(mailSession);
-
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(to));
-            // Set Subject: header field
-            message.setSubject("Confirm Email");
-
-            // Now set the actual message
-            message.setText(security.getConfirmCode());
-
-            // Send message
+            //Get properties object    
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
+            //get Session   
+            Session ses = Session.getDefaultInstance(props, 
+                    new javax.mail.Authenticator(){
+                        protected PasswordAuthentication getPasswordAuthentication(){
+                            return new javax.mail.PasswordAuthentication(MyGmail.username, MyGmail.password);
+                        }
+                    });
+            
+            //compose message    
             try {
+                MimeMessage message = new MimeMessage(ses);
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("name")));
+                message.setSubject("Confirm Email");
+                message.setText(security.getConfirmCode());
+                //send message  
                 Transport.send(message);
+                System.out.println("message sent successfully");
                 response.sendRedirect("Confirm.jsp");
             } catch (javax.mail.MessagingException ex) {
-                response.sendRedirect("SignUp.jsp?error=10&username="+username+"&password="+password);
+                response.sendRedirect("SignUp.jsp?error=10&username=" + username + "&password=" + password);
             }
         %>
     </body>
