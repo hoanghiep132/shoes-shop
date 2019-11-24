@@ -35,7 +35,7 @@ public class LocationDao {
     public List<Province> getListProvince(){
         List<Province> list = new ArrayList();
         
-        String sql = "Select * from province";
+        String sql = "Select * from province order by name";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -54,7 +54,7 @@ public class LocationDao {
     public List<District> getListDistrict(int idProvince){
         List<District> list = new ArrayList();
         
-        String sql = "Select * from district where provinceid = ?";
+        String sql = "Select * from district where provinceid = ? order by name";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, idProvince);
@@ -74,7 +74,7 @@ public class LocationDao {
     public List<Ward> getListWard(int idDistrict){
         List<Ward> list = new ArrayList();
         
-        String sql = "Select * from ward where districtid = ?";
+        String sql = "Select * from ward where districtid = ? order by name";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, idDistrict);
@@ -94,7 +94,7 @@ public class LocationDao {
     public List<Village> getListVillage(int idWard){
         List<Village> list = new ArrayList();
         
-        String sql = "Select * from village where wardid = ?";
+        String sql = "Select * from village where wardid = ? order by name";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, idWard);

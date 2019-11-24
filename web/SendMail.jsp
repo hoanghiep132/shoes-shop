@@ -60,7 +60,7 @@
             //compose message    
             try {
                 MimeMessage message = new MimeMessage(ses);
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("name")));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("email")));
                 message.setSubject("Confirm Email");
                 message.setText(security.getConfirmCode());
                 //send message  

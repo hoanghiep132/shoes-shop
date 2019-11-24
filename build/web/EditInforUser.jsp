@@ -24,16 +24,16 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <div class="header">
+      <div class="header">
           <div class="package">
               <div class="shop_name">
-                  <a href=""><h1>MiaShoes</h1></a>
+                  <a href="home.jsp"><h1>MiaShoes</h1></a>
               </div>
               <div class="box_search">
                   <span>Tìm Kiếm Sản Phẩm</span>
                   <div class="search">
-                      <form action="Search.jsp" method="post">
-                            <input type="search" placeholder="Search">
+                      <form action="Search.jsp?type=1" method="post">
+                            <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
                         </form>
                   </div>
@@ -70,71 +70,71 @@
             <div class="package">
                 <ul class="menu-ngang">
                   <li id="menu1">
-                      <a href="Search.jsp?str=nike" class="item1">NIKE</a>
+                      <a href="Search.jsp?str=nike&type=2" class="item1">NIKE</a>
                       <ul id="menu11">
-                        <li><a href="" id="item2">Air Force 1</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Air Jordan1</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Air Max 1</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Air Max 197</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Air Max 270</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Air Max 97</a></li>
-                        <li><a href="Search.jsp?str=nike" id="item2">Presto</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
+                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
                       </ul>
                   </li>
                   <li id="menu1">
-                      <a href="Search.jsp?str=adidas" class="item1">ADIDAS</a>
+                      <a href="Search.jsp?str=adidas&type=2" class="item1">ADIDAS</a>
                       <ul id=menu11>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Stan Smith</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">SuperStar</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Derup Runner</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Tubular Doom</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Falcom</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Pod</a></li>
-                        <li><a href="Search.jsp?str=adidas" id="item2">Young1</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Stan Smith</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">SuperStar</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Derup Runner</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Tubular Doom</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Falcom</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Pod</a></li>
+                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Young1</a></li>
                       </ul>
                   </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=luxury" class="item1">LUXURY</a>
+                         <a href="Search.jsp?str=luxury&type=2" class="item1">LUXURY</a>
                          <ul id=menu11 style="height: 100px;">
-                            <li><a href="Search.jsp?str=luxury" id="item2">Balenciaga</a></li>
-                            <li><a href="Search.jsp?str=luxury" id="item2">Gucci</a></li>
-                            <li><a href="Search.jsp?str=luxury" id="item2">MC Queen</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">Balenciaga</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">Gucci</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">MC Queen</a></li>
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=vans" class="item1">VANS</a>
+                         <a href="Search.jsp?str=vans&type=2" class="item1">VANS</a>
                          <ul id=menu11 style="height: 150px;">
-                            <li><a href="Search.jsp?str=vans" id="item2">Style 36</a></li>
-                            <li><a href="Search.jsp?str=vans" id="item2">Slip on</a></li>
-                            <li><a href="Search.jsp?str=vans" id="item2">Old Skool</a></li>
-                            <li><a href="Search.jsp?str=vans" id="item2">Era 95</a></li>
-                            <li><a href="Search.jsp?str=vans" id="item2">Sk8</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Style 36</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Slip on</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Old Skool</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Era 95</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Sk8</a></li>
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=convers" class="item1">CONVERS</a>
+                         <a href="Search.jsp?str=convers&type=2" class="item1">CONVERS</a>
                          <ul id=menu11 style="height: 80px;">
-                            <li><a href="Search.jsp?str=convers" id="item2">1970s</a></li>
-                            <li><a href="Search.jsp?str=convers" id="item2">Chuck 70s x CDG</a></li>
+                            <li><a href="Search.jsp?str=convers&type=2" id="item2">1970s</a></li>
+                            <li><a href="Search.jsp?str=convers&type=2" id="item2">Chuck 70s x CDG</a></li>
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=fila" class="item1">FILA</a>
+                         <a href="Search.jsp?str=fila&type=2" class="item1">FILA</a>
                          <ul id=menu11 style="height: 80px;">
-                            <li><a href="Search.jsp?str=fila" id="item2">Fila ray</a></li>
-                            <li><a href="Search.jsp?str=fila" id="item2">Fila Disruptor II</a></li>
+                            <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila ray</a></li>
+                            <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila Disruptor II</a></li>
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=the10" class="item1">THE10</a>
+                         <a href="Search.jsp?str=the10&type=2" class="item1">THE10</a>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=fashion" class="item1">FASHION</a>
+                         <a href="Search.jsp?str=fashion&type=2" class="item1">FASHION</a>
                          <ul id=menu11 style="height: 120px;">
-                            <li><a href="Search.jsp?str=fashion" id="item2">Áo Phông</a></li>
-                            <li><a href="Search.jsp?str=fashion" id="item2">Áo Sơ Mi</a></li>
-                            <li><a href="Search.jsp?str=fashion" id="item2">Quần Jeans</a></li>
-                            <li><a href="Search.jsp?str=fashion" id="item2">Quần Âu</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Phông</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Sơ Mi</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Jeans</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Âu</a></li>
                           </ul>
                       </li>
                       <li id="menu1">
@@ -148,10 +148,9 @@
                       </li>
                     </ul>
             </div>
-      </div>
-          
+      </div>     
       <!-- end-menu -->
-        
+      
         <%
             //int id = Integer.parseInt(request.getParameter("id"));
             int id = 5;

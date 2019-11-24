@@ -85,9 +85,9 @@ input::-webkit-input-placeholder {
 input[type=submit]{
     background: #ededed  no-repeat 9px center;
     border: solid 1px #ccc;
-    width:40px;
+    width: 80px;
     height: 40px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 /* end search */
 .header .package .infor{
@@ -249,6 +249,7 @@ input[type=submit]{
     padding-right: 5px;
 }
 /* end-linked */
+
 .register{
     width: 100%;
     margin: auto;
@@ -298,6 +299,33 @@ input[type=submit]{
     vertical-align: top;
     display: inline-block;
 }
+
+a{
+    text-decoration: none;
+}
+
+label .lab{
+    width:100px;
+    height: 50px;
+    font-family: inherit;
+    font-size: 20px;
+    margin-left: 100px;
+}
+
+
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+input[type=number]:focus {
+  border: 3px solid #555;
+}
+
+input[type=password]:focus {
+  border: 3px solid #555;
+}
+
+
 /* end-register */
 .information{
     width: 100%;

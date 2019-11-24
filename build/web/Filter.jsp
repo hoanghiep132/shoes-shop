@@ -17,12 +17,12 @@
             User user = userService.getUserByName(name);
             if(user.getRole().equals("admin")){
                 session.setAttribute("currentUser", user);
-                response.sendRedirect("/listEmployee.jsp");
+                response.sendRedirect("listEmployee.jsp");
             }else if(user.getRole().equals("employee")){
                session.setAttribute("currentUser", user);
             }else{
                 session.setAttribute("currentUser", user);
-                response.sendRedirect("/home.jsp");
+                response.sendRedirect("home.jsp");
             }
         %>
     </body>

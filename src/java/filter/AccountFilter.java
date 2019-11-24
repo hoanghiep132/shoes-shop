@@ -47,7 +47,7 @@ public class AccountFilter implements Filter{
         if(!username.equals("") && !password.equals("")){
             User user = new UserService().getAccount(username, password);
             if(user != null){
-                session.setAttribute("id_user", user.getId());
+                session.setAttribute("currentUser", user);
                 chain.doFilter(request, response);
             }else{
                 res.sendRedirect("/SignIn.jsp?error=1");

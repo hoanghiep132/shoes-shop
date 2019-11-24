@@ -146,11 +146,11 @@ public class ProductDao {
 
     public List<Product> searchProductForName(String name) {
         List<Product> products = new ArrayList();
-        String sql = "Select * from product where name like %?%";
+        String sql = "Select * from product where name like ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%" + name + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

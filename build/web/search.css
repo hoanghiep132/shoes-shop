@@ -59,6 +59,9 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
     display: none; 
 }
+ a{
+    text-decoration: none;
+}
 input[type=search] {
     background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     border: solid 1px #ccc;
