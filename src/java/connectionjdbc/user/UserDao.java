@@ -137,6 +137,78 @@ public class UserDao {
         return user;
     }
 
+    public User getUserByEmail(String email) {
+        User user = new User();
+        String sql = "Select * from infor where email = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                user.setAddress(resultSet.getString("address"));
+                user.setGender(resultSet.getString("gender"));
+                user.setBirthday(resultSet.getString("birthday"));
+                user.setAvatar(resultSet.getString("avatar"));
+                user.setPoint(resultSet.getInt("point"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return user;
+    }
+    
+    public User getUserByPhoneNumber(String phoneNumber) {
+        User user = new User();
+        String sql = "Select * from infor where phone_number = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, phoneNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setAddress(resultSet.getString("address"));
+                user.setGender(resultSet.getString("gender"));
+                user.setBirthday(resultSet.getString("birthday"));
+                user.setAvatar(resultSet.getString("avatar"));
+                user.setPoint(resultSet.getInt("point"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return user;
+    }
+    
+    public boolean checkUsername(String username){
+        String sql = "Select * from account where username = ?";
+        int id = 0;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("id_account");
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
+        if(id == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    
     public void UpdateAvatarUserByID(User user) {
 
         String sql = "update user set avatar = ? where id_user = ?";

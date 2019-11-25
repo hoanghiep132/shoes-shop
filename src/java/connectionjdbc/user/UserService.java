@@ -41,6 +41,18 @@ public class UserService {
         return userDao.getUserByName(name);
     }
     
+    public User getUserByEmail(String email){
+        return userDao.getUserByEmail(email);
+    }
+    
+    public User getUserByPhonenNumber(String phonenNumber){
+        return userDao.getUserByPhoneNumber(phonenNumber);
+    }
+    
+    public boolean checkUsername(String username){
+        return userDao.checkUsername(username);
+    }
+    
     public void updateAvatarUserById(User user){
         userDao.UpdateAvatarUserByID(user);
     }

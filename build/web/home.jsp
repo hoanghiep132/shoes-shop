@@ -49,7 +49,7 @@
                       </a>
                     </div>
                 </a>
-<!--                <div class="product">
+                <div class="product">
                   <a href="" class="cart">
                     <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                     <ul>
@@ -58,7 +58,7 @@
                     </ul>
                   </a>
                   <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
+                </div>
               </div>
           </div>
       </div>

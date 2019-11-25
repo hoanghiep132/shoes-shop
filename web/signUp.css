@@ -85,7 +85,7 @@ input::-webkit-input-placeholder {
 input[type=submit]{
     background: #ededed  no-repeat 9px center;
     border: solid 1px #ccc;
-    width: 80px;
+    width: 100px;
     height: 40px;
     border-radius: 10px;
 }
@@ -304,12 +304,33 @@ a{
     text-decoration: none;
 }
 
-label .lab{
-    width:100px;
-    height: 50px;
+label {
+    font-style: oblique;
+    width: 200px;
+    height: 60px;
     font-family: inherit;
-    font-size: 20px;
-    margin-left: 100px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 200px;
+}
+
+input[type=text]{
+    width: 350px;
+    height: 50px;
+    margin-left: 50px;
+    font-size: 25px;
+}
+input[type=number]{
+    width: 350px;
+    height: 50px;
+    margin-left: 50px;
+    font-size: 25px;
+}
+input[type=password]{
+    width: 350px;
+    height: 50px;
+    margin-left: 50px;
+    font-size: 25px;
 }
 
 
@@ -323,6 +344,26 @@ input[type=number]:focus {
 
 input[type=password]:focus {
   border: 3px solid #555;
+}
+
+input[type=submit]{
+    margin-left: 250px;
+}
+
+img .av{
+    margin-left: 150px;
+    width: 150px;
+}
+
+input[type=file]{
+    width: 50px;
+    height: 50px;
+    margin-left: 200px;
+    font-size: 25px;
+}
+
+span .date{
+    margin-left: 50px
 }
 
 

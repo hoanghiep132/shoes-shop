@@ -22,7 +22,6 @@ import javax.servlet.http.HttpSession;
 import model.User;
 
 
-
 @WebFilter (urlPatterns = {"/Filter.jsp"} )
 public class AccountFilter implements Filter{
 

@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -148,25 +149,14 @@
         </div>
         <!-- end-menu -->
         <%
-            String ava = request.getParameter("file");
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String phoneNumber = request.getParameter("phone_number");
-            String address = request.getParameter("address");
-            String gender = request.getParameter("gender");
-            String birthday = request.getParameter("birthday");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            User user = (User) request.getAttribute("newUser");
+            String username = (String) request.getAttribute("username");
+            String password = (String) request.getAttribute("password");
 
-            request.setAttribute("file", ava);
-            request.setAttribute("name", name);
-            request.setAttribute("email", email);
-            request.setAttribute("phone_number", phoneNumber);
-            request.setAttribute("gender", gender);
-            request.setAttribute("birthday", birthday);
-            request.setAttribute("address", address);
+            
             request.setAttribute("username", username);
             request.setAttribute("password", password);
+            request.setAttribute("newUser", user);
 
         %>
         <br><br>

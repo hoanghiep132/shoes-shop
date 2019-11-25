@@ -17,6 +17,9 @@ public class User {
     private String gender;         
     private String address;          
     private String birthday;        // format yyyy/MM/dd
+
+    public User() {
+    }
     private String avatar;          // link
     private String role;            // customer, employee, manager
     private int point;
@@ -31,6 +34,16 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public User(String name, String email, String phoneNumber, String gender, String address, String birthday, String avatar) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.address = address;
+        this.birthday = birthday;
+        this.avatar = avatar;
     }
 
     public void setName(String name) {

@@ -28,16 +28,9 @@
     <body>
 
         <%
-            User user = new User();
-            user.setName(request.getParameter("name"));
-            user.setEmail(request.getParameter("email"));
-            user.setPhoneNumber(request.getParameter("phone_number"));
-            user.setAvatar(request.getParameter("avatar"));
-            user.setAddress(request.getParameter("address"));
-            user.setBirthday(request.getParameter("birthday"));
-            user.setGender(request.getParameter("gender"));
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            User user = (User) request.getAttribute("newUser");
+            String username = (String) request.getAttribute("username");
+            String password = (String) request.getAttribute("password");
             request.setAttribute("user", user);
             Security security = new Security();
 
