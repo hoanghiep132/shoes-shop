@@ -171,10 +171,10 @@
           
       <!-- end-menu -->
           <h3>Có ${a} sản phẩm</h3>
-         <div class="shoes">
+<!--         <div class="shoes">
             <div class="package">
                 <c:forEach items="${list}" var = "product">
-                    <div class="product1">
+                    <span class="product1">
                         <div class="thumbai">
                             <span class="icon-sale" style="padding-top:10px;padding-right:8px; font-weight:bold;">-20%</span>
                             <a href="DetailProduct.jsp?id=${product.id}" id="find-out"><img src="${product.img1}" alt=""style=" width: 280px;
@@ -196,11 +196,21 @@
                                 </c:choose>
                             </ul>
                         </div>
-                    </div>
+                    </span>
+                  
                 </c:forEach>
             </div>
+         </div>-->
+         
+         <div class="content">
+             <c:forEach items="${list}" var = "product">
+                 <div class="product">
+                    <a href="DetailProduct.jsp?id=${product.id}" id="find-out"><img src="${product.img1}" alt=""style=" width: 280px; height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${product.id}" id="find-in"><img src="${product.img2}" alt="" style=" width: 280px;height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${product.id}" class="name" title="${product.name}">${product.name}</a>
+                 </div>
+             </c:forEach>
          </div>
-      
       
               <div class="information">
             <div class="package">

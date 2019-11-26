@@ -38,7 +38,7 @@
                 </div>
                 <!-- end-search -->
                 <div class="infor">
-                    <a href="" class="account">
+                    <a href="SignIn.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                         <div id="hide">
                             <a href="SignUp.jsp">
@@ -150,7 +150,7 @@
         <!-- end-menu -->
         <%
             User user = (User) request.getAttribute("newUser");
-            String username = (String) request.getAttribute("username");
+        String username = (String) request.getAttribute("username");
             String password = (String) request.getAttribute("password");
 
             
@@ -159,13 +159,14 @@
             request.setAttribute("newUser", user);
 
         %>
-        <br><br>
+        <br><br><br><br>
         <h1>Xác nhận tài khoản</h1>
         <br>
         <form name="con" action="AddUserPost.jsp">
             <label>Confirm Email :</label><input name="code" type="text" placeholder="Confirm email">
             <input type="submit" value="Confirm">
         </form>
+        <br><br><br><br><br><br><br><br><br><br>
         <div class="information">
             <div class="package">
                 <div class="information1">

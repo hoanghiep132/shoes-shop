@@ -285,6 +285,12 @@ div {
     display: block;
 }
 
+.btn-style{
+    width: 120px;
+    color: white;
+    background-color: black;
+}
+
 
 
 

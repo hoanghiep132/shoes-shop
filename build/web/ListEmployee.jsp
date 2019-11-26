@@ -10,12 +10,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
-    <body>
-            <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+    <head>
+           <title>MiaShoes</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="listEmp.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+    <body>
           <div class="header">
           <div class="package">
               <div class="shop_name">
@@ -145,29 +153,36 @@
       <!-- end-menu -->
         <%
             List<User> employees = new UserService().getAllInforEmployee();
-            request.setAttribute("employees", employees);
+            request.setAttribute("emp", employees);
+ 
         %>
-        
-    <table>
+        <br><br>
+        <h1>Danh sách các nhân viên hiện tại của cửa hàng</h1>
+        <br><br>
+        <div class="cen">
+            <table>
             <tr>
-                <th>ID  </th>
-                <th>Name</th>
-                <th>Email</th>
+                <th class="id">ID </th>
+                <th class="in">Name</th>
+                <th class="in">Email</th>
+                <th class="in">Phone Number</th>
                 <th>Option</th>
             </tr>
-            <c:forEach items = "${employees}" var= "e">
+            <c:forEach items = "${emp}" var= "em">
             <tr>
-                <td>${e.id}</td>
-                <td>${e.name}</td>
-                <td>${e.email}</td>
-                <th>
-                    <button><a href="viewUser.jsp?id=${user.id}"></a>Detail Information</button> 
-                </th>
+                <td class="id">${em.id}</td>
+                <td class="in">${em.name}</td>
+                <td class="in">${em.email}</td>
+                <td class="in">${em.phonenNumber}</td>
+                <td>
+                    <a href="ViewUser.jsp?id=${em.id}"><button>Detail</button></a> 
+                </td>
             </tr>
             </c:forEach>
-        </table>
-        
-                        <div class="information">
+            </table>
+        </div>
+        <br><br><br><br><br><br>
+        <div class="information">
             <div class="package">
                 <div class="information1">
                     <h1>VỀ CỬA HÀNG</h1>

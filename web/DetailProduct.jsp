@@ -49,7 +49,7 @@
                 </div>
                 <!-- end-search -->
                 <div class="infor">
-                    <a href="" class="account">
+                    <a href="SignIn.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                         <div id="hide">
                             <a href="SignUp.jsp">

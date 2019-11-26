@@ -77,5 +77,9 @@ public class UserService {
         return userDao.changePassword(id,oldPassword, newPassword);
     }
     
+    public boolean changePassword2(int id, String newPassword){
+        return userDao.changePassword2(id, newPassword);
+    }
+    
     
 }

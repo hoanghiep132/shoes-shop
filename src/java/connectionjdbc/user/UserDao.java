@@ -85,6 +85,8 @@ public class UserDao {
         }
         return users;
     }
+    
+    
 
     public User getUserById(int id) {
         User user = new User();
@@ -105,6 +107,7 @@ public class UserDao {
                 user.setBirthday(resultSet.getString("birthday"));
                 user.setAvatar(resultSet.getString("avatar"));
                 user.setPoint(resultSet.getInt("point"));
+                user.setRole(resultSet.getString("role"));
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -339,6 +342,36 @@ public class UserDao {
         try (PreparedStatement ps = connection.prepareStatement(sql1)) {
             ps.setInt(1, id);
             ps.setString(2, Security.hashPassword(old));
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                id_acc = rs.getInt("id_account");
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+
+        if (id_acc != 0) {
+            String sql = "update account set password = ? where id_account = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, Security.hashPassword(newPas));
+                ps.setInt(2, id);
+
+                int rs = ps.executeUpdate();
+                return true;
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return false;
+    }
+    
+    public boolean changePassword2(int id, String newPas) {
+        int id_acc = 0;
+        String sql1 = "select * from account where id_account = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql1)) {
+            ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

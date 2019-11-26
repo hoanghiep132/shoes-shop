@@ -12,9 +12,11 @@
     
     <body>
         <% 
-            String name = request.getParameter("username");
-            UserService  userService = new UserService();
-            User user = userService.getUserByName(name);
+            //User user = (User) session.getAttribute("currentUser");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            User user = new UserService().getAccount(username, password);
+            System.out.println("ID : "+user.getId());
             if(user.getRole().equals("admin")){
                 session.setAttribute("currentUser", user);
                 response.sendRedirect("listEmployee.jsp");

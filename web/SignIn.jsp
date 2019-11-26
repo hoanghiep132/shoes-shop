@@ -35,7 +35,7 @@
               </div>
               <!-- end-search -->
               <div class="infor">
-                <a href="" class="account">
+                <a href="SignIn.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                     <div id="hide">
                         <a href="SignUp.jsp">
@@ -156,7 +156,7 @@
                         <span>
                             Nếu bạn đã có tài khoản, đăng nhập tại đây.
                         </span>
-                        <form accept-charset="UTF-8" action="fliter.jsp" id="customer_login" method="post">
+                        <form accept-charset="UTF-8" action="Fliter.jsp" id="customer_login"  method="post">
                             <input name="FormType" type="hidden" value="customer_login">
                             <input name="utf8" type="hidden" value="true">
                             <div class="form-signup errors">
@@ -165,7 +165,7 @@
                             <div class="form-signup clearfix">
                                 <fieldset class="form-group">
                                     <label>Tài khoản <span class="required">*</span></label>
-                                    <input name ="username" type="text"  class="form-control form-control-lg" value="" name="email" id="customer_email" placeholder="username" required="">
+                                    <input name ="username" type="text"  class="form-control form-control-lg" value="" name="username" id="customer_email" placeholder="username" required="">
                                 </fieldset>
                                 <fieldset class="form-group">
                                     <label>Mật khẩu <span class="required">*</span></label>
@@ -175,8 +175,8 @@
 
 
                                 <div class="pull-xs-left" style="margin-top: 25px;">
-                                    <input class="btn btn-style btn-primary" type="submit" value="Đăng nhập">
-                                    <a href="SignUp.jsp" class="btn-link-style btn-register" style="margin-left: 20px;text-decoration: underline; ">Đăng ký</a>
+                                    <input class="btn btn-style btn-primary rebtn" type="submit" value="Đăng nhập">
+                                    <a href="SignUp.jsp" class="btn-link-style btn-register" style="margin-left: 20px;text-decoration: none; ">Đăng ký</a>
                                 </div>
                             </div>
                         </form>
@@ -191,7 +191,7 @@
                     <span>
                         Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua email.
                     </span>					
-                    <form accept-charset="UTF-8" action="SendMail2.jsp" id="recover_customer_password" method="post">
+                    <form accept-charset="UTF-8" action="SendMail2.jsp" id="recover_customer_password" onsubmit="return checkEmail()" method="post">
                         <input name="FormType" type="hidden" value="recover_customer_password">
                         <input name="utf8" type="hidden" value="true">
                         <div class="form-signup aaaaaaaa">
@@ -204,7 +204,7 @@
                             </fieldset>
                         </div>
                         <div class="action_bottom">
-                            <input class="btn btn-style btn-dark" style="margin-top: 25px;" type="submit" value="Lấy lại mật khẩu">
+                            <input class="btn btn-style btn-dark rebtn" style="margin-top: 25px;" width="100px" type="submit" value="Lấy lại mật khẩu">
 
                         </div>
                     </form>
@@ -284,5 +284,17 @@
         <div class="contact1">
             <a href="http://www.facebook.com"><i class="fab fa-facebook-messenger"></i></a>
         </div>
+        <script type="text/javascript"> 
+        function checkEmail() { 
+            var email = document.getElementById('email'); 
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+            if (!filter.test(email.value)) { 
+                     alert('Hay nhap dia chi email hop le.\nExample: ngvanA@gmail.com');
+                     email.focus; 
+                     return false; 
+            }
+            return true;
+        } 
+        </script>
     </body>
 </html>

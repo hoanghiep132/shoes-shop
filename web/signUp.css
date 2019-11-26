@@ -45,7 +45,6 @@ input {
 }
 input[type=search] {
     -webkit-appearance: textfield;
-    -webkit-box-sizing: content-box;
     font-family: inherit;
     font-size: 100%;
 }
@@ -89,6 +88,11 @@ input[type=submit]{
     height: 40px;
     border-radius: 10px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 /* end search */
 .header .package .infor{
     padding-left: 30px;
@@ -117,7 +121,7 @@ input[type=submit]{
     visibility: visible;
     opacity: 1;
 }
-.header .package .infor .product{}
+
 .header .package .infor .product a.cart{
     text-decoration: none;
     color: black;
@@ -314,58 +318,41 @@ label {
     margin-left: 200px;
 }
 
-input[type=text]{
-    width: 350px;
-    height: 50px;
-    margin-left: 50px;
-    font-size: 25px;
-}
-input[type=number]{
-    width: 350px;
-    height: 50px;
-    margin-left: 50px;
-    font-size: 25px;
-}
-input[type=password]{
-    width: 350px;
-    height: 50px;
-    margin-left: 50px;
-    font-size: 25px;
+.err{
+    margin-left: 400px;
 }
 
 
-
-input[type=text]:focus {
-  border: 3px solid #555;
+.date_input{
+    width: 80px;
 }
-input[type=number]:focus {
-  border: 3px solid #555;
-}
+  .textInput {
+    border: none;
+    width:300px;
+    height: 35px;
+    margin: 2px;
+    border: 1px solid #6B7363;
+    font-size: 1.2em;
+    padding: 5px;
+  }
+  .textInput:focus {
+    outline: none;
+    border-color: blue;
+  }
+  .btn {
+    margin-left: 350px;
+    width: 98.6%;
+    border: none;
+    margin-top: 5px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 12px;
+  }
 
-input[type=password]:focus {
-  border: 3px solid #555;
-}
-
-input[type=submit]{
-    margin-left: 250px;
-}
-
-img .av{
-    margin-left: 150px;
-    width: 150px;
-}
-
-input[type=file]{
-    width: 50px;
-    height: 50px;
-    margin-left: 200px;
-    font-size: 25px;
-}
-
-span .date{
-    margin-left: 50px
-}
-
+  .btn:hover{
+      background-color: blue;
+  }
 
 /* end-register */
 .information{
@@ -439,8 +426,7 @@ span .date{
 .information .package .payment>ul>li>img{
     width:40px;
 }
-.information .package .payment>span>img{
-}
+
 /* end-information */
 .banner-end{
     margin: auto;

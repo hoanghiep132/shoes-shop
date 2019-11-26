@@ -2,10 +2,6 @@
     width: 100%;
     height: 70px;
 }
-
-body a{
-    text-decoration: none;
-}
 .header .package{
     margin: auto;
     width: 80%;
@@ -35,7 +31,6 @@ body a{
     display: flex;
     margin: auto;
 }
-.header .package .box_search{}
 .header .package .box_search span{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
@@ -50,7 +45,6 @@ input {
 }
 input[type=search] {
     -webkit-appearance: textfield;
-    -webkit-box-sizing: content-box;
     font-family: inherit;
     font-size: 100%;
 }
@@ -90,9 +84,14 @@ input::-webkit-input-placeholder {
 input[type=submit]{
     background: #ededed  no-repeat 9px center;
     border: solid 1px #ccc;
-    width:40px;
+    width: 100px;
     height: 40px;
-    border-radius: 50px;
+    border-radius: 10px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 /* end search */
 .header .package .infor{
@@ -122,7 +121,7 @@ input[type=submit]{
     visibility: visible;
     opacity: 1;
 }
-.header .package .infor .product{}
+
 .header .package .infor .product a.cart{
     text-decoration: none;
     color: black;
@@ -224,223 +223,141 @@ input[type=submit]{
     color: black;
 }
 /* end-menu */
-#slide{
-    margin: auto;
-   width: 1500px;
-   height: 850px;
-}
-#slide img{
-    width:1500px;
-    height: 800px;
-   
-}
-/* end-slide */
-.title{
-    width:100% ;
-    margin: auto;
-    justify-content: space-between;
-    text-align: center;
-}
-.title span{ 
-    width: 80%;
-    margin: auto;
-    font-size: 20px;
-    text-align: center;
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 10px;
-}
-.title div{
-    margin: auto;
-    width: 185px;
-    height: 0.25em;
-    background-color: gray;
-}
-/* end-title */
-.shoes{
+.linked{
+    padding-top: 18px;
     width: 100%;
-}
-.shoes .package{
-    width: 80%;
     margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
-.shoes .package .product1{
-    
-    width: 280px;
-    height: 320px;
+.linked .package{
+    width: 81%;
+    margin-left: auto;
 }
-.shoes .package .product1 .thumbai{
-    position: relative;
-    width: 280px;
-    height: 320px;
-}
-.shoes .package .product1 .thumbai .icon-sale{
-    top:18px;
-    position: absolute;
-    right: 8px;
-    z-index: 100;
-    background-image:url(css/icon-sale.png);
-    height: 40px;
-    width: 32px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 500;
-    color: white;
-}
-.shoes .package .product1 .thumbai .name{
-    text-align: center;
+.linked .package a{
+    font-family: 'Roboto Condensed', sans-serif;;
     text-decoration: none;
     color: black;
-    font-weight: 500;
-    display: block;
-    margin-top: 10px;
 }
-.shoes>img{
-   
+.linked .package a:hover{
+    font-weight: 550;
 }
-.shoes .package .product1 .thumbai ul{
-    margin-top:20px;
-    margin-left:10px;
-    display: flex;
+.linked .package a>i{
+    padding-right:5px;
 }
-.shoes .package .product1 .thumbai ul li{
-    list-style: none;
-    margin:5px;
+.linked .package span{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 600;
 }
-#find-out>img{
-
-}
-#find-in>img{
-    position: absolute;
-    top:15px;
-    left: 0px;
-    opacity: 0;
-}
-.shoes .package .product1 .thumbai:hover #find-in>img{
-         opacity: 1;
-}
-/* end-shoes */
-.fashion{
-    margin-top: 20px;
-    width: 100%;
-}
-.fashion .package{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: auto;
-    width: 90%;
-}
-.fashion .package .fashion1{
-    width: 280px;
-    height: 500px;
-    margin-right: 20px;
-}
-.fashion .package .fashion1 .thumbai{
-    position: relative;
-    width: 280px;
-    height: 500px;
-}
-.fashion .package .fashion1 .thumbai .icon-sale{
-    top:0px;
-    position: absolute;
-    right: -4px;
-    z-index: 100;
-    background-image:url(css/icon-sale.png);
-    height: 40px;
-    width: 32px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 500;
-    color: white;
-}
-.fashion .package .fashion1 .thumbai .name{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    display: block;
-    margin-top: 0px;
-}
-.fashion .package .fashion1 .thumbai ul{
-    margin-top:15px;
-    margin-left:10px;
-    display: flex;
-}
-.fashion .package .fashion1 .thumbai ul li{
-    list-style: none;
-    margin:5px;
-}
-#clother-in>img{
-    position: absolute;
-    top:0px;
-    left: 0px;
-    opacity: 0;
-}
-.fashion .package .fashion1 .thumbai:hover #clother-in>img{
-    opacity: 1;
-}
-/* end-fashion */
-.news{
-    margin: auto;
-    margin-top: 20px;
-    width: 100%;
-}
-.news .package{
-    width: 90%;
-    margin: auto;
-    display:flex;
-    flex-wrap: wrap;
-}
-.news .package .new1{
-       height: 300px;
-       padding-right:20px;
-}
-.news .package .new1 .thumbai{
-    margin-left: auto;
-    width: 100%;
-    height: 400px;
-}
-.news .package .new1 .thumbai>img{}
-.news .package .new1 .thumbai .name{
-    margin-left:100px;
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 500;
+.linked .package span>i{
     font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-.news .package .new1 .thumbai .more{
-   margin-left:100px;
-   color: black;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   font-weight:500;
-   font-size: 12px;
-}
-.news .packgae .new1 .thumbai .more>i{}
-.news .package .new1 .thumbai .more:hover{
-    color: rgb(46, 176, 241);
-}
-/* end-news */
-.video{
+/* end-linked */
+
+.register{
     width: 100%;
     margin: auto;
+    padding-top: 25px;
 }
-.video .package{
-    margin-top:60px;
+.register .package{
+    width: 81%;
     margin-left: auto;
-    width:90%;
+}
+#box-register{
+    padding-top:10px;
+    width: 80%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
-iframe{
-    margin-right: 21px;
+#email{
+    width:450px;
+    height: 40px;
+    text-align: left;
+    padding:0 10px;
 }
-/* end-video */
+#box1{
+    width:450px;
+    height: 40px;
+    text-align: left;
+    border-radius: 0;
+    box-shadow: 0;
+    padding:0 10px;
+}
+#box-register .box1{
+    font-family:'Roboto Condensed', sans-serif;
+    font-weight: 600;
+    padding-top:10px;
+}
+
+.register .package .box-send{
+    margin-top:40px;
+    font-size: 14px;
+    font-family: 'Roboto Condensed', sans-serif;;
+}
+.register .package .box-send .box-send1{
+    width: 90px;
+    height: 40px;
+    background: black;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+}
+
+label {
+    font-style: oblique;
+    width: 200px;
+    height: 60px;
+    font-family: inherit;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 200px;
+}
+
+.err{
+    margin-left: 400px;
+}
+
+
+.date_input{
+    width: 80px;
+}
+.textInput {
+    border: none;
+    width:300px;
+    height: 35px;
+    margin: 2px;
+    border: 1px solid #6B7363;
+    font-size: 1.2em;
+    padding: 5px;
+  }
+ 
+  .textInput:focus {
+    outline: none;
+    border-color: blue;
+  }
+  .btn {
+    width: 100px;
+    height: 50px;
+    margin-left: 350px;
+    width: 98.6%;
+    border: none;
+    margin-top: 5px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 12px;
+  }
+
+  .btn:hover{
+      background-color: blue;
+  }
+
+/* end-register */
 .information{
     width: 100%;
     background-color: black;
@@ -467,7 +384,6 @@ iframe{
     display: block;
     font-size: 13px;
 }
-.information .package .information1>div{}
 .information .package .information1>ul{
     margin-left: -37px;
     font-size: 13px;
@@ -513,9 +429,7 @@ iframe{
 .information .package .payment>ul>li>img{
     width:40px;
 }
-.information .package .payment>span{}
-.information .package .payment>span>img{
-}
+
 /* end-information */
 .banner-end{
     margin: auto;
@@ -574,3 +488,4 @@ iframe{
     position: fixed;
     z-index: 8000;
 }
+

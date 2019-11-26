@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="connectionjdbc.user.UserService"%>
 <%@page import="model.MyGmail"%>
 <%@page import="model.User"%>
 <%@page import="java.util.logging.Logger"%>
@@ -27,7 +28,10 @@
     <body>
         <%
             String email = request.getParameter("email");
-            
+            User user = new UserService().getUserByEmail(email);
+            if(user == null){
+                response.sendRedirect("SignIn.jsp?err=1");
+            }
             //Get properties object    
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
@@ -53,6 +57,7 @@
                 //send message  
                 Transport.send(message);
                 System.out.println("message sent successfully");
+                new UserService().changePassword2(user.getId(), Security.newPassword());
                 response.sendRedirect("SignIn.jsp");
             } catch (javax.mail.MessagingException ex) {
                 response.sendRedirect("SignIn.jsp");

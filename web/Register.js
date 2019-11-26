@@ -1,0 +1,106 @@
+function Validation()                                    
+{ 
+    var name = document.forms["register"]["name"];               
+    var email = document.forms["register"]["email"];    
+    var phone = document.forms["register"]["phone_number"];  
+    var address =  document.forms["register"]["address"];  
+    var password = document.forms["register"]["password"];  
+    var username = document.forms["register"]["username"];  
+
+    var username_error = document.getElementById('username_error');
+    var password_error = document.getElementById('password_error');
+    var name_error = document.getElementById('name_error');
+    var email_error = document.getElementById('email_error');
+    var phone_error = document.getElementById('phone_error');
+    var add_error = document.getElementById('add_error');
+
+
+       
+    if (username.value === ""){ 
+        username.style.border = "1px solid red";
+        document.getElementById('username_error').style.color = "red";
+        username_error.textContent = "Cần điền tên tài khoản";
+        username.focus();
+        return false; 
+    } 
+
+    if (password.value === ""){ 
+        password.style.border = "1px solid red";
+        document.getElementById('password_error').style.color = "red";
+        password_error.textContent = "Cần điền mật khẩu";
+        password.focus(); 
+        return false; 
+    } 
+    
+    if (password.value.length < 8 && password.value.length > 16) { 
+        password.style.border = "1px solid red";
+        document.getElementById('password_error').style.color = "red";
+        password_error.textContent = "Mật khẩu không hợp lệ";
+        password.focus(); 
+        return false; 
+    } 
+
+    if (name.value === "") { 
+        name.style.border = "1px solid red";
+        document.getElementById('name_error').style.color = "red";
+        name_error.textContent = "Cần điền tên";
+        name.focus(); 
+        return false; 
+    } 
+
+    if (email.value === ""){ 
+        email.style.border = "1px solid red";
+        document.getElementById('email_error').style.color = "red";
+        email_error.textContent = "Email không hợp lệ";
+        email.focus(); 
+        return false; 
+    } 
+
+    if (email.value === ""){ 
+        email.style.border = "1px solid red";
+        document.getElementById('email_error').style.color = "red";
+        email_error.textContent = "Cần điền thông tin email";
+        email.focus(); 
+        return false; 
+    } 
+
+
+    if(!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.value)){
+        email.style.border = "1px solid red";
+        document.getElementById('email_error').style.color = "red";
+        email_error.textContent = "Email không hợp lệ";
+        email.focus();
+        return false;
+    }
+
+    if (phone.value === ""){ 
+        phone.style.border = "1px solid red";
+        document.getElementById('phone_error').style.color = "red";
+        phone_error.textContent = "Cần điền số điện thoại";
+        phone.focus(); 
+        return false; 
+    } 
+
+
+    if(!/(09|01[2|6|8|9])+([0-9]{8})\b/.test(phoneNumber.value)){
+        phone.style.border = "1px solid red";
+        document.getElementById('phone_error').style.color = "red";
+        phone_error.textContent = "Số điện thoại không hợp lệ";
+        phone.focus();
+        return false;
+    }
+
+     
+   
+    if (address.value === "")                               
+    { 
+        address.style.border = "1px solid red";
+        document.getElementById('add_error').style.color = "red";
+        add_error.textContent = "Cần điền địa chỉ";
+        address.focus();
+        return false; 
+    }
+
+    return true;
+}
+

@@ -37,7 +37,7 @@
               </div>
               <!-- end-search -->
               <div class="infor">
-                <a href="" class="account">
+                <a href="SignIn.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                     <div id="hide">
                         <a href="SignUp.jsp">
@@ -162,7 +162,7 @@
             <a href="home.jsp"><img src="css/slider_2.jpg" alt=""></a>
           </div>
           <div class="carousel-item">
-            <a href="home.jsp"><img src="css/slider_3.jpg" alt=""></a>
+            <a href="home.jsp"><img src="css/slider_1.jpg" alt=""></a>
           </div>
         </div>
         <a class="carousel-control-prev" href="#slide" role="button" data-slide="prev">
