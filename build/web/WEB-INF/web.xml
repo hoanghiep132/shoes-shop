@@ -4,29 +4,30 @@
         <filter-name>AccountFilter</filter-name>
         <filter-class>filter.AccountFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>AccountFilter</filter-name>
-        <url-pattern>/AccountFilter</url-pattern>
-    </filter-mapping>
-    
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>filter.UserFilter</filter-class>
+    </filter>
     <filter>
         <filter-name>AddUserFilter</filter-name>
         <filter-class>filter.AddUserFilter</filter-class>
     </filter>
     <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/UserFilter</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AccountFilter</filter-name>
+        <url-pattern>/AccountFilter</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>AddUserFilter</filter-name>
         <url-pattern>/AddUserFilter</url-pattern>
     </filter-mapping>
-
-   
     <servlet>
         <servlet-name>AccountFilter</servlet-name>
         <servlet-class>filter.AccountFilter</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>AccountFilter</servlet-name>
-        <url-pattern>/AccountFilter</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

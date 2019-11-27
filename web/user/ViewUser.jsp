@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EditInforUser
-    Created on : Nov 22, 2019, 9:56:52 PM
-    Author     : hiepnguyen
---%>
-
 <%@page import="model.User"%>
 <%@page import="connectionjdbc.user.UserService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="edit.css">
+    <link rel="stylesheet" href="view.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -138,10 +132,10 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
-                         <a href="" class="item1">PHỤ KIỆN</a>
+                         <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
                       </li>
                       <li id="menu1">
                          <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>
@@ -153,82 +147,38 @@
       
         <%
             //int id = Integer.parseInt(request.getParameter("id"));
-            int id = 1;
+            int id = 2;
             User user = new UserService().getUserById(id);
             request.setAttribute("u", user);
-            
-            String birth = user.getBirthday();
-            String year = birth.substring(0, 4);
-            String month = birth.substring(5,7);
-            String date = birth.substring(8,10);
-            System.out.println("Birthday : " +date+"/"+month+"/"+year);
-            request.setAttribute(date, "d");
-            request.setAttribute(month, "m");
-            request.setAttribute(year, "y");
+            String bir = user.getBirthday();
+            String result = bir.substring(8,10) + "/" + bir.substring(5,7) + "/" + bir.substring(0,4);
+            request.setAttribute("re", result);
         %>
-        <br><br>
-        <h1 align="center">Chỉnh sửa thông tin tài khoản</h1>
-        <br><br><br>
-        <form  action="EditUserPost.jsp" onsubmit="return Validation()" name="register" method="post"> 
-            <div id="ava_div">
-                <label>Avatar</label>
-                <img  src="${u.avatar}" width="200px" height="200px">
-                <input type="file" name="ava" accept="*/img">
+        
+         <div class="center">
+            <div class="left">
+                <br><br><br><br><br><br><span class="label tit"> Avatar</span><br><br><br><br>
+                <span class="label tit"> Name</span><br><br>
+                <span class="label tit"> Email</span><br><br>
+                <span class="label tit"> Phone Number</span><br><br>
+                <span class="label tit"> Address</span><br><br>
+                <span class="label tit"> Gender</span><br><br>
+                <span class="label tit"> Birthday</span><br><br>
+                <span class="label tit"> Role</span><br><br>
             </div>
-                <div id="username_div">
-                  <label>Tài khoản</label>
-                  <input type="text" name="username" class="textInput" value="${u.username}">
-                  <div id="username_error" class="err">  </div>
-                </div>
-                <div id="password_div">
-                    <label>Mật khẩu</label>
-                    <input type="password" name="password" class="textInput" value="${u.password}">
-                    <div id="password_error" class="err">  </div>
-                  </div>
-                <div id="name_div">
-                    <label>Họ và tên</label>
-                    <input type="text" name="name" class="textInput" value="${u.name}">
-                    <div id="name_error" class="err">  </div>
-                </div>
-                <div id="email_div">
-                  <label>Email</label>
-                  <input type="text" name="email" class="textInput" value="${user.email}">
-                  <div id="email_error" class="err"></div>
-                </div>
-                <div id ="phone_div">
-                    <label>Số điện thoại</label>
-                    <input type="number" name="phone_number" class="textInput" value="${u.phoneNumber}">
-                    <div id="phone_error" class="err"></div>
-                </div>
-                <div id="add_div">
-                    <label>Địa chỉ</label>
-                    <input type="text" name="address" class="textInput" value="${u.address}">
-                    <div id="add_error" class="err"></div>
-                  </div>
-                 <div >
-                    <label for="lab">Ngày sinh</label> 
-                    <input name="day" type="number"  class="date_input" max="31" min="1" value="${d}"> 
-                        <input name="month" type="number" max="12" min="1" class="date_input" value="${m}"> 
-                        <input name="year" type="number" max="2020" min="1950" class="date_input" value="${y}">
-                 </div>  
-                 <c:if test="${user.gender eq 'male'}">
-                     <div>
-                    <label for="lab">Giới tính </label> <input name="gender" type="radio" value="male" checked="true"> Nam 
-                    <input name="gender" type="radio" value="female" checked="false"> Nữ 
-                    </div>
-                 </c:if> 
-                 <c:if test="${user.gender eq 'female'}">
-                     <div>
-                    <label for="lab">Giới tính </label> <input name="gender" type="radio" value="male" checked="false"> Nam 
-                    <input name="gender" type="radio" value="female" checked="true"> Nữ 
-                    </div>
-                 </c:if>  
-                 <div> 
-                <input type="submit" name="register" value="Register" class="btn">
-                </div>
-            </form>
-                              
-    <div class="information">
+            <div class="right">
+                <br>
+                <span class="label inf"> <img src="${u.avatar}" width="200px" height="200px"></span><br><br>
+                 <span class="label inf"> ${u.name}</span><br><br>
+                 <span class="label inf"> ${u.email}</span><br><br>
+                 <span class="label inf"> ${u.phoneNumber}</span><br><br>
+                 <span class="label inf"> ${u.address}</span><br><br>
+                 <span class="label inf"> ${u.gender}</span><br><br>
+                 <span class="label inf"> ${re}</span><br><br>
+                 <span class="label inf"> ${u.role}</span><br><br>
+            </div>
+        </div>
+              <div class="information">
         <div class="package">
           <div class="information1">
            <h1>VỀ CỬA HÀNG</h1>
@@ -301,6 +251,6 @@
         <a href="http://www.facebook.com"><i class="fab fa-facebook-messenger"></i></a>
       </div>
       <!-- end-page -->
-      <script src="Register.js"></script>
     </body>
 </html>
+

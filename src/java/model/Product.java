@@ -20,6 +20,30 @@ public class Product {
     private String img2;
     private String description;
     private String tag;
+    private Quantity quantity;
+
+    public Quantity getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Quantity quantity) {
+        this.quantity = quantity;
+    }
+
+    public Product(int id, String name, double price, int discount, String brand, String type, String img1, String img2, String description, String tag, Quantity quantity, DetailProduct detailProduct) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+        this.brand = brand;
+        this.type = type;
+        this.img1 = img1;
+        this.img2 = img2;
+        this.description = description;
+        this.tag = tag;
+        this.quantity = quantity;
+        this.detailProduct = detailProduct;
+    }
 
     public DetailProduct getDetailProduct() {
         return detailProduct;
@@ -106,7 +130,7 @@ public class Product {
         this.brand = brand;
     }
 
-    public String isType() {
+    public String getType() {
         return type;
     }
 

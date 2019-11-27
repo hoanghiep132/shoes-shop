@@ -14,12 +14,21 @@ function Validation()
     var phone_error = document.getElementById('phone_error');
     var add_error = document.getElementById('add_error');
 
-
+    var emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var phoneRegex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
        
     if (username.value === ""){ 
         username.style.border = "1px solid red";
         document.getElementById('username_error').style.color = "red";
         username_error.textContent = "Cần điền tên tài khoản";
+        username.focus();
+        return false; 
+    } 
+    
+    if (username.value.length < 4){ 
+        username.style.border = "1px solid red";
+        document.getElementById('username_error').style.color = "red";
+        username_error.textContent = "Tên tài khoản gồm ít nhất 4 kí tự";
         username.focus();
         return false; 
     } 
@@ -65,7 +74,7 @@ function Validation()
     } 
 
 
-    if(!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.value)){
+    if(!emailRegex.test(email.value)){
         email.style.border = "1px solid red";
         document.getElementById('email_error').style.color = "red";
         email_error.textContent = "Email không hợp lệ";
@@ -82,7 +91,7 @@ function Validation()
     } 
 
 
-    if(!/(09|01[2|6|8|9])+([0-9]{8})\b/.test(phoneNumber.value)){
+    if(!phoneRegex.test(phoneNumber.value)){
         phone.style.border = "1px solid red";
         document.getElementById('phone_error').style.color = "red";
         phone_error.textContent = "Số điện thoại không hợp lệ";

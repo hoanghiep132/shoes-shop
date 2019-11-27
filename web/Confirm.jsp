@@ -136,10 +136,10 @@
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="" class="item1">SALES</a>
+                        <a href="Search.jsp?type=4" class="item1">SALES</a>
                     </li>
                     <li id="menu1">
-                        <a href="" class="item1">PHỤ KIỆN</a>
+                        <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
                     </li>
                     <li id="menu1">
                         <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>

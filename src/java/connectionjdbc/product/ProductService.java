@@ -8,8 +8,8 @@ package connectionjdbc.product;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import model.DetailProduct;
 import model.Product;
+import model.Shoes;
 
 /**
  *
@@ -39,6 +39,9 @@ public class ProductService {
     public List<Product> getAllOthers(){
         return productDao.getAllOthers();
     }
+    public List<Product> getAllSaleProducts(){
+        return productDao.getAllSaleProduct();
+    }
     
     public List<Product> searchProductForName(String name){
         return productDao.searchProductForName(name);  
@@ -55,6 +58,11 @@ public class ProductService {
     public Product getDescriptionProduct(int id){
         return productDao.getDescriptionProduct(id);
     }
+    
+    public Shoes getDescriptionShoes(int id){
+        return productDao.getDescriptionShoes(id);
+    }
+    
     
     public Product getProductById(int id){
         return productDao.getProductById(id);
@@ -79,7 +87,8 @@ public class ProductService {
     }
     
     public List<Product> orderProductAscendingByPrice(List<Product> list){
-        return list.stream().sorted(Comparator.comparing(Product::getPrice))
+        return list.stream().sorted((p1,p2) -> ((int)p1.getPrice()/100*(100-p1.getDiscount()) 
+                - (int)p2.getPrice()/100*(100-p2.getDiscount())))
                 .collect(Collectors.toList());
     }
     
@@ -89,7 +98,10 @@ public class ProductService {
     }
     
     public List<Product> orderProductDescendingByPrice(List<Product> list){
-        return list.stream().sorted((p1,p2) -> (int)(p2.getPrice() - p1.getPrice()))
+        return list.stream().sorted((p1,p2) -> ((int)p2.getPrice()/100*(100-p2.getDiscount()) 
+                - (int)p1.getPrice()/100*(100-p1.getDiscount())))
                 .collect(Collectors.toList());
     }
+    
+   
 }

@@ -23,7 +23,9 @@ public class Shoes extends Product{
     private int quantityOfSize45;
 
     public Shoes() {
+        super();
     }
+    
 
     public Shoes(int quantityOfSize36, int quantityOfSize37, int quantityOfSize38, 
             int quantityOfSize39, int quantityOfSize40, int quantityOfSize41, 
@@ -41,7 +43,8 @@ public class Shoes extends Product{
         this.quantityOfSize44 = quantityOfSize44;
         this.quantityOfSize45 = quantityOfSize45;
     }
-
+    
+    
     
     
     public Shoes(int quantityOfSize36, int quantityOfSize37, int quantityOfSize38, 

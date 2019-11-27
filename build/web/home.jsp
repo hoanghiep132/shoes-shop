@@ -4,6 +4,9 @@
     Author     : hiepnguyen
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -36,30 +39,37 @@
                   </div>
               </div>
               <!-- end-search -->
-              <div class="infor">
+              <%
+                  User user = (User) session.getAttribute("currentUser");
+                  request.setAttribute("u", user);
+              %>
+              <c:choose>
+                  <c:when test="${u eq null}">
+                      <div class="infor">
                 <a href="SignIn.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
-                    </div>
+
                 </a>
-                <div class="product">
-                  <a href="" class="cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                    <ul>
-                      <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
-                    </ul>
-                  </a>
+              </div>
+                  </c:when>
+                  <c:otherwise>
+                      <div class="infor">
+                        <a href="MyAccount.jsp." class="account">
+                        <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
+                        </a>
+                    <div class="product">
+                      <a href="" class="cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
+                        <ul>
+                          <li>Giỏ hàng</li>
+                          <li>(0) Sản phẩm</li>
+                        </ul>
+                      </a>
                   <span>Không có sản phẩm nào trong giỏ hàng</span>
                 </div>
               </div>
+                  </c:otherwise>
+              </c:choose>
           </div>
       </div>
           <!-- end-header -->
@@ -135,10 +145,10 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="" class="item1">SALES</a>
+                          <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
-                         <a href="" class="item1">PHỤ KIỆN</a>
+                         <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
                       </li>
                       <li id="menu1">
                          <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>

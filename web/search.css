@@ -222,9 +222,19 @@ input[type=submit]{
     opacity: 1;
 }
 
+.shoes{
+    width: 1500px;
+}
+
+.shoes .package{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 .shoes .package .product1{
-    
-    width: 280px;
+    width: 320px;
     height: 320px;
 }
 .shoes .package .product1 .thumbai{
@@ -233,6 +243,222 @@ input[type=submit]{
     height: 320px;
 }
 .shoes .package .product1 .thumbai .icon-sale{
+    top:18px;
+    position: absolute;
+    right: 8px;
+    z-index: 100;
+    background-image:url(icon-sale.png);
+    height: 40px;
+    width: 32px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+}
+.shoes .package .product1 .thumbai .name{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-weight: 500;
+    display: block;
+    margin-top: 10px;
+}
+
+.shoes .package .product1 .thumbai ul{
+    margin-bottom:15px;
+    margin-top:5px;
+    margin-left:10px;
+    display: flex;
+}
+.shoes .package .product1 .thumbai ul li{
+    list-style: none;
+    margin:5px;
+}
+#find-in>img{
+    position: absolute;
+    top:15px;
+    left: 0px;
+    opacity: 0;
+}
+.shoes .package .product1 .thumbai:hover #find-in>img{
+         opacity: 1;
+}
+.information{
+    width: 100%;
+    background-color: black;
+    margin: auto;
+}
+.information .package{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 90%;
+    margin-left: auto;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.information .package .information1{
+    width: 25%;
+}
+.information .package h1{
+    padding-top:60px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+.information .package .information1>span{
+    display: block;
+    font-size: 13px;
+}
+.information .package .information1>ul{
+    margin-left: -37px;
+    font-size: 13px;
+}
+.information .package .information1>ul>li{
+    padding-top:5px;
+    list-style: none;
+    display: block;
+}
+.information .package .information1>ul>li>a{
+    color: white;
+    text-decoration: none;
+}
+.information .package .information2{
+    margin-left:-100px;
+}
+.information .package .information2 ul{
+   margin-left: -37px;
+}
+.information .package .information2>ul>li{
+    font-size: 12px;
+    padding-bottom: 10px;
+    list-style: none;
+}
+.information .package .information2>ul>li>i{
+    padding-right: 5px;
+}
+.information .package .information2>ul>li>a{
+    color: white;
+    text-decoration: none;
+}
+.information .package .payment{
+    margin-right:150px;
+}
+.information .package .payment>ul{
+    margin-left:-37px;
+    display: flex;
+}
+.information .package .payment>ul>li{
+    list-style: none;
+    margin-right: 3px;
+}
+.information .package .payment>ul>li>img{
+    width:40px;
+}
+
+/* end-information */
+.banner-end{
+    margin: auto;
+    width: 100%;
+    height: 70px;
+    background: rgb(47, 46, 46);
+}
+.banner-end .package{
+    margin: auto;
+    width: 80%;
+    display: flex;
+}
+.banner-end .package .banner-left{
+    padding-top: 25px;
+}
+.banner-end .package .banner-right{
+    margin-left: 250px;
+    padding: auto;
+}
+.banner-end .package .banner-right ul{
+    padding-top: 25px;
+    display: flex;
+}
+.banner-end .package .banner-right ul li{
+    list-style: none;
+}
+.banner-end .package .banner-right>ul>li>a{
+    text-decoration: none;
+}
+.banner-end .package .banner-right ul li a i{
+    color: rgb(7, 6, 6);
+    font-size: 20px;
+    padding-right: 20px;
+}
+/* end-banner */
+.contact{
+    top:86%;
+    left:20px;
+    position: fixed;
+    z-index: 1024;
+}
+.contact i{
+    font-size: 30px;
+}
+.contact1{
+    top:86%;
+    right:20px;
+    position: fixed;
+    z-index: 1024; 
+}
+.contact1 i{
+    font-size: 50px;
+}
+.fixed{
+    top:0px;
+    position: fixed;
+    z-index: 8000;
+}
+
+.content {
+    display: flex;
+    width: 1200px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.product {
+     margin-left: 30px;
+    font-size: 21px;
+    color: #414141;
+    width: 250px;
+    height: 250px;
+    position: relative;
+    font-family: segoe ui light;
+    margin-bottom: 20px;
+}
+
+.product .thumbai .anh1{
+    width: 250px;
+    height: 170px;
+    
+}
+.product .thumbai .anh2{
+    width: 250px;
+    height: 170px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transition: 0.4s;
+    opacity: 0;
+}
+
+.product .thumbai{
+    position: relative;
+    width: 280px;
+    height: 320px;
+}
+
+.product .thumbai .icon-sale{
     top:18px;
     position: absolute;
     right: 8px;
@@ -247,35 +473,26 @@ input[type=submit]{
     font-weight: 500;
     color: white;
 }
-.shoes .package .product1 .thumbai .name{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    display: block;
-    margin-top: 10px;
-}
-.shoes>img{
-   
-}
-.shoes .package .product1 .thumbai ul{
-    margin-top:20px;
-    margin-left:10px;
-    display: flex;
-}
-.shoes .package .product1 .thumbai ul li{
-    list-style: none;
-    margin:5px;
-}
-#find-out>img{
 
+.product:hover .anh2{
+    opacity: 1;
 }
-#find-in>img{
-    position: absolute;
-    top:15px;
-    left: 0px;
-    opacity: 0;
+
+button.button1{
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    display: inline-block;
+    border: 1px solid #19b5fe;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    margin-left: 220px;
 }
-.shoes .package .product1 .thumbai:hover #find-in>img{
-         opacity: 1;
+
+
+
+a{
+    text-decoration: none;
+    color : #bf55ec;
 }

@@ -40,28 +40,9 @@
               </div>
               <!-- end-search -->
               <div class="infor">
-                <a href="" class="account">
+                  <a href="MyAccount.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
-                    </div>
                 </a>
-<!--                <div class="product">
-                  <a href="" class="cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                    <ul>
-                      <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
-                    </ul>
-                  </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
               </div>
           </div>
       </div>

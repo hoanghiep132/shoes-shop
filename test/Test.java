@@ -1,8 +1,14 @@
 
+import connectionjdbc.GetConnection;
+import connectionjdbc.product.ProductDao;
 import connectionjdbc.product.ProductService;
-import connectionjdbc.user.Security;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -11,6 +17,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import model.Product;
+import model.Shoes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,8 +60,11 @@ public class Test {
     }  
 
     public static void main(String[] args) {
-        System.out.println(Security.hashPassword("hiep"));
-        
+        Product product = new ProductService().getProductById(10);
+        List<Product> list = new ProductService().recommenProduct(product);
+        list.forEach(p ->{
+            System.out.println(p.getName());
+        });
     }
 }
 

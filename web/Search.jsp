@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="other.Other"%>
 <%@page import="connectionjdbc.product.ProductService"%>
 <%@page import="model.Product"%>
 <%@page import="java.util.List"%>
@@ -14,205 +15,257 @@
 <html>
     <head>
         <title>MiaShoes</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
-          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="search.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
+              integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="search.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        
+
         <%
-            List<Product> list;
+            List<Product> list = null;
+            ProductService ps = new ProductService();
+            String option = request.getParameter("option");
             String type = request.getParameter("type");
+            request.setAttribute("type", type);
             String str = request.getParameter("str");
-            System.out.println("type : "+ type);
-            System.out.println("str : "+ str);
-            if("1".equals(type)){
-                list = new ProductService().searchProductForName(str);
+            request.setAttribute("str", str);
+            if ("1".equals(type)) {
+                list = ps.searchProductForName(str);
+                if("1".equals(option)){
+                  list = ps.orderProductAscendingByName(list);
+                }else if("2".equals(option)){
+                    list = ps.orderProductDescendingByName(list);    
+                }else if("3".equals(option)){
+                   list = ps.orderProductAscendingByPrice(list); 
+                }else if("4".equals(option)){
+                    list = ps.orderProductDescendingByPrice(list);
+                }
+            } else if("2".equals(type)){
+                list = ps.getAllProductForBrand(str);
+                if("1".equals(option)){
+                  list = ps.orderProductAscendingByName(list);
+                }else if("2".equals(option)){
+                    list = ps.orderProductDescendingByName(list);    
+                }else if("3".equals(option)){
+                   list = ps.orderProductAscendingByPrice(list); 
+                }else if("4".equals(option)){
+                    list = ps.orderProductDescendingByPrice(list);
+                }
+            }else if("3".equals(type)){
+                list = ps.getAllOthers();
             }else{
-                list = new ProductService().getAllProductForBrand(str);
+                
             }
-            request.setAttribute("list",list);
+            request.setAttribute("list", list);
             int amount = list.size();
             request.setAttribute("a", amount);
-            
+
         %>
-      <div class="header">
-          <div class="package">
-              <div class="shop_name">
-                  <a href="home.jsp"><h1>MiaShoes</h1></a>
-              </div>
-              <div class="box_search">
-                  <span>Tìm Kiếm Sản Phẩm</span>
-                  <div class="search">
-                      <form action="Search.jsp?type=1" method="post">
+        <div class="header">
+            <div class="package">
+                <div class="shop_name">
+                    <a href="home.jsp"><h1>MiaShoes</h1></a>
+                </div>
+                <div class="box_search">
+                    <span>Tìm Kiếm Sản Phẩm</span>
+                    <div class="search">
+                        <form action="Search.jsp?type=1" method="post">
                             <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
                         </form>
-                  </div>
-              </div>
-              <!-- end-search -->
-              <div class="infor">
-                <a href="" class="account">
-                    <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
                     </div>
-                </a>
-<!--                <div class="product">
-                  <a href="" class="cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                    <ul>
-                      <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
-                    </ul>
-                  </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
-              </div>
-          </div>
-      </div>
-          <!-- end-header -->
-      <div class="menu">
+                </div>
+                <!-- end-search -->
+                <div class="infor">
+                    <a href="" class="account">
+                        <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
+                        <div id="hide">
+                            <a href="SignUp.jsp">
+                                <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
+                            </a>
+                            <br>
+                            <a href="SignIn.jsp">
+                                <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
+                            </a>
+                        </div>
+                    </a>
+                    <!--                <div class="product">
+                                      <a href="" class="cart">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
+                                        <ul>
+                                          <li>Giỏ hàng</li>
+                                          <li>(0) Sản phẩm</li>
+                                        </ul>
+                                      </a>
+                                      <span>Không có sản phẩm nào trong giỏ hàng</span>
+                                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- end-header -->
+        <div class="menu">
             <div class="package">
                 <ul class="menu-ngang">
-                  <li id="menu1">
-                      <a href="Search.jsp?str=nike&type=2" class="item1">NIKE</a>
-                      <ul id="menu11">
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
-                      </ul>
-                  </li>
-                  <li id="menu1">
-                      <a href="Search.jsp?str=adidas&type=2" class="item1">ADIDAS</a>
-                      <ul id=menu11>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Stan Smith</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">SuperStar</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Derup Runner</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Tubular Doom</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Falcom</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Pod</a></li>
-                        <li><a href="Search.jsp?str=adidas&type=2" id="item2">Young1</a></li>
-                      </ul>
-                  </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=luxury&type=2" class="item1">LUXURY</a>
-                         <ul id=menu11 style="height: 100px;">
+                    <li id="menu1">
+                        <a href="Search.jsp?str=nike&type=2" class="item1">NIKE</a>
+                        <ul id="menu11">
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=adidas&type=2" class="item1">ADIDAS</a>
+                        <ul id=menu11>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Stan Smith</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">SuperStar</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Derup Runner</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Tubular Doom</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Falcom</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Pod</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Young1</a></li>
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=luxury&type=2" class="item1">LUXURY</a>
+                        <ul id=menu11 style="height: 100px;">
                             <li><a href="Search.jsp?str=luxury&type=2" id="item2">Balenciaga</a></li>
                             <li><a href="Search.jsp?str=luxury&type=2" id="item2">Gucci</a></li>
                             <li><a href="Search.jsp?str=luxury&type=2" id="item2">MC Queen</a></li>
-                          </ul>
-                      </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=vans&type=2" class="item1">VANS</a>
-                         <ul id=menu11 style="height: 150px;">
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=vans&type=2" class="item1">VANS</a>
+                        <ul id=menu11 style="height: 150px;">
                             <li><a href="Search.jsp?str=vans&type=2" id="item2">Style 36</a></li>
                             <li><a href="Search.jsp?str=vans&type=2" id="item2">Slip on</a></li>
                             <li><a href="Search.jsp?str=vans&type=2" id="item2">Old Skool</a></li>
                             <li><a href="Search.jsp?str=vans&type=2" id="item2">Era 95</a></li>
                             <li><a href="Search.jsp?str=vans&type=2" id="item2">Sk8</a></li>
-                          </ul>
-                      </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=convers&type=2" class="item1">CONVERS</a>
-                         <ul id=menu11 style="height: 80px;">
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=convers&type=2" class="item1">CONVERS</a>
+                        <ul id=menu11 style="height: 80px;">
                             <li><a href="Search.jsp?str=convers&type=2" id="item2">1970s</a></li>
                             <li><a href="Search.jsp?str=convers&type=2" id="item2">Chuck 70s x CDG</a></li>
-                          </ul>
-                      </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=fila&type=2" class="item1">FILA</a>
-                         <ul id=menu11 style="height: 80px;">
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=fila&type=2" class="item1">FILA</a>
+                        <ul id=menu11 style="height: 80px;">
                             <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila ray</a></li>
                             <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila Disruptor II</a></li>
-                          </ul>
-                      </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=the10&type=2" class="item1">THE10</a>
-                      </li>
-                      <li id="menu1">
-                         <a href="Search.jsp?str=fashion&type=2" class="item1">FASHION</a>
-                         <ul id=menu11 style="height: 120px;">
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=the10&type=2" class="item1">THE10</a>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=fashion&type=2" class="item1">FASHION</a>
+                        <ul id=menu11 style="height: 120px;">
                             <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Phông</a></li>
                             <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Sơ Mi</a></li>
                             <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Jeans</a></li>
                             <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Âu</a></li>
-                          </ul>
-                      </li>
-                      <li id="menu1">
-                         <a href="" class="item1">SALES</a>
-                      </li>
-                      <li id="menu1">
-                         <a href="" class="item1">PHỤ KIỆN</a>
-                      </li>
-                      <li id="menu1">
-                         <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>
-                      </li>
-                    </ul>
+                        </ul>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                    </li>
+                    <li id="menu1">
+                        <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
+                    </li>
+                    <li id="menu1">
+                        <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>
+                    </li>
+                </ul>
             </div>
-      </div>
-          
-      <!-- end-menu -->
-          <h3>Có ${a} sản phẩm</h3>
-<!--         <div class="shoes">
+        </div>
+
+        <!-- end-menu -->
+        <br><br><br>
+        <div class="func">
+            
+            <a href="Search.jsp?option=1&type=${type}&str=${str}" ><button class="button1">Tên tăng dần</button></a>
+
+            <a href="Search.jsp?option=2&type=${type}&str=${str}" ><button class="button1">Tên giảm dần</button></a>
+
+
+            <a href="Search.jsp?option=3&type=${type}&str=${str}" ><button class="button1">Giá tăng dần</button></a>
+            
+            <a href="Search.jsp?option=4&type=${type}&str=${str}" ><button class="button1">Giá giảm dần</button></a>
+        </div>
+                
+        <br>        
+        <br>
+        
+        <h2 align="center">Có ${a} sản phẩm được tìm thấy</h2>
+
+        <br><br>
+        <div class="shoes">
             <div class="package">
-                <c:forEach items="${list}" var = "product">
-                    <span class="product1">
-                        <div class="thumbai">
-                            <span class="icon-sale" style="padding-top:10px;padding-right:8px; font-weight:bold;">-20%</span>
-                            <a href="DetailProduct.jsp?id=${product.id}" id="find-out"><img src="${product.img1}" alt=""style=" width: 280px;
-                              height: 200px;"></a>
-                            <a href="DetailProduct.jsp?id=${product.id}" id="find-in"><img src="${product.img2}" alt="" style=" width: 280px;height: 200px;"></a>
-                            <a href="DetailProduct.jsp?id=${product.id}" class="name" title="${product.name}">${product.name}</a>
-                            <ul>
-                                <c:choose>
-                                    <c:when test = "${product.discount} == 0">
-                                        <li style="color: red; margin-left:20px">${product.price}</li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <%
-                                            double salePrice = 0 ;
-                                        %>
-                                        <li style="color: red; margin-left:20px"><c:out value="${product.price} * (100-${product.discount})" /></li>
-                                        <li style="color: #a6a6a6;text-decoration: line-through;">${product.price}</li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </ul>
-                        </div>
-                    </span>
-                  
-                </c:forEach>
+            <%   
+                for (Product p : list) {
+                    int pri = (int)p.getPrice()/100 * (100 - p.getDiscount());
+                    String sale = Other.displayMoney(pri);
+                    String price = Other.displayMoney((int)p.getPrice());
+                    request.setAttribute("id", p.getId());
+                    request.setAttribute("name", p.getName());
+                    request.setAttribute("discount", p.getDiscount());
+                    request.setAttribute("img1", p.getImg1());
+                    request.setAttribute("img2", p.getImg2());
+                    request.setAttribute("sale", sale);
+                    request.setAttribute("price", price);
+            %>
+            
+                <div class="product1">
+                    <div class="thumbai">
+                <c:if test="${discount != '0'}">
+                     <span class="icon-sale" style="padding-top:10px;padding-right:8px; font-weight:bold;">-${discount}%</span>
+                </c:if>                    
+                    <a href="DetailProduct.jsp?id=${id}" id="find-out"><img src="${img1}" alt="" class="anh1" style=" width: 280px; height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${id}" id="find-in"><img src="${img2}" alt="" class="anh2" style=" width: 280px;height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${id}" class="name" title="${name}">${name}</a>
+                    <c:choose>
+                    <c:when test="${discount != '0'}">
+                        <ul>
+                            <li style="color: red; margin-left:20px;font-size: 17px;"><c:out value="${sale}" /></li>
+                            <li style="color: #a6a6a6;text-decoration: line-through;font-size: 17px;">${price}</li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <ul>
+                            <li style="color: black; margin-left: 40px; font-size: 17px;"><c:out value="${sale}" /></li>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
+                    </div>
+                </div>
+            <%
+                }
+            %>
             </div>
-         </div>-->
-         
-         <div class="content">
-             <c:forEach items="${list}" var = "product">
-                 <div class="product">
-                    <a href="DetailProduct.jsp?id=${product.id}" id="find-out"><img src="${product.img1}" alt=""style=" width: 280px; height: 200px;"></a>
-                    <a href="DetailProduct.jsp?id=${product.id}" id="find-in"><img src="${product.img2}" alt="" style=" width: 280px;height: 200px;"></a>
-                    <a href="DetailProduct.jsp?id=${product.id}" class="name" title="${product.name}">${product.name}</a>
-                 </div>
-             </c:forEach>
-         </div>
-      
-              <div class="information">
+        </div>
+
+        <div class="contact">
+            <a href="tel:0966027102" title="tel:0966027102"><i class="fa fa-phone" aria-hidden="true"></i></a>
+        </div>
+        <div class="contact1">
+            <a href="https://www.facebook.com/Hung.2mono"><i class="fab fa-facebook-messenger"></i></a>
+        </div>
+        <div class="information">
             <div class="package">
                 <div class="information1">
                     <h1>VỀ CỬA HÀNG</h1>
@@ -278,5 +331,10 @@
             </div>
         </div>
         <!-- end-banner -->
+        <!-- end-html -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
