@@ -14,7 +14,7 @@
     <body>
         <%
             session.removeAttribute("currentUser");
-            response.sendRedirect("/SignIn.jsp");
+            response.sendRedirect("/ShoeShop/SignIn.jsp");
         %>
     </body>
 </html>

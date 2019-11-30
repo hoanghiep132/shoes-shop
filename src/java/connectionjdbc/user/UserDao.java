@@ -124,7 +124,7 @@ public class UserDao {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getInt("id"));
+                user.setId(resultSet.getInt("id_user"));
                 user.setName(name);
                 user.setEmail(resultSet.getString("email"));
                 user.setPhoneNumber(resultSet.getString("phone_number"));
@@ -141,7 +141,7 @@ public class UserDao {
     }
 
     public User getUserByEmail(String email) {
-        User user = new User();
+        User user = null;
         String sql = "Select * from infor where email = ?";
 
         try {
@@ -149,7 +149,8 @@ public class UserDao {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getInt("id"));
+                user = new User();
+                user.setId(resultSet.getInt("id_user"));
                 user.setName(resultSet.getString("name"));
                 user.setPhoneNumber(resultSet.getString("phone_number"));
                 user.setAddress(resultSet.getString("address"));
@@ -166,7 +167,7 @@ public class UserDao {
     }
     
     public User getUserByPhoneNumber(String phoneNumber) {
-        User user = new User();
+        User user = null;
         String sql = "Select * from infor where phone_number = ?";
 
         try {
@@ -174,7 +175,8 @@ public class UserDao {
             preparedStatement.setString(1, phoneNumber);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getInt("id"));
+                user = new User();
+                user.setId(resultSet.getInt("id_user"));
                 user.setName(resultSet.getString("name"));
                 user.setEmail(resultSet.getString("email"));
                 user.setAddress(resultSet.getString("address"));
@@ -229,6 +231,8 @@ public class UserDao {
         }
     }
 
+    
+    
     public void addUser(User user, String username, String password) {
         String sql1 = "insert into account(username,password) values(?,?)";
 
@@ -244,7 +248,7 @@ public class UserDao {
         int id_user = 0;
         String sql2 = "select * from account where username = ?";
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql1);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql2);
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -253,24 +257,26 @@ public class UserDao {
         } catch (SQLException ex) {
             System.err.println(ex);
         }
-        String sql = "insert into user(name, email,phone_number,gender,address,birthday,avatar"
-                + "role, id_user)"
-                + " values (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into infor(id_user,name, email,phone_number,gender,address,birthday,avatar)"
+                + " values(?,?,?,?,?,?,?,?)";
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getPhoneNumber());
-            preparedStatement.setString(4, user.getGender());
-            preparedStatement.setString(5, user.getAddress());
-            preparedStatement.setString(6, user.getBirthday());
-            preparedStatement.setString(7, user.getAvatar());
-            preparedStatement.setString(8, user.getRole());
-            preparedStatement.setInt(9, id_user);
-
+            preparedStatement.setInt(1, id_user);
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPhoneNumber());
+            preparedStatement.setString(5, user.getGender());
+            preparedStatement.setString(6, user.getAddress());
+            preparedStatement.setString(7, user.getBirthday());
+            if("male".equals(user.getGender())){
+                preparedStatement.setString(8, "https://res.cloudinary.com/hoangghiepp1302/image/upload/v1573658670/"
+                        + "avatar/60182553_412166662672766_3511434831642755072_n_ijrvee.jpg");
+            }else{
+                preparedStatement.setString(8, "https://res.cloudinary.com/hoangghiepp1302/"
+                        + "image/upload/v1573658681/avatar/default-female-avatar_smqakt.png");
+            }
             int rs = preparedStatement.executeUpdate();
-
         } catch (SQLException ex) {
             System.err.println(ex);
         }

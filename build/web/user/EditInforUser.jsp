@@ -41,35 +41,24 @@
               <!-- end-search -->
              <%
                   User current = (User) session.getAttribute("currentUser");
+                  int num = current.getTemps().size();
                   request.setAttribute("cur", current);
+                  request.setAttribute("num", num);
               %>
-              <c:choose>
-                  <c:when test="${cur eq null}">
-                      <div class="infor">
-                <a href="SignIn.jsp" class="account">
-                    <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-
+                <div class="infor">
+                  <a href="MyAccount.jsp." class="account">
+                  <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
+                  </a>
+              <div class="product">
+                <a href="YourCart.jsp" class="cart">
+                  <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
+                  <ul>
+                    <li>Giỏ hàng</li>
+                    <li>${num} Sản phẩm</li>
+                  </ul>
                 </a>
-              </div>
-                  </c:when>
-                  <c:otherwise>
-                      <div class="infor">
-                        <a href="MyAccount.jsp." class="account">
-                        <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                        </a>
-                    <div class="product">
-                      <a href="" class="cart">
-                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                        <ul>
-                          <li>Giỏ hàng</li>
-                          <li>(0) Sản phẩm</li>
-                        </ul>
-                      </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
                 </div>
               </div>
-                  </c:otherwise>
-              </c:choose>
           </div>
       </div>
           <!-- end-header -->
@@ -145,7 +134,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>

@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="model.Quantity"%>
 <%@page import="model.User"%>
 <%@page import="other.Other"%>
 <%@page import="model.Shoes"%>
@@ -32,9 +33,9 @@
     <body>
         <%
             int id = Integer.parseInt(request.getParameter("id"));
+            request.setAttribute("id", id);
             ProductService service = new ProductService();
-            Product product = service.getDescriptionProduct(id);;
- 
+            Product product = service.getDescriptionProduct(id);
             List<Product> list = service.recommenProduct(product);
             request.setAttribute("product", product);
             DetailProduct dp = product.getDetailProduct();
@@ -62,10 +63,15 @@
                     </div>
                 </div>
                 <!-- end-search -->
-                             <%
-                  User current = (User) session.getAttribute("currentUser");
-                  request.setAttribute("cur", current);
-              %>
+            <%
+                User current = (User) session.getAttribute("currentUser");
+                request.setAttribute("cur", current);
+                if(current != null){
+                    int amount = current.getTemps().size();
+                    request.setAttribute("amount", amount);
+                }
+                
+            %>
               <c:choose>
                   <c:when test="${cur eq null}">
                       <div class="infor">
@@ -77,18 +83,17 @@
                   </c:when>
                   <c:otherwise>
                       <div class="infor">
-                        <a href="MyAccount.jsp." class="account">
+                        <a href="user/MyAccount.jsp." class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                         </a>
                     <div class="product">
-                      <a href="" class="cart">
+                        <a href="user/YourCart.jsp" class="cart">
                         <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                         <ul>
                           <li>Giỏ hàng</li>
-                          <li>(0) Sản phẩm</li>
+                          <li>${amount} Sản phẩm</li>
                         </ul>
                       </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
                 </div>
               </div>
                   </c:otherwise>
@@ -268,14 +273,14 @@
                    <br>
                    <div class="buy">
                        <div class="buy_now">
-                           <a href="BuyNow.jsp">
+                           <a href="user/BuyNow.jsp?id=${id}">
                             <button class="btn">
                                  Mua Ngay
                             </button>
                             </a>
                        </div>
                        <div class="add_cart">
-                            <a href="YourCart.jsp">
+                            <a href="user/YourCart.jsp?id=${id}">
                             <button class="btn">
                                 Thêm vào giỏ hàng
                             </button>
@@ -296,12 +301,12 @@
             
             <div class="shoes">
                 <div class="package">
-            <%   
+            <%
                 for (Product p : list) {
                     int pri = (int)p.getPrice()/100 * (100 - p.getDiscount());
                     String sale = Other.displayMoney(pri);
                     String price = Other.displayMoney((int)p.getPrice());
-                    request.setAttribute("id", p.getId());
+                    request.setAttribute("sub_id", p.getId());
                     request.setAttribute("name", p.getName());
                     request.setAttribute("discount", p.getDiscount());
                     request.setAttribute("img1", p.getImg1());
@@ -314,9 +319,9 @@
                 <c:if test="${discount != '0'}">
                      <span class="icon-sale" style="padding-top:10px;padding-right:8px; font-weight:bold;">-${discount}%</span>
                 </c:if>                    
-                    <a href="DetailProduct.jsp?id=${id}" id="find-out"><img src="${img1}" alt="" class="anh1" style=" width: 280px; height: 200px;"></a>
-                    <a href="DetailProduct.jsp?id=${id}" id="find-in"><img src="${img2}" alt="" class="anh2" style=" width: 280px;height: 200px;"></a>
-                    <a href="DetailProduct.jsp?id=${id}" class="name" title="${name}">${name}</a>
+                    <a href="DetailProduct.jsp?id=${sub_id}" id="find-out"><img src="${img1}" alt="" class="anh1" style=" width: 280px; height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${sub_id}" id="find-in"><img src="${img2}" alt="" class="anh2" style=" width: 280px;height: 200px;"></a>
+                    <a href="DetailProduct.jsp?id=${sub_id}" class="name" title="${name}">${name}</a>
                     <c:choose>
                         <c:when test="${discount != '0'}">
                             <ul>

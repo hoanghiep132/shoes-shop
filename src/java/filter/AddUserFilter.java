@@ -23,7 +23,7 @@ import model.User;
  * @author hiepnguyen
  */
 
-@WebFilter (urlPatterns = {"/Filter.jsp"} )
+@WebFilter (urlPatterns = {"/SendMail.jsp"} )
 public class AddUserFilter implements Filter{
 
     private UserService userService;
@@ -45,7 +45,13 @@ public class AddUserFilter implements Filter{
         String address = request.getParameter("address");
         //user.setBirthday(request.getParameter("birthday"));
         String day = request.getParameter("day");
+        if(day.length() == 1){
+            day = "0" + day;
+        }
         String month = request.getParameter("month");
+        if(month.length() == 1){
+            month = "0" + month;
+        }
         String year = request.getParameter("year");
         String birthday = year+"/"+month+"/"+day;
         String gender = request.getParameter("gender");
@@ -56,18 +62,19 @@ public class AddUserFilter implements Filter{
         req.setAttribute("username", username);
         req.setAttribute("password", password);
         if(userService.getUserByEmail(email) != null){
-            res.sendRedirect("/SignUp.jsp?error=1");
+            res.sendRedirect("/ShoeShop/SignUp.jsp?error=1");
         } else if(userService.getUserByPhonenNumber(phoneNumber) != null){
-            res.sendRedirect("/SignUp.jsp?error=2");
+            res.sendRedirect("/ShoeShop/SignUp.jsp?error=2");
         } else if(userService.checkUsername(username)){
-            res.sendRedirect("/SignUp.jsp?error=3");
+            res.sendRedirect("/ShoeShop/SignUp.jsp?error=3");
+        }else{
+            chain.doFilter(request, response);
         }
-        chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
     
 }

@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author hiepnguyen
@@ -17,8 +20,10 @@ public class User {
     private String gender;         
     private String address;          
     private String birthday;        // format yyyy/MM/dd
-
+    private List<TempProduct> temps;
+    
     public User() {
+        temps = new ArrayList();
     }
     private String avatar;          // link
     private String role;            // customer, employee, manager
@@ -114,5 +119,21 @@ public class User {
         this.point = point;
     }
     
+    
+    public List<TempProduct> getTemps(){
+        return temps;
+    }
+    
+    public void addTempProduct(TempProduct temp){
+        temps.add(temp);
+    }
+    
+    public int getSizeTemps(){
+        return temps.size();   
+    }
+    
+    public void removeProduct(TempProduct temp){
+        boolean check = temps.remove(temp);
+    }
     
 }

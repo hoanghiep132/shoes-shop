@@ -6,6 +6,9 @@ function Validation()
     var address =  document.forms["register"]["address"];  
     var password = document.forms["register"]["password"];  
     var username = document.forms["register"]["username"];  
+    var day = document.forms["register"]["day"];
+    var month = document.forms["register"]["month"];
+    var year = document.forms["register"]["year"];
 
     var username_error = document.getElementById('username_error');
     var password_error = document.getElementById('password_error');
@@ -13,9 +16,13 @@ function Validation()
     var email_error = document.getElementById('email_error');
     var phone_error = document.getElementById('phone_error');
     var add_error = document.getElementById('add_error');
+    var birth_error = document.getElementById("birth_error");
 
-    var emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var phoneRegex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+//    var emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+//    var phoneRegex = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
+
+    var emailRegex = /^\w+@[a-zA-Z]{3,}\.com$/i;
+    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
        
     if (username.value === ""){ 
         username.style.border = "1px solid red";
@@ -41,7 +48,7 @@ function Validation()
         return false; 
     } 
     
-    if (password.value.length < 8 && password.value.length > 16) { 
+    if (password.value.length < 8 || password.value.length > 16) { 
         password.style.border = "1px solid red";
         document.getElementById('password_error').style.color = "red";
         password_error.textContent = "Mật khẩu không hợp lệ";
@@ -54,14 +61,6 @@ function Validation()
         document.getElementById('name_error').style.color = "red";
         name_error.textContent = "Cần điền tên";
         name.focus(); 
-        return false; 
-    } 
-
-    if (email.value === ""){ 
-        email.style.border = "1px solid red";
-        document.getElementById('email_error').style.color = "red";
-        email_error.textContent = "Email không hợp lệ";
-        email.focus(); 
         return false; 
     } 
 
@@ -91,7 +90,7 @@ function Validation()
     } 
 
 
-    if(!phoneRegex.test(phoneNumber.value)){
+    if(!phoneRegex.test(phone.value)){
         phone.style.border = "1px solid red";
         document.getElementById('phone_error').style.color = "red";
         phone_error.textContent = "Số điện thoại không hợp lệ";
@@ -108,6 +107,41 @@ function Validation()
         add_error.textContent = "Cần điền địa chỉ";
         address.focus();
         return false; 
+    }
+    
+    switch (month){
+        case 2:
+            if(year % 4 === 0 && day > 29){
+                day.style.borde = "1px solid red";
+                document.getElementById("birth_error").style.color="red";
+                birth_error.textContent="Ngày sinh không hợp lệ";
+                day.focus();
+                month.focus();
+                year.focus();
+                return false;
+            }
+            if(year % 4 > 0 && day > 28){
+                day.style.borde = "1px solid red";
+                document.getElementById("birth_error").style.color="red";
+                birth_error.textContent="Ngày sinh không hợp lệ";
+                day.focus();
+                month.focus();
+                year.focus();
+                return false;
+            }
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if(day > 30){
+                day.style.borde = "1px solid red";
+                document.getElementById("birth_error").style.color="red";
+                birth_error.textContent="Ngày sinh không hợp lệ";
+                day.focus();
+                month.focus();
+                year.focus();
+                return false;
+            }       
     }
 
     return true;

@@ -17,15 +17,17 @@
     <body>
         <%
             String code = request.getParameter("code");
-            if(code == Security.confirmCode){
-                User user = (User) request.getAttribute("newUser");
+            String codeConfirm = (String) session.getAttribute("confirmCode");
+            System.out.println("Add User Post : " + codeConfirm);
+            if(code.equals(codeConfirm)){
+                User user = (User) session.getAttribute("newUser");
 
-                String username = (String) request.getAttribute("username");
-                String password = (String) request.getAttribute("password");
+                String username = (String) session.getAttribute("username");
+                String password = (String) session.getAttribute("password");
                 new UserService().addUser(user,username,password);
-                response.sendRedirect("/SignIn.jsp");
+                response.sendRedirect("/ShoeShop/SignIn.jsp");
             }else{
-                response.sendRedirect("/Confirm.jsp?err=1");
+                response.sendRedirect("/ShoeShop/Confirm.jsp?err=1");
             }
           
         %>

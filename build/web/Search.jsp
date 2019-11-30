@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="model.User"%>
 <%@page import="other.Other"%>
 <%@page import="connectionjdbc.product.ProductService"%>
 <%@page import="model.Product"%>
@@ -35,9 +36,16 @@
             String type = request.getParameter("type");
             request.setAttribute("type", type);
             String str = request.getParameter("str");
+            if(str == null){
+                str = "all";
+            }
             request.setAttribute("str", str);
             if ("1".equals(type)) {
-                list = ps.searchProductForName(str);
+                if(!"all".equals(str)){
+                    list = ps.searchProductForName(str);
+                }else{
+                    list = ps.getAllProduct();
+                }
                 if("1".equals(option)){
                   list = ps.orderProductAscendingByName(list);
                 }else if("2".equals(option)){
@@ -60,8 +68,26 @@
                 }
             }else if("3".equals(type)){
                 list = ps.getAllOthers();
-            }else{
-                
+                if("1".equals(option)){
+                  list = ps.orderProductAscendingByName(list);
+                }else if("2".equals(option)){
+                    list = ps.orderProductDescendingByName(list);    
+                }else if("3".equals(option)){
+                   list = ps.orderProductAscendingByPrice(list); 
+                }else if("4".equals(option)){
+                    list = ps.orderProductDescendingByPrice(list);
+                }
+            }else if("4".equals(type)){
+                list = ps.getAllSaleProducts();
+                if("1".equals(option)){
+                  list = ps.orderProductAscendingByName(list);
+                }else if("2".equals(option)){
+                    list = ps.orderProductDescendingByName(list);    
+                }else if("3".equals(option)){
+                   list = ps.orderProductAscendingByPrice(list); 
+                }else if("4".equals(option)){
+                    list = ps.orderProductDescendingByPrice(list);
+                }
             }
             request.setAttribute("list", list);
             int amount = list.size();
@@ -83,30 +109,38 @@
                     </div>
                 </div>
                 <!-- end-search -->
-                <div class="infor">
-                    <a href="" class="account">
+                <%
+                  User user = (User) session.getAttribute("currentUser");
+                  request.setAttribute("u", user);
+              %>
+              <c:choose>
+                  <c:when test="${u eq null}">
+                      <div class="infor">
+                    <a href="SignIn.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                        <div id="hide">
-                            <a href="SignUp.jsp">
-                                <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                            </a>
-                            <br>
-                            <a href="SignIn.jsp">
-                                <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                            </a>
-                        </div>
                     </a>
-                    <!--                <div class="product">
-                                      <a href="" class="cart">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                                        <ul>
-                                          <li>Giỏ hàng</li>
-                                          <li>(0) Sản phẩm</li>
-                                        </ul>
-                                      </a>
-                                      <span>Không có sản phẩm nào trong giỏ hàng</span>
-                                    </div>-->
-                </div>
+              </div>
+                  </c:when>
+                  <c:otherwise> 
+                      <div class="infor">
+                          <a href="user/MyAccount.jsp" class="account">
+                        <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
+                        </a>
+                    <div class="product">
+                      <a href="user/YourCart.jsp" class="cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
+                        <ul>
+                          <li>Giỏ hàng</li>
+                          <li>${a} Sản phẩm</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="logout">
+                        <a href="LogOut.jsp">Đăng xuất</a>
+                    </div>
+              </div>
+                  </c:otherwise>
+              </c:choose>
             </div>
         </div>
         <!-- end-header -->
@@ -182,7 +216,7 @@
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                        <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                     </li>
                     <li id="menu1">
                         <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -232,14 +266,14 @@
             
                 <div class="product1">
                     <div class="thumbai">
-                <c:if test="${discount != '0'}">
+                <c:if test="${discount > 0}">
                      <span class="icon-sale" style="padding-top:10px;padding-right:8px; font-weight:bold;">-${discount}%</span>
                 </c:if>                    
                     <a href="DetailProduct.jsp?id=${id}" id="find-out"><img src="${img1}" alt="" class="anh1" style=" width: 280px; height: 200px;"></a>
                     <a href="DetailProduct.jsp?id=${id}" id="find-in"><img src="${img2}" alt="" class="anh2" style=" width: 280px;height: 200px;"></a>
                     <a href="DetailProduct.jsp?id=${id}" class="name" title="${name}">${name}</a>
                     <c:choose>
-                    <c:when test="${discount != '0'}">
+                    <c:when test="${discount > 0}">
                         <ul>
                             <li style="color: red; margin-left:20px;font-size: 17px;"><c:out value="${sale}" /></li>
                             <li style="color: #a6a6a6;text-decoration: line-through;font-size: 17px;">${price}</li>

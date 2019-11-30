@@ -50,10 +50,10 @@ public class AccountFilter implements Filter{
                 session.setAttribute("currentUser", user);
                 chain.doFilter(request, response);
             }else{
-                res.sendRedirect("/SignIn.jsp?error=1");
+                res.sendRedirect("/ShoeShop/SignIn.jsp?error=1");
             }
         }else{
-            res.sendRedirect("/SignIn.jsp?error=2");
+            res.sendRedirect("/ShoeShop/SignIn.jsp?error=2");
         }
         
         

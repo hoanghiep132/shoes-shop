@@ -247,14 +247,13 @@ input[type=submit]{
     position: absolute;
     right: 8px;
     z-index: 100;
-    background-image:url(icon-sale.png);
+    background-image:url(css/icon-sale.png);
     height: 40px;
     width: 32px;
     background-repeat: no-repeat;
     background-size: contain;
     text-align: center;
     font-size: 10px;
-    font-weight: 500;
     color: white;
 }
 .shoes .package .product1 .thumbai .name{
@@ -426,57 +425,8 @@ input[type=submit]{
     margin: auto;
 }
 
-.product {
-     margin-left: 30px;
-    font-size: 21px;
-    color: #414141;
-    width: 250px;
-    height: 250px;
-    position: relative;
-    font-family: segoe ui light;
-    margin-bottom: 20px;
-}
 
-.product .thumbai .anh1{
-    width: 250px;
-    height: 170px;
-    
-}
-.product .thumbai .anh2{
-    width: 250px;
-    height: 170px;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transition: 0.4s;
-    opacity: 0;
-}
 
-.product .thumbai{
-    position: relative;
-    width: 280px;
-    height: 320px;
-}
-
-.product .thumbai .icon-sale{
-    top:18px;
-    position: absolute;
-    right: 8px;
-    z-index: 100;
-    background-image:url(css/icon-sale.png);
-    height: 40px;
-    width: 32px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 500;
-    color: white;
-}
-
-.product:hover .anh2{
-    opacity: 1;
-}
 
 button.button1{
     font-size: 16px;
@@ -487,10 +437,17 @@ button.button1{
     text-align: center;
     width: 150px;
     height: 50px;
-    margin-left: 220px;
+    margin-left: 170px;
 }
 
+.logout a{
+    text-decoration: none;
+    color: black;
+}
 
+.logout a:hover{
+    color: blue;
+}
 
 a{
     text-decoration: none;

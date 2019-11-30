@@ -20,6 +20,7 @@ public class Bill {
     private String time;
     private String status;
     List<ProductInBill> list;
+    private double cost;
     
     
 
@@ -99,7 +100,7 @@ public class Bill {
         this.time = time;
     }
 
-    public String isStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -107,6 +108,12 @@ public class Bill {
         this.status = status;
     }
     
-    
+    public double getCost(){
+        double cost = 0;
+        for(ProductInBill pb : list){
+            cost += pb.getQuantity() * pb.getProduct().getPrice() / 100 * (100 - pb.getProduct().getDiscount());
+        }
+        return cost;
+    }
     
 }

@@ -567,3 +567,7 @@ iframe{
     position: fixed;
     z-index: 8000;
 }
+
+.logout a{
+    text-decoration: none;
+}

@@ -15,17 +15,17 @@ import java.util.Random;
  */
 public class Security {
     
-    public static String confirmCode;
+    private static String confirmCode;
 
-    public static String getConfirmCode() {
+    public String getConfirmCode() {
         return confirmCode;
     }
 
     public Security() {
-        randomCode();
+        confirmCode = randomCode();
     }
     
-    public static String newPassword(){
+    public String newPassword(){
          String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                     + "0123456789"
                                     + "abcdefghijklmnopqrstuvxyz"; 
@@ -49,7 +49,7 @@ public class Security {
     
     
     
-    private void randomCode(){
+    private String randomCode(){
   
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                     + "0123456789"
@@ -70,7 +70,7 @@ public class Security {
             sb.append(AlphaNumericString 
                           .charAt(index)); 
         } 
-        confirmCode = sb.toString();
+        return sb.toString();
     }
     
     public static String hashPassword(String password){

@@ -6,6 +6,7 @@
 
 <%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -136,7 +137,7 @@
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="Search.jsp?type=4" class="item1">SALES</a>
+                        <a href="Search.jsp&type=4" class="item1">SALES</a>
                     </li>
                     <li id="menu1">
                         <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -149,20 +150,16 @@
         </div>
         <!-- end-menu -->
         <%
-            User user = (User) request.getAttribute("newUser");
-        String username = (String) request.getAttribute("username");
-            String password = (String) request.getAttribute("password");
-
-            
-            request.setAttribute("username", username);
-            request.setAttribute("password", password);
-            request.setAttribute("newUser", user);
-
+            String err = request.getParameter("err");
+            request.setAttribute("err", err);
         %>
         <br><br><br><br>
         <h1>Xác nhận tài khoản</h1>
         <br>
         <form name="con" action="AddUserPost.jsp">
+            <c:if test="${err != null}">
+                <label style="color:red;font-size: 20px">Mã xác nhận không hợp lệ</label>
+            </c:if>
             <label>Confirm Email :</label><input name="code" type="text" placeholder="Confirm email">
             <input type="submit" value="Confirm">
         </form>

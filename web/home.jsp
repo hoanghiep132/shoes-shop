@@ -27,7 +27,7 @@
       <div class="header">
           <div class="package">
               <div class="shop_name">
-                  <a href="home.jsp"><h1>MiaShoes</h1></a>
+                  <a href="/ShoeShop/home.jsp"><h1>MiaShoes</h1></a>
               </div>
               <div class="box_search">
                   <span>Tìm Kiếm Sản Phẩm</span>
@@ -48,25 +48,26 @@
                       <div class="infor">
                 <a href="SignIn.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-
                 </a>
               </div>
                   </c:when>
-                  <c:otherwise>
+                  <c:otherwise> 
                       <div class="infor">
-                        <a href="MyAccount.jsp." class="account">
+                          <a href="user/MyAccount.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                         </a>
                     <div class="product">
-                      <a href="" class="cart">
+                      <a href="user/YourCart.jsp" class="cart">
                         <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                         <ul>
                           <li>Giỏ hàng</li>
                           <li>(0) Sản phẩm</li>
                         </ul>
                       </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>
+                    </div>
+                    <div class="logout">
+                        <a href="LogOut.jsp">Đăng xuất</a>
+                    </div>
               </div>
                   </c:otherwise>
               </c:choose>
@@ -145,7 +146,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                          <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                          <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>

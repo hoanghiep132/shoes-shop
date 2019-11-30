@@ -18,6 +18,15 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+        <%
+            User user = (User) session.getAttribute("currentUser");
+            int num = user.getSizeTemps();
+            request.setAttribute("num",num);
+            request.setAttribute("u", user);
+            String bir = user.getBirthday();
+            String result = bir.substring(8,10) + "/" + bir.substring(5,7) + "/" + bir.substring(0,4);
+            request.setAttribute("re", result);
+        %>
       <div class="header">
           <div class="package">
               <div class="shop_name">
@@ -34,29 +43,23 @@
               </div>
               <!-- end-search -->
               <div class="infor">
-                <a href="SignIn.jsp" class="account">
+                <a href="MyAccount.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
-                    </div>
                 </a>
-<!--                <div class="product">
+                <div class="product">
                   <a href="" class="cart">
                     <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                     <ul>
                       <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
+                      <li>${num} Sản phẩm</li>
                     </ul>
                   </a>
                   <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
+                </div>
               </div>
+                    <a href="Logout.jsp" class="out">
+                    <button >Log out</button>
+                </a>
           </div>
       </div>
           <!-- end-header -->
@@ -132,7 +135,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -145,15 +148,7 @@
       </div>     
       <!-- end-menu -->
       
-        <%
-            //int id = Integer.parseInt(request.getParameter("id"));
-            int id = 2;
-            User user = new UserService().getUserById(id);
-            request.setAttribute("u", user);
-            String bir = user.getBirthday();
-            String result = bir.substring(8,10) + "/" + bir.substring(5,7) + "/" + bir.substring(0,4);
-            request.setAttribute("re", result);
-        %>
+
         
          <div class="center">
             <div class="left">

@@ -135,7 +135,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -205,11 +205,12 @@
                             <input type="text" name="address" class="textInput" placeholder="Hà Nội">
                             <div id="add_error" class="err"></div>
                           </div>
-                         <div >
+                         <div id="bir_div">
                             <label for="lab">Ngày sinh</label> 
                             <input name="day" type="number"  class="date_input" max="31" min="1" required="true"> 
                             <input name="month" type="number" max="12" min="1" class="date_input" required="true"> 
                             <input name="year" type="number" max="2020" min="1950" class="date_input" required="true">
+                            <div id="birth_error" class="err"></div>
                          </div>  
                          <div>
                             <label for="lab">Giới tính </label> <input name="gender" type="radio" value="male" required="true"> Nam 

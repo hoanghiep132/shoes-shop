@@ -133,7 +133,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -156,7 +156,7 @@
                         <span>
                             Nếu bạn đã có tài khoản, đăng nhập tại đây.
                         </span>
-                        <form accept-charset="UTF-8" action="Fliter.jsp" id="customer_login"  method="post">
+                        <form accept-charset="UTF-8" action="Filter.jsp" id="customer_login"  method="post">
                             <input name="FormType" type="hidden" value="customer_login">
                             <input name="utf8" type="hidden" value="true">
                             <div class="form-signup errors">

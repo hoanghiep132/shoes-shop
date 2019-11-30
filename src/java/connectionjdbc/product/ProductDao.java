@@ -148,11 +148,10 @@ public class ProductDao {
 
     public List<Product> getAllSaleProduct() {
         List<Product> products = new ArrayList();
-        String sql = "Select * from product where discount > ?";
+        String sql = "Select * from product where discount > 0";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, 0);
 
             ResultSet resultSet = ps.executeQuery();
 
@@ -205,20 +204,22 @@ public class ProductDao {
 
     public Product searchProductById(int id) {
         Product product = new Product();
-        String sql = "Select * from product where id = ?";
+        String sql = "Select * from product where id_product = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            product.setId(resultSet.getInt("id_product"));
-            product.setName(resultSet.getString("name"));
-            product.setPrice(resultSet.getDouble("price"));
-            product.setBrand(resultSet.getString("brand"));
-            product.setDiscount(resultSet.getInt("discount"));
-            product.setImg1(resultSet.getString("img1"));
-            product.setImg2(resultSet.getString("img2"));
-            product.setType(resultSet.getString("type"));
+            while(resultSet.next()){
+                product.setId(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setBrand(resultSet.getString("brand"));
+                product.setDiscount(resultSet.getInt("discount"));
+                product.setImg1(resultSet.getString("img1"));
+                product.setImg2(resultSet.getString("img2"));
+                product.setType(resultSet.getString("type"));
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -249,7 +250,7 @@ public class ProductDao {
             //preparedStatement.setString(1,  tag );
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                if (idList.size() <= 4) {
+                if (idList.size() <= 3) {
                     int id = resultSet.getInt("id_product");
                     if (id != product.getId()) {
                         idList.add(id);
@@ -269,6 +270,7 @@ public class ProductDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while(resultSet.next()){
                     Product p = new Product();
+                    p.setId(i);
                     p.setName(resultSet.getString("name"));
                     p.setPrice(resultSet.getDouble("price"));
                     p.setBrand(resultSet.getString("brand"));

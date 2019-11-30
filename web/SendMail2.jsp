@@ -41,7 +41,7 @@
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", "465");
             //get Session   
-            Session ses = Session.getDefaultInstance(props, 
+            Session ses = Session.getInstance(props, 
                     new javax.mail.Authenticator(){
                         protected PasswordAuthentication getPasswordAuthentication(){
                             return new javax.mail.PasswordAuthentication(MyGmail.username, MyGmail.password);
@@ -52,15 +52,16 @@
             try {
                 MimeMessage message = new MimeMessage(ses);
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+                String newPassword = new Security().newPassword();
                 message.setSubject("Forgot Password");
-                message.setText(Security.newPassword());
+                message.setText(newPassword);
                 //send message  
                 Transport.send(message);
                 System.out.println("message sent successfully");
-                new UserService().changePassword2(user.getId(), Security.newPassword());
-                response.sendRedirect("SignIn.jsp");
+                new UserService().changePassword2(user.getId(), newPassword);
+                response.sendRedirect("SignIn.jsp?err=0");
             } catch (javax.mail.MessagingException ex) {
-                response.sendRedirect("SignIn.jsp");
+                response.sendRedirect("SignIn.jsp?err=2");
             }
         %>
     </body>

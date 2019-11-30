@@ -18,6 +18,7 @@
 <%@page import="javax.mail.Session"%>
 <%@page import="java.util.Properties"%>
 <%@page import="javax.mail.PasswordAuthentication"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,6 @@
             User user = (User) request.getAttribute("newUser");
             String username = (String) request.getAttribute("username");
             String password = (String) request.getAttribute("password");
-            request.setAttribute("user", user);
             Security security = new Security();
 
             //Get properties object    
@@ -43,26 +43,34 @@
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", "465");
             //get Session   
-            Session ses = Session.getDefaultInstance(props, 
+            Session ses = Session.getInstance(props, 
                     new javax.mail.Authenticator(){
                         protected PasswordAuthentication getPasswordAuthentication(){
                             return new javax.mail.PasswordAuthentication(MyGmail.username, MyGmail.password);
                         }
                     });
-            
             //compose message    
             try {
+                String confirmCode = security.getConfirmCode();
                 MimeMessage message = new MimeMessage(ses);
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("email")));
                 message.setSubject("Confirm Email");
-                message.setText(security.getConfirmCode());
+                message.setText(confirmCode);
                 //send message  
                 Transport.send(message);
                 System.out.println("message sent successfully");
-                response.sendRedirect("Confirm.jsp");
+                session.setAttribute("newUser", user);
+                session.setAttribute("username", username);
+                session.setAttribute("password", password);
+                session.setAttribute("confirmCode", confirmCode);
+                System.out.println("Send Mail :" + confirmCode);
+                response.sendRedirect("/ShoeShop/Confirm.jsp");
+                
             } catch (javax.mail.MessagingException ex) {
-                response.sendRedirect("SignUp.jsp?error=10&username=" + username + "&password=" + password);
+                System.err.println("Failed");
+                response.sendRedirect("/ShoeShop/SignIn.jsp?error=1");
             }
         %>
+
     </body>
 </html>

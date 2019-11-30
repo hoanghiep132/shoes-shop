@@ -8,14 +8,38 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Bill"%>
 <%@page import="connectionjdbc.bill.BillTransaction"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
+    <head>
+         <title>MiaShoes</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
+              integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="myAccount.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
     <body>
-              <div class="header">
+        <%
+            User user = (User) session.getAttribute("currentUser");
+            List<Bill> bills = new BillTransaction().getListBill(user.getId());
+            request.setAttribute("user", user);
+            int amount = user.getTemps().size();
+            request.setAttribute("amount", amount);
+            String birthday = user.getBirthday().substring(8, 10) + "/" 
+                    + user.getBirthday().substring(5, 7) + "/" + user.getBirthday().subSequence(0,4);
+            request.setAttribute("bir", birthday);
+        %>
+        <div class="header">
           <div class="package">
               <div class="shop_name">
-                  <a href="home.jsp"><h1>MiaShoes</h1></a>
+                  <a href="/ShoeShop/home.jsp"><h1>MiaShoes</h1></a>
               </div>
               <div class="box_search">
                   <span>Tìm Kiếm Sản Phẩm</span>
@@ -28,28 +52,17 @@
               </div>
               <!-- end-search -->
               <div class="infor">
-                <a href="" class="account">
-                    <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
-                    </div>
+                  <a href="MyAccount.jsp" class="account">
                 </a>
-<!--                <div class="product">
-                  <a href="" class="cart">
+                <div class="product">
+                    <a href="YourCart.jsp" class="cart">
                     <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                     <ul>
                       <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
+                      <li>${amount} Sản phẩm</li>
                     </ul>
                   </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
+                </div>
               </div>
           </div>
       </div>
@@ -58,15 +71,15 @@
             <div class="package">
                 <ul class="menu-ngang">
                   <li id="menu1">
-                      <a href="Search.jsp?str=nike&type=2" class="item1">NIKE</a>
+                      <a href="/ShoeShop/Search.jsp?str=nike&type=2" class="item1">NIKE</a>
                       <ul id="menu11">
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
-                        <li><a href="Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
+                        <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
                       </ul>
                   </li>
                   <li id="menu1">
@@ -126,7 +139,7 @@
                           </ul>
                       </li>
                       <li id="menu1">
-                         <a href="Search.jsp?str=sales?type=4" class="item1">SALES</a>
+                         <a href="Search.jsp?str=sales&type=4" class="item1">SALES</a>
                       </li>
                       <li id="menu1">
                          <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
@@ -138,6 +151,69 @@
             </div>
       </div>
           
+          
+    <br><br><br>
+    <div class="parent">
+
+    <div class="left">
+      <h2 >THÔNG TIN TÀI KHOẢN</h2>
+      <h4>Xin chào ${user.name} !</h4>
+
+      <div class="tab">
+        <table>
+          <tr>
+            <th width="150px">Đơn hàng</th>
+            <th width="150px">Ngày</th>
+            <th width="250px">Giá trị đơn hàng</th>
+            <th width="150px">Trạng thái</th>
+          </tr>
+          <%
+              int index = 1;
+              for(Bill bill : bills){
+                  request.setAttribute("cost",bill.getCost());
+                  request.setAttribute("index", index);
+                  index++;
+                  request.setAttribute("stats", bill.getStatus());
+                  String date = bill.getDate().substring(8, 10) + "/" +
+                          bill.getDate().substring(5,7) + "/" +bill.getDate().substring(0,4);
+                  request.setAttribute("date", date);
+          %>
+            <td>${id}</td>
+            <td>${date}</td>
+            <td>${cost}</td>
+            <td>${status}</td>
+          <%
+              }
+          %>
+        </table>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="block">
+        <h3>TÀI KHOẢN CỦA TÔI</h3>
+        <p>Tên tài khoản: <strong style="line-height: 20px;"> ${user.username}!</strong></p>
+        <p><i class="fas fa-envelope"></i><span>Email: ${user.email}</span></p>
+        <p><i class="fa fa-mobile font-some" aria-hidden="true"></i> <span>Điện thoại: ${user.phoneNumber}</span> </p>
+        <p><i class="fa fa-home font-some" aria-hidden="true"></i>  <span>Địa chỉ: ${user.address}</span></p>
+        <p><i class="fas fa-birthday-cake"></i> <span> Ngày sinh nhật: ${bir}</span></p>
+        <div class="btn_div">
+            <div class="btn_left">
+                <a href="ViewUser.jsp">
+                    <button>
+                        Thông tin chi tiết
+                    </button>
+                </a>
+            </div>
+            <div class="btn_right">
+                <a href="EditInforUser.jsp">
+                    <button>Chỉnh sửa thông tin</button>
+                </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
              <div class="information">
             <div class="package">
                 <div class="information1">

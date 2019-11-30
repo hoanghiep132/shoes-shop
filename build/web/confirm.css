@@ -271,7 +271,7 @@ form{
 input[type=text] {
     width: 200px;
     height: 37px;
-    font-size: 25px;
+    font-size: 20px;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -327,21 +327,7 @@ label {
 .news .package .new1 .thumbai .more:hover{
     color: rgb(46, 176, 241);
 }
-/* end-news */
-.video{
-    width: 100%;
-    margin: auto;
-}
-.video .package{
-    margin-top:60px;
-    margin-left: auto;
-    width:90%;
-    display: flex;
-}
-iframe{
-    margin-right: 21px;
-}
-/* end-video */
+
 .information{
     width: 100%;
     background-color: black;

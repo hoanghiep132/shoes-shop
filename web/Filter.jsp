@@ -16,14 +16,12 @@
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             User user = new UserService().getAccount(username, password);
-            System.out.println("ID : "+user.getId());
+            session.setAttribute("currentUser", user);
             if(user.getRole().equals("admin")){
-                session.setAttribute("currentUser", user);
-                response.sendRedirect("listEmployee.jsp");
+                response.sendRedirect("employee/ListEmployee.jsp");
             }else if(user.getRole().equals("employee")){
-               session.setAttribute("currentUser", user);
+                response.sendRedirect("employee/ListCus.jsp");
             }else{
-                session.setAttribute("currentUser", user);
                 response.sendRedirect("home.jsp");
             }
         %>

@@ -7,6 +7,7 @@ package connectionjdbc.bill;
 
 import connectionjdbc.GetConnection;
 import connectionjdbc.product.ProductDao;
+import connectionjdbc.product.ProductService;
 import connectionjdbc.user.UserDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,13 +38,15 @@ public class BillDao {
     public List<Bill> getAllBillForCustomer(int id){
         List<Bill> bills = new ArrayList();
         
-        String sql = "Select * from bill where id_user = ?";
+        String sql = "Select * from bill where id_customer = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Bill bill = new Bill();
                 int id_bill = rs.getInt("id_bill");
+                bill.setId(id_bill);
                 bill.setList(getDetailBill(id_bill));
                 bill.setDate(rs.getString("date"));
                 bill.setTime(rs.getString("time"));
@@ -69,7 +72,7 @@ public class BillDao {
                 ProductInBill pb = new ProductInBill();
                 pb.setQuantity(rs.getInt("quantity"));
                 int idProduct = rs.getInt("id_product");
-                Product pt = new ProductDao().searchProductById(idProduct);
+                Product pt = new ProductService().searchProductById(idProduct);
                 pb.setProduct(pt);
                 list.add(pb);
             }
@@ -163,7 +166,7 @@ public class BillDao {
             pst.setInt(2, bill.getEmployee().getId());
             pst.setString(3, bill.getDate());
             pst.setString(4, bill.getTime());
-            pst.setString(5, bill.isStatus());
+            pst.setString(5, bill.getStatus());
             
             int rs = pst.executeUpdate(); 
         } catch (SQLException  ex) {
