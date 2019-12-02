@@ -12,11 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/AddUserPost.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/SendMail.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/Confirm.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/user/UserDao.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/user/UserService.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/test/Test.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/listProduct.css</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/product/ProductDao.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/ListProduct.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/product/ProductService.java</file>
         </group>
     </open-files>
 </project-private>

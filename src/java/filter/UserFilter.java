@@ -6,9 +6,6 @@
 package filter;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -52,7 +49,27 @@ public class UserFilter implements Filter {
             }else{
                 res.sendRedirect("/ShoeShop/SignIn.jsp");
             }
-        }if(url.startsWith("/ShoeShop/user/ShoeShop/")){
+        } else if(url.startsWith("/ShoeShop/user/ShoeShop/")){
+            int index = 0;
+            for(int i = url.length() - 1; ;i-- ){
+                if(url.charAt(i) == '/'){
+                    index = i;
+                    break;
+                }
+            }
+            String sub = "/ShoeShop/" + url.substring(index, url.length());
+            res.sendRedirect(sub);
+        } else if(url.startsWith("/ShoeShop/user/employee/ShoeShop/user")){
+            int index = 0;
+            for(int i = url.length() - 1; ;i-- ){
+                if(url.charAt(i) == '/'){
+                    index = i;
+                    break;
+                }
+            }
+            String sub = "/ShoeShop/user/" + url.substring(index, url.length());
+            res.sendRedirect(sub);
+        } else if(url.startsWith("/ShoeShop/user/employee/ShoeShop")){
             int index = 0;
             for(int i = url.length() - 1; ;i-- ){
                 if(url.charAt(i) == '/'){

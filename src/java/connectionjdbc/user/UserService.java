@@ -81,5 +81,8 @@ public class UserService {
         return userDao.changePassword2(id, newPassword);
     }
     
+    public String getPassword(int id){
+        return userDao.getPassword(id);
+    }
     
 }

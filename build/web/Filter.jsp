@@ -13,16 +13,13 @@
     <body>
         <% 
             //User user = (User) session.getAttribute("currentUser");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            User user = new UserService().getAccount(username, password);
-            session.setAttribute("currentUser", user);
+            User user = (User) session.getAttribute("currentUser");
             if(user.getRole().equals("admin")){
-                response.sendRedirect("employee/ListEmployee.jsp");
+                response.sendRedirect("/ShoeShop/user/employee/ListEmployee.jsp");
             }else if(user.getRole().equals("employee")){
-                response.sendRedirect("employee/ListCus.jsp");
+                response.sendRedirect("/ShoeShop/user/employee/ListCus.jsp");
             }else{
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("/ShoeShop/home.jsp");
             }
         %>
     </body>

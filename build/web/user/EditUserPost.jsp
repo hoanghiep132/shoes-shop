@@ -4,6 +4,11 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="java.io.File"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="model.User"%>
 <%@page import="connectionjdbc.user.UserService"%>
 <%@page import="upload.Upload"%>
@@ -18,29 +23,32 @@
     </head>
     <body>
         <%
-            int id = Integer.parseInt(request.getParameter("id"));
-            String ava = "";
-            String file = request.getParameter("file");
+            User user = (User) session.getAttribute("currentSession");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phoneNumber = request.getParameter("phone_number");
             String address = request.getParameter("address");
             String gender = request.getParameter("gender");
-            if("".equals(file)){
-                Upload upload = new Upload();
-                ava = upload.uploadAvatarToCloud(file);
+            String day = request.getParameter("day");
+            String month = request.getParameter("month");
+            String year = request.getParameter("year");
+            if(day.length() == 1){
+                day = "0" + day;
             }
-            User user = new User();
-            user.setId(id);
-            user.setAvatar(ava);
+            if(month.length() == 1){
+                month = "0" + month;
+            }
+            String birth = year + "/" + month + "/" + day ;
+            
             user.setName(name);
             user.setAddress(address);
             user.setEmail(email);
             user.setGender(gender);
             user.setPhoneNumber(phoneNumber);
-            user.setBirthday("1999/01/01");
+            user.setBirthday(birth);
+            
             new UserService().updateUser(user);
-            response.sendRedirect("/EditInforUser.jsp?id="+id);
+            response.sendRedirect("/EditInforUser.jsp");
         %>
     </body>
 </html>

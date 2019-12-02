@@ -465,4 +465,154 @@ public class ProductDao {
         return product;
     }
 
+    
+    public List<Product> getAllProduct2(){
+        List<Product> products = new ArrayList();
+        String sql = "Select * from product";
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setBrand(resultSet.getString("brand"));
+                product.setType(resultSet.getString("type"));
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        int index = 0;
+        for(Product p : products){
+             String sql2 = "SELECT * FROM quantity where id_shoes = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql2);
+            ps.setInt(1,p.getId());
+            ResultSet rs = ps.executeQuery();
+            if("shoes".equals(p.getType())){
+                while (rs.next()) {
+                    int size36 = rs.getInt("size36");
+                    int size37 = rs.getInt("size37");
+                    int size38 = rs.getInt("size38");
+                    int size39 = rs.getInt("size39");
+                    int size40 = rs.getInt("size40");
+                    int size41 = rs.getInt("size41");
+                    int size42 = rs.getInt("size42");
+                    int size43 = rs.getInt("size43");
+                    int size44 = rs.getInt("size44"); 
+                    int size45 = rs.getInt("size45");
+
+                    products.get(index).setQuantity(new Quantity(size36, size37, size38, size39, 
+                            size40, size41, size42, size43, size44, size45));
+                    }
+            }else{
+                while(rs.next()){
+                    int number = rs.getInt("others");
+                    products.get(index).setAmountOfProduct(number);
+                }
+            }
+            }catch (SQLException ex) {
+                Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        index++;
+        }
+        return products;
+    }
+    
+    public List<Product> getAllShoes2(){
+        List<Product> products = new ArrayList();
+        String sql = "Select * from product where type = shoes";
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setBrand(resultSet.getString("brand"));
+                product.setType(resultSet.getString("type"));
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        int index = 0;
+        for(Product p : products){
+             String sql2 = "SELECT * FROM quantity where id_shoes = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql2);
+            ps.setInt(1,p.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int size36 = rs.getInt("size36");
+                int size37 = rs.getInt("size37");
+                int size38 = rs.getInt("size38");
+                int size39 = rs.getInt("size39");
+                int size40 = rs.getInt("size40");
+                int size41 = rs.getInt("size41");
+                int size42 = rs.getInt("size42");
+                int size43 = rs.getInt("size43");
+                int size44 = rs.getInt("size44"); 
+                int size45 = rs.getInt("size45");
+
+                products.get(index).setQuantity(new Quantity(size36, size37, size38, size39, 
+                        size40, size41, size42, size43, size44, size45));
+                }
+            
+            }catch (SQLException ex) {
+                Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        index++;
+        }
+        return products;
+    }
+    
+    public List<Product> getAllOther2(){
+        List<Product> products = new ArrayList();
+        String sql = "Select * from product where type != shoes";
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setBrand(resultSet.getString("brand"));
+                product.setType(resultSet.getString("type"));
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        int index = 0;
+        for(Product p : products){
+             String sql2 = "SELECT * FROM quantity where id_shoes = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql2);
+            ps.setInt(1,p.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                    int number = rs.getInt("others");
+                    products.get(index).setAmountOfProduct(number);
+                }
+            }catch (SQLException ex) {
+                Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        index++;
+        }
+        return products;
+    }
 }

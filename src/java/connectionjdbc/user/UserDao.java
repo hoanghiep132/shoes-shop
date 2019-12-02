@@ -402,5 +402,25 @@ public class UserDao {
         }
         return false;
     }
+    
+    public String getPassword(int id){
+        String password = "";
+         String sql = "Select * from account where id_account = ?";
+//        String sql = "Select * from account where username = " + "'" + username + "'" + " "
+//                + "and password = " + "'" +password + "'";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return password;
+    }
 
 }

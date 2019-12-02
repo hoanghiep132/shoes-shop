@@ -21,6 +21,7 @@ public class Product {
     private String description;
     private String tag;
     private Quantity quantity;
+    private int amountOfProduct;
 
     public Quantity getQuantity() {
         return quantity;
@@ -28,6 +29,10 @@ public class Product {
 
     public void setQuantity(Quantity quantity) {
         this.quantity = quantity;
+        amountOfProduct = quantity.getSize36() +  quantity.getSize37() +quantity.getSize38()
+                + quantity.getSize39() + quantity.getSize40() + quantity.getSize41()
+                + quantity.getSize42() + quantity.getSize43() + quantity.getSize44()
+                + quantity.getSize45();
     }
 
     public Product(int id, String name, double price, int discount, String brand, String type, String img1, String img2, String description, String tag, Quantity quantity, DetailProduct detailProduct) {
@@ -44,6 +49,8 @@ public class Product {
         this.quantity = quantity;
         this.detailProduct = detailProduct;
     }
+    
+
 
     public DetailProduct getDetailProduct() {
         return detailProduct;
@@ -156,6 +163,14 @@ public class Product {
         this.detailProduct.setImg2(detailProduct.getImg2());
         this.detailProduct.setImg3(detailProduct.getImg3());
         this.detailProduct.setTag(detailProduct.getTag());
+    }
+
+    public int getAmountOfProduct() {
+        return amountOfProduct;
+    }
+
+    public void setAmountOfProduct(int amountOfProduct) {
+        this.amountOfProduct = amountOfProduct;
     }
 
     

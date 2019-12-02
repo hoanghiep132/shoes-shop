@@ -66,7 +66,7 @@
                       </a>
                     </div>
                     <div class="logout">
-                        <a href="LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
               </div>
                   </c:otherwise>

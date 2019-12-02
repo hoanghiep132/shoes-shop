@@ -5,6 +5,7 @@
  */
 package connectionjdbc.product;
 
+import connectionjdbc.user.UserDao;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -78,6 +79,18 @@ public class ProductService {
     
     public void updateProduct(Product product){
         productDao.updateProduct(product);
+    }
+    
+    public List<Product> getAllProduct2(){
+        return productDao.getAllProduct2();
+    }
+    
+    public List<Product> getAllShoes2(){
+        return productDao.getAllShoes2();
+    }
+    
+    public List<Product> getAllOthers2(){
+        return productDao.getAllOther2();
     }
     
     

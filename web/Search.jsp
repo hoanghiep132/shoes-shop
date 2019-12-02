@@ -111,7 +111,11 @@
                 <!-- end-search -->
                 <%
                   User user = (User) session.getAttribute("currentUser");
-                  request.setAttribute("u", user);
+                  if(user != null){
+                        request.setAttribute("u", user);
+                        int number = user.getSizeTemps();
+                        request.setAttribute("num", number);
+                  }
               %>
               <c:choose>
                   <c:when test="${u eq null}">
@@ -131,12 +135,12 @@
                         <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
                         <ul>
                           <li>Giỏ hàng</li>
-                          <li>${a} Sản phẩm</li>
+                          <li>${num} Sản phẩm</li>
                         </ul>
                       </a>
                     </div>
                     <div class="logout">
-                        <a href="LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
               </div>
                   </c:otherwise>

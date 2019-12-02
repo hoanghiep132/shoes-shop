@@ -15,12 +15,12 @@
       <div class="header">
           <div class="package">
               <div class="shop_name">
-                  <a href="home.jsp"><h1>MiaShoes</h1></a>
+                  <a href="/ShoeShop/home.jsp"><h1>MiaShoes</h1></a>
               </div>
               <div class="box_search">
                   <span>Tìm Kiếm Sản Phẩm</span>
                   <div class="search">
-                      <form action="Search.jsp?type=1" method="post">
+                      <form action="/ShoeShop/Search.jsp?type=1" method="post">
                             <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
                         </form>
