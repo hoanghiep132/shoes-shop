@@ -526,12 +526,12 @@ public class ProductDao {
     
     public List<Product> getAllShoes2(){
         List<Product> products = new ArrayList();
-        String sql = "Select * from product where type = shoes";
+        String sql = "Select * from product where type = 'shoes'";
 
         try {
-            Statement statement = connection.createStatement();
+            PreparedStatement ps = connection.prepareStatement(sql);
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
                 Product product = new Product();
@@ -578,7 +578,7 @@ public class ProductDao {
     
     public List<Product> getAllOther2(){
         List<Product> products = new ArrayList();
-        String sql = "Select * from product where type != shoes";
+        String sql = "Select * from product where type != 'shoes'";
 
         try {
             Statement statement = connection.createStatement();

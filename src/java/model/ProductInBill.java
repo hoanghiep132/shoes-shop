@@ -12,14 +12,23 @@ package model;
 public class ProductInBill {
     
     private Product product;
-    private int quantity;
+    private int size;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public ProductInBill() {
     }
 
-    public ProductInBill(Product product, int quantity) {
+    public ProductInBill(Product product, int size) {
         this.product = product;
-        this.quantity = quantity;
+        this.size = size;
     }
 
     public Product getProduct() {
@@ -30,12 +39,18 @@ public class ProductInBill {
         this.product = product;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getSize() {
+        return size;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setSize(int quantity) {
+        this.size = quantity;
+    }
+
+    public ProductInBill(Product product, int size, String date) {
+        this.product = product;
+        this.size = size;
+        this.date = date;
     }
     
     

@@ -234,28 +234,7 @@ input[type=submit]{
     height: 800px;
    
 }
-/* end-slide */
-.title{
-    width:100% ;
-    margin: auto;
-    justify-content: space-between;
-    text-align: center;
-}
-.title span{ 
-    width: 80%;
-    margin: auto;
-    font-size: 20px;
-    text-align: center;
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 10px;
-}
-.title div{
-    margin: auto;
-    width: 185px;
-    height: 0.25em;
-    background-color: gray;
-}
+
 
 
 h1 {

@@ -37,9 +37,15 @@ public class UserFilter implements Filter {
         if(url.startsWith("/ShoeShop/user/")){
             Object object = session.getAttribute("currentUser");
             if(object != null){
+                User user = (User) object;
                 if(url.startsWith("/ShoeShop/user/employee/")){
-                    User user = (User) object;
                     if("employee".equals(user.getRole()) || "admin".equals(user.getRole())){
+                        chain.doFilter(request, response);
+                    }else{
+                        res.sendRedirect("/ShoeShop/user/MyAccount.jsp");
+                    }
+                } else if(url.startsWith("/ShoeShop/user/employee/admin/")){
+                    if("admin".equals(user.getRole())){
                         chain.doFilter(request, response);
                     }else{
                         res.sendRedirect("/ShoeShop/user/MyAccount.jsp");
@@ -79,6 +85,33 @@ public class UserFilter implements Filter {
             }
             String sub = "/ShoeShop/" + url.substring(index, url.length());
             res.sendRedirect(sub);
+        } else if(url.startsWith("/ShoeShop/user/employee/admin/ShoeShop/")){
+            int index = 0;
+            for(int i = url.length() - 1; ;i-- ){
+                if(url.charAt(i) == '/'){
+                    index = i;
+                    break;
+                }
+            }
+            String sub = "/ShoeShop/" + url.substring(index, url.length());
+        } else if(url.startsWith("/ShoeShop/user/employee/admin/ShoeShop/user/")){
+            int index = 0;
+            for(int i = url.length() - 1; ;i-- ){
+                if(url.charAt(i) == '/'){
+                    index = i;
+                    break;
+                }
+            }
+            String sub = "/ShoeShop/user/" + url.substring(index, url.length());
+        } else if(url.startsWith("/ShoeShop/user/employee/admin/ShoeShop/user/employee/")){
+            int index = 0;
+            for(int i = url.length() - 1; ;i-- ){
+                if(url.charAt(i) == '/'){
+                    index = i;
+                    break;
+                }
+            }
+            String sub = "/ShoeShop/user/employee/" + url.substring(index, url.length());
         }
     }
 

@@ -158,6 +158,22 @@
           
           
     <br><br><br>
+    <c:if test="${user.role eq 'admin' || user.role eq 'employee'}">
+          <div class="func">
+            
+            <a href="/employee/ListCus.jsp" ><button class="button1">Quản lý khách hàng</button></a>
+
+            <a href="/employee/ListProduct.jsp" ><button class="button1">Quản lý sản phẩm</button></a>
+
+
+            <a href="/employee/ListBill.jsp" ><button class="button1">Quản lý hóa đơn</button></a>
+            
+            <c:if test="${user.role eq 'admin'}">
+                <a href="/employee/admin/ListEmployee.jsp" ><button class="button1">Quản lý nhân viên</button></a>
+            </c:if>
+        </div>
+    </c:if>
+    <br><br><br>
     <div class="parent">
 
     <div class="left">
@@ -171,6 +187,7 @@
             <th width="150px">Ngày</th>
             <th width="250px">Giá trị đơn hàng</th>
             <th width="150px">Trạng thái</th>
+            <th width="150px">Tùy chọn</th>
           </tr>
           <%
               int index = 1;
@@ -183,12 +200,14 @@
                   String date = bill.getDate().substring(8, 10) + "/" +
                           bill.getDate().substring(5,7) + "/" +bill.getDate().substring(0,4);
                   request.setAttribute("date", date);
+                  request.setAttribute("id_bill", bill.getId());
           %>
             <tr>
                 <td>${index}</td>
                 <td>${date}</td>
                 <td>${cost}</td>
                 <td>${status}</td>
+                <td><a href="DetailBill.jsp?id=${id_bill}">Xem chi tiết </a> </td>
             </tr>
           <%
               }

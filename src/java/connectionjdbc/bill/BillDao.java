@@ -34,7 +34,6 @@ public class BillDao {
     }
     
     
-
     public List<Bill> getAllBillForCustomer(int id){
         List<Bill> bills = new ArrayList();
         
@@ -59,6 +58,24 @@ public class BillDao {
         return bills;
     }
     
+    public List<ProductInBill> getDetail(int idBill){
+        String sql = "select * from detail_bill where id_bill = ?";
+        List<ProductInBill> list = new ArrayList();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, idBill);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id_product");
+                int size = rs.getInt("size");
+                Product product = new ProductService().getProductById(id);
+                list.add(new ProductInBill(product, size));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
     
 
     public List<ProductInBill> getDetailBill(int id){
@@ -70,7 +87,7 @@ public class BillDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ProductInBill pb = new ProductInBill();
-                pb.setQuantity(rs.getInt("quantity"));
+                pb.setSize(rs.getInt("quantity"));
                 int idProduct = rs.getInt("id_product");
                 Product pt = new ProductService().searchProductById(idProduct);
                 pb.setProduct(pt);

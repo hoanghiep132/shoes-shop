@@ -12,11 +12,17 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/filter/UserFilter.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/SignUp.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/SendMail3.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/signUp.css</file>
             <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/test/Test.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/listProduct.css</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/product/ProductDao.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/ListProduct.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/product/ProductService.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/BuyNow.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/myAccount.css</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/buyNow.css</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/home.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/upload/Upload.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/CheckDiscountCode.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -1,11 +1,4 @@
 
-import connectionjdbc.product.ProductService;
-import connectionjdbc.user.Security;
-import connectionjdbc.user.UserService;
-import java.io.File;
-import java.util.List;
-import model.Product;
-import model.User;
 import upload.Upload;
 
 /*

@@ -168,6 +168,7 @@
                 <th class="id">ID </th>
                 <th class="in">Tên</th>
                 <th class="in">Giá</th>
+                <th class="in">Giảm giá</th>
                 <th class="in">Hãng</th>
                 <th>Tổng số lượng</th> 
                 <th>Tùy chọn </th>
@@ -177,6 +178,7 @@
                 <td class="id">${pro.id}</td>
                 <td class="in">${pro.name}</td>
                 <td class="in">${pro.price}</td>
+                <td class="in">${pro.discount}</td>
                 <td class="in">${pro.brand}</td>
                 <td class="in">${pro.amountOfProduct}</td>
                 <td>

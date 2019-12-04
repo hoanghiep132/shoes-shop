@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="connectionjdbc.user.UserService"%>
 <%@page import="upload.Upload"%>
 <%@page import="model.User"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
@@ -41,6 +42,7 @@
             String avatar = new Upload().uploadAvatarToCloud(url);
             User user = (User)session.getAttribute("currentUser");
             user.setAvatar(avatar);
+            new UserService().updateAvatarUserById(user);
             response.sendRedirect("/ShoeShop/user/EditInforUser.jsp");
         %>
     </body>

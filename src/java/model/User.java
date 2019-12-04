@@ -132,8 +132,13 @@ public class User {
         return temps.size();   
     }
     
-    public void removeProduct(TempProduct temp){
-        boolean check = temps.remove(temp);
+    public void removeProduct(int id){
+        for(TempProduct t: temps) {
+            if(t.getId() == id){
+                temps.remove(t);
+                break;
+            }
+        }
     }
     
 }

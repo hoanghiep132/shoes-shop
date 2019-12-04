@@ -7,6 +7,7 @@ package connectionjdbc.bill;
 
 import java.util.List;
 import model.Bill;
+import model.ProductInBill;
 
 /**
  *
@@ -37,5 +38,5 @@ public class BillTransaction {
         billDao.createBill(bill);
     }
     
-    
+
 }

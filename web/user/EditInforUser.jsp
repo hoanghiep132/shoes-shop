@@ -167,15 +167,16 @@
         <h1 align="center">Chỉnh sửa thông tin tài khoản</h1>
         <br><br><br> 
         <div class="center">
+            <div class="left">
             <form action="UploadAvatar.jsp" method="post" enctype="multipart/form-data" name="changeAvatar">
                 <div id="ava_div">
                     <label>Avatar</label>
                     <img  src="${u.avatar}" width="200px" height="200px">
-                    <input type="file" name="file" accept="*/img">
+                    <input type="file" name="file" accept="*/img" style="align-content: center">
                 </div>
                 <input type="submit" value="Thay đổi av">
             </form>
-            <div class="left">
+            <br><br><br>
             <form  action="EditUserPost.jsp" onsubmit="return Validation()" name="register" method="post"> 
                 <div id="name_div">
                     <label>Họ và tên</label>
@@ -225,21 +226,21 @@
                 <h3 style="align-content: center">Thay đổi mật khẩu</h3>
                 <form action="ChangePassword.jsp" method="post" onsubmit="return change()" name="change">
                     <div>
-                        <label style="font-size: 20px">Mật khẩu cũ :</label>
-                        <input type="password" name="oldPass" class="textInput">
+                        <label style="font-size: 20px;margin-left: 20px;">Mật khẩu cũ :</label>
+                        <input type="password" name="oldPass" class="textInput" style="width:300px">
                     </div>
                     <div id="old_error" class="err">  </div>
                     <div>
-                        <label style="font-size: 20px">Mật khẩu mới :</label>
-                        <input type="password" name="newPass" class="textInput">
+                        <label style="font-size: 20px;margin-left: 20px;">Mật khẩu mới :</label>
+                        <input type="password" name="newPass" class="textInput" style="width:300px">
                         <div id="new_error" class="err">  </div>
                     </div>
                     <div>
-                        <label style="font-size: 20px">Nhập lại mật khẩu :</label>
-                        <input type="password" name="conPass" class="textInput">
+                        <label style="font-size: 20px;margin-left: 20px;">Nhập lại mật khẩu :</label>
+                        <input type="password" name="conPass" class="textInput" style="width:300px">
                     </div>
                     <div id="con_error" class="err">  </div>
-                    <input type="submit" value="Thay đổi" class="btn">
+                    <input type="submit" value="Thay đổi" class="btn" style="margin-left: 100px;">
                 </form>
             </div>
         </div>

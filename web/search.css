@@ -94,9 +94,9 @@ input::-webkit-input-placeholder {
 input[type=submit]{
     background: #ededed  no-repeat 9px center;
     border: solid 1px #ccc;
-    width:40px;
+    width:80px;
     height: 40px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 /* end search */
 .header .package .infor{

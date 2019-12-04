@@ -111,7 +111,7 @@ public class Bill {
     public double getCost(){
         double cost = 0;
         for(ProductInBill pb : list){
-            cost += pb.getQuantity() * pb.getProduct().getPrice() / 100 * (100 - pb.getProduct().getDiscount());
+            cost += pb.getSize() * pb.getProduct().getPrice() / 100 * (100 - pb.getProduct().getDiscount());
         }
         return cost;
     }
