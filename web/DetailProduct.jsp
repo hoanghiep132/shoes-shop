@@ -95,6 +95,9 @@
                         </ul>
                       </a>
                 </div>
+                <div class="logout">
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
+                </div>
               </div>
                   </c:otherwise>
               </c:choose>

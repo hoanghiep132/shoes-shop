@@ -25,8 +25,7 @@
     <body>
         <%
             User user = (User) session.getAttribute("currentUser");
-            List<TempProduct> temps = user.getTemps();
-            
+            String msg = user.sendEmail();
             //Get properties object    
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
@@ -45,13 +44,13 @@
             //compose message    
             try {
                 MimeMessage message = new MimeMessage(ses);
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("email")));
-                message.setSubject("Confirm Email");
-                message.setText("");
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+                message.setSubject("Thông báo đặt hàng");
+                message.setText(msg);
                 //send message  
                 Transport.send(message);
                 System.out.println("message sent successfully");
-                response.sendRedirect("/ShoeShop/Thanks.jsp");
+                response.sendRedirect("/ShoeShop/user/Thanks.jsp");
                 
             } catch (javax.mail.MessagingException ex) {
                 System.err.println("Failed");

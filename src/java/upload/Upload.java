@@ -20,16 +20,11 @@ import java.util.logging.Logger;
  */
 public class Upload {
 
-    private String folder;
 
     public Upload() {
     }
     
-    
 
-    public Upload(String folder) {
-        this.folder = folder;
-    }
     
     
     public String uploadAvatarToCloud(String urlImg){

@@ -46,9 +46,12 @@
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                 </a>
               <div class="logout">
-                        <a href="LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                 </div>
+                </div>
+          </div>
       </div>
+          
           <!-- end-header -->
       <div class="menu">
             <div class="package">
@@ -160,7 +163,8 @@
                  <span class="label inf"> ${u.role}</span><br><br>
             </div>
         </div>
-              <div class="information">
+            
+    <div class="information">
         <div class="package">
           <div class="information1">
            <h1>VỀ CỬA HÀNG</h1>

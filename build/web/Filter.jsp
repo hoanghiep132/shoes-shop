@@ -15,9 +15,9 @@
             //User user = (User) session.getAttribute("currentUser");
             User user = (User) session.getAttribute("currentUser");
             if(user.getRole().equals("admin")){
-                response.sendRedirect("/ShoeShop/user/employee/ListEmployee.jsp");
+                response.sendRedirect("/ShoeShop/user/MyAccount.jsp");
             }else if(user.getRole().equals("employee")){
-                response.sendRedirect("/ShoeShop/user/employee/ListCus.jsp");
+                response.sendRedirect("/ShoeShop/user/MyAccount.jsp");
             }else{
                 response.sendRedirect("/ShoeShop/home.jsp");
             }

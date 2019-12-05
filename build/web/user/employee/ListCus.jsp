@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-           <title>MiaShoes</title>
+        <title>MiaShoes</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +46,7 @@
                 </a>
               </div>
               <div class="logout">
-                        <a href="LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
           </div>
       </div>

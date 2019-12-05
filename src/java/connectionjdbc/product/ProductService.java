@@ -93,6 +93,10 @@ public class ProductService {
         return productDao.getAllOther2();
     }
     
+    public void updateQuantity(int id_bill){
+        productDao.updateQuantity(id_bill);
+    }
+    
     
     public List<Product> orderProductAscendingByName(List<Product> list){
         return list.stream().sorted(Comparator.comparing(Product::getName))

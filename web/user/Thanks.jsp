@@ -1,15 +1,12 @@
 <%-- 
-    Document   : ListBill
-    Created on : Dec 4, 2019, 6:10:16 PM
+    Document   : Thanks
+    Created on : Dec 5, 2019, 8:45:10 AM
     Author     : hiepnguyen
 --%>
 
-<%@page import="model.Bill"%>
-<%@page import="java.util.List"%>
-<%@page import="connectionjdbc.bill.BillTransaction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
     <head>
         <title>MiaShoes</title>
         <!-- Required meta tags -->
@@ -18,22 +15,21 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
               integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="listBill.css">
+        <link rel="stylesheet" href="thanks.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-
         <div class="header">
             <div class="package">
                 <div class="shop_name">
-                    <a href="/ShoeShop/home.jsp"><h1>MiaShoes</h1></a>
+                    <a href="home.jsp"><h1>MiaShoes</h1></a>
                 </div>
                 <div class="box_search">
                     <span>Tìm Kiếm Sản Phẩm</span>
                     <div class="search">
-                        <form action="/ShoeShop/Search.jsp?type=1" method="post">
+                        <form action="Search.jsp?type=1" method="post">
                             <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
                         </form>
@@ -41,12 +37,28 @@
                 </div>
                 <!-- end-search -->
                 <div class="infor">
-                    <a href="/ShoeShop/user/MyAccount.jsp" class="account">
+                    <a href="SignIn.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
+                        <div id="hide">
+                            <a href="SignUp.jsp">
+                                <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
+                            </a>
+                            <br>
+                            <a href="SignIn.jsp">
+                                <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
+                            </a>
+                        </div>
                     </a>
-                </div>
-                <div class="logout">
-                    <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
+                    <!--                <div class="product">
+                                      <a href="" class="cart">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
+                                        <ul>
+                                          <li>Giỏ hàng</li>
+                                          <li>(0) Sản phẩm</li>
+                                        </ul>
+                                      </a>
+                                      <span>Không có sản phẩm nào trong giỏ hàng</span>
+                                    </div>-->
                 </div>
             </div>
         </div>
@@ -55,78 +67,78 @@
             <div class="package">
                 <ul class="menu-ngang">
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=nike&type=2" class="item1">NIKE</a>
+                        <a href="Search.jsp?str=nike&type=2" class="item1">NIKE</a>
                         <ul id="menu11">
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Force 1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Jordan1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 1</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 197</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 270</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Air Max 97</a></li>
+                            <li><a href="Search.jsp?str=nike&type=2" id="item2">Presto</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=adidas&type=2" class="item1">ADIDAS</a>
+                        <a href="Search.jsp?str=adidas&type=2" class="item1">ADIDAS</a>
                         <ul id=menu11>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Stan Smith</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">SuperStar</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Derup Runner</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Tubular Doom</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Falcom</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Pod</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=adidas&type=2" id="item2">Young1</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Stan Smith</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">SuperStar</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Derup Runner</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Tubular Doom</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Falcom</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Pod</a></li>
+                            <li><a href="Search.jsp?str=adidas&type=2" id="item2">Young1</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=luxury&type=2" class="item1">LUXURY</a>
+                        <a href="Search.jsp?str=luxury&type=2" class="item1">LUXURY</a>
                         <ul id=menu11 style="height: 100px;">
-                            <li><a href="/ShoeShop/Search.jsp?str=luxury&type=2" id="item2">Balenciaga</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=luxury&type=2" id="item2">Gucci</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=luxury&type=2" id="item2">MC Queen</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">Balenciaga</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">Gucci</a></li>
+                            <li><a href="Search.jsp?str=luxury&type=2" id="item2">MC Queen</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=vans&type=2" class="item1">VANS</a>
+                        <a href="Search.jsp?str=vans&type=2" class="item1">VANS</a>
                         <ul id=menu11 style="height: 150px;">
-                            <li><a href="/ShoeShop/Search.jsp?str=vans&type=2" id="item2">Style 36</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=vans&type=2" id="item2">Slip on</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=vans&type=2" id="item2">Old Skool</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=vans&type=2" id="item2">Era 95</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=vans&type=2" id="item2">Sk8</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Style 36</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Slip on</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Old Skool</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Era 95</a></li>
+                            <li><a href="Search.jsp?str=vans&type=2" id="item2">Sk8</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=convers&type=2" class="item1">CONVERS</a>
+                        <a href="Search.jsp?str=convers&type=2" class="item1">CONVERS</a>
                         <ul id=menu11 style="height: 80px;">
-                            <li><a href="/ShoeShop/Search.jsp?str=convers&type=2" id="item2">1970s</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=convers&type=2" id="item2">Chuck 70s x CDG</a></li>
+                            <li><a href="Search.jsp?str=convers&type=2" id="item2">1970s</a></li>
+                            <li><a href="Search.jsp?str=convers&type=2" id="item2">Chuck 70s x CDG</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=fila&type=2" class="item1">FILA</a>
+                        <a href="Search.jsp?str=fila&type=2" class="item1">FILA</a>
                         <ul id=menu11 style="height: 80px;">
-                            <li><a href="/ShoeShop/Search.jsp?str=fila&type=2" id="item2">Fila ray</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=fila&type=2" id="item2">Fila Disruptor II</a></li>
+                            <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila ray</a></li>
+                            <li><a href="Search.jsp?str=fila&type=2" id="item2">Fila Disruptor II</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=the10&type=2" class="item1">THE10</a>
+                        <a href="Search.jsp?str=the10&type=2" class="item1">THE10</a>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=fashion&type=2" class="item1">FASHION</a>
+                        <a href="Search.jsp?str=fashion&type=2" class="item1">FASHION</a>
                         <ul id=menu11 style="height: 120px;">
-                            <li><a href="/ShoeShop/Search.jsp?str=fashion&type=2" id="item2">Áo Phông</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=fashion&type=2" id="item2">Áo Sơ Mi</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=fashion&type=2" id="item2">Quần Jeans</a></li>
-                            <li><a href="/ShoeShop/Search.jsp?str=fashion&type=2" id="item2">Quần Âu</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Phông</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Áo Sơ Mi</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Jeans</a></li>
+                            <li><a href="Search.jsp?str=fashion&type=2" id="item2">Quần Âu</a></li>
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="" class="item1">SALES</a>
+                        <a href="Search.jsp&type=4" class="item1">SALES</a>
                     </li>
                     <li id="menu1">
-                        <a href="" class="item1">PHỤ KIỆN</a>
+                        <a href="Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
                     </li>
                     <li id="menu1">
                         <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>
@@ -134,16 +146,19 @@
                 </ul>
             </div>
         </div>
-
-        <%
-            List<Bill> bills = new BillTransaction().getListApproving();
-            
-        %>
+        <!-- end-menu -->
+        <br> <br>
+        <a href="/ShoeShop/home.jsp" style="font-size: 20px;color: blue;margin-left: 100px;">
+            Quay lại trang chủ
+        </a>
         <br><br>
-        <h3 style="text-align: center">
-            Danh sách các hóa đơn đang chờ được xét duyệt
+        <h3 style="margin-left: 100px;"> 
+            Cảm ơn quý khách đã đặt hàng trên trang web chúng tôi! 
         </h3>
-
+        <h3 style="margin-left: 50px;">
+            Thông tin chi tiết của đơn hàng đẫ được thông báo qua email của quý khách!
+        </h3>
+        <br><br><br><br><br><br><br><br><br><br>
         <div class="information">
             <div class="package">
                 <div class="information1">
@@ -210,5 +225,11 @@
             </div>
         </div>
         <!-- end-banner -->
-    </body>
+        <div class="contact">
+            <a href="tel:1234567" title="tel:12345678"><i class="fa fa-phone" aria-hidden="true"></i></a>
+        </div>
+        <div class="contact1">
+            <a href="http://www.facebook.com"><i class="fab fa-facebook-messenger"></i></a>
+        </div>
+        <!-- end-page -->
 </html>

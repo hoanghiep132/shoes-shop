@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail {
     
     
-    public void send(String from,String password,String to,String subject,String msg){  
+    public static void send(String from,String password,String to,String subject,String msg){  
           //Get properties object    
           Properties props = new Properties();    
           props.put("mail.smtp.host", "smtp.gmail.com");    
@@ -33,6 +33,7 @@ public class SendEmail {
           //get Session   
           Session session = Session.getDefaultInstance(props,    
            new javax.mail.Authenticator() {    
+           @Override
            protected PasswordAuthentication getPasswordAuthentication() {    
            return new PasswordAuthentication(from, password);
            }    
@@ -49,4 +50,9 @@ public class SendEmail {
           } catch (MessagingException e) {throw new RuntimeException(e);}    
              
     }  
+    
+    public static void main(String[] args) {
+        send("nguyenhoanghiep1302@gmail.com","hiepga123","hoanghiepp132@gmail.com","test",
+                "asdjaosd \n asdjasdi \n sadjaosjdia \n asdasdas");
+    }
 }

@@ -41,7 +41,6 @@ public class AddUserFilter implements Filter{
         String name  = request.getParameter("name");
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phone_number");
-        String avatar = request.getParameter("avatar");
         String address = request.getParameter("address");
         //user.setBirthday(request.getParameter("birthday"));
         String day = request.getParameter("day");
@@ -57,7 +56,7 @@ public class AddUserFilter implements Filter{
         String gender = request.getParameter("gender");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user = new User(name,email,phoneNumber,gender,address,birthday,avatar);
+        User user = new User(name,email,phoneNumber,gender,address,birthday);
         req.setAttribute("newUser", user);
         req.setAttribute("username", username);
         req.setAttribute("password", password);

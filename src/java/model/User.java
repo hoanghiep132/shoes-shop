@@ -7,6 +7,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import other.Other;
 
 /**
  *
@@ -26,9 +27,19 @@ public class User {
         temps = new ArrayList();
     }
     private String avatar;          // link
-    private String role;            // customer, employee, manager
+    private String role;            // customer, employee, admin
     private int point;
 
+    public User(String name, String email, String phoneNumber, String gender, String address, String birthday) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.address = address;
+        this.birthday = birthday;
+    }
+
+  
     public int getId() {
         return id;
     }
@@ -139,6 +150,18 @@ public class User {
                 break;
             }
         }
+    }
+    
+    public String sendEmail(){
+        String msg = "\tMiaShoe xin kính chào quý khách! \nCảm ơn quý khách đã đặt hàng trên trang web của chúng tôi! \n"
+                + "\tDanh sách sản phẩm của quý khách bao gồm : \n";
+        for(TempProduct t : temps){
+            String price = Other.displayMoney((int)(t.getPrice()));
+            String sub ="\t" + t.getName() + "\t" + price + "\t" + t.getSize() + "\n";
+            msg += sub;
+        }
+        msg += "\t Sản phẩm sẽ được vận chuyển đến địa chỉ một cách sớm nhất! Trân thành cảm ơn!";
+        return msg;
     }
     
 }

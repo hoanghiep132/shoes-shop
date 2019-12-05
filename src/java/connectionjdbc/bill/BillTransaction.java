@@ -8,6 +8,7 @@ package connectionjdbc.bill;
 import java.util.List;
 import model.Bill;
 import model.ProductInBill;
+import model.TempProduct;
 
 /**
  *
@@ -26,6 +27,16 @@ public class BillTransaction {
         return billDao.getAllBillForCustomer(id);
     }
     
+    public List<Bill> getListApproving(){
+        return billDao.getAllBillApproving();
+    }
+    
+    public List<ProductInBill> getDetailBill(int id){
+        return billDao.getDetailBill(id);
+    }
+    
+    
+    
     public List<Bill> getListBillForDay(int day, int month, int year){
         return billDao.getBillForDay(day, month, year);
     }
@@ -34,8 +45,8 @@ public class BillTransaction {
         return billDao.getBillForMonth(month, year);
     }
     
-    public void createBill(Bill bill){
-        billDao.createBill(bill);
+    public void createBill(Bill bill, List<TempProduct> list){
+        billDao.createBill(bill,list);
     }
     
 

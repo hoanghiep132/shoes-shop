@@ -6,6 +6,7 @@
 package connectionjdbc.product;
 
 import connectionjdbc.GetConnection;
+import connectionjdbc.bill.BillTransaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DetailProduct;
 import model.Product;
+import model.ProductInBill;
 import model.Quantity;
 import model.Shoes;
 
@@ -58,7 +60,7 @@ public class ProductDao {
         }
 
         return products;
-    }
+    } // for customer
 
     public List<Product> getAllProductForBrand(String brand) {
         List<Product> products = new ArrayList();
@@ -86,7 +88,7 @@ public class ProductDao {
         }
 
         return products;
-    }
+    } // for customer
 
     public List<Product> getAllShoes() {
         List<Product> list = new ArrayList();
@@ -115,7 +117,7 @@ public class ProductDao {
         }
 
         return list;
-    }
+    } // for customer
 
     public List<Product> getAllOthers() {
         List<Product> products = new ArrayList();
@@ -144,7 +146,7 @@ public class ProductDao {
         }
 
         return products;
-    }
+    } // for customer
 
     public List<Product> getAllSaleProduct() {
         List<Product> products = new ArrayList();
@@ -172,7 +174,7 @@ public class ProductDao {
         }
 
         return products;
-    }
+    } // for customer
     
     public List<Product> searchProductForName(String name) {
         List<Product> products = new ArrayList();
@@ -522,7 +524,7 @@ public class ProductDao {
         index++;
         }
         return products;
-    }
+    } // for employee
     
     public List<Product> getAllShoes2(){
         List<Product> products = new ArrayList();
@@ -574,7 +576,7 @@ public class ProductDao {
         index++;
         }
         return products;
-    }
+    }   // for employee
     
     public List<Product> getAllOther2(){
         List<Product> products = new ArrayList();
@@ -614,5 +616,28 @@ public class ProductDao {
         index++;
         }
         return products;
+    }   // for employee
+    
+    public void updateQuantity(int id_bill){
+        List<ProductInBill> products = new BillTransaction().getDetailBill(id_bill);
+        for(ProductInBill p : products){    
+            int temp = p.getSize();
+            String size = "size" + temp;
+            String size2 = "size" + temp + " -1";
+            String sql = "update quantity set " + size + " = " + size2 + " where id_shoes = ? ";
+            
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+//                ps.setString(1, size);
+//                ps.setString(2, size2);
+//                ps.setInt(3, p.getProduct().getId());
+                ps.setInt(1, p.getProduct().getId());
+                
+                int rs = ps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }
 }

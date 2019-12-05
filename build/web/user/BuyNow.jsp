@@ -155,6 +155,12 @@
                         product.getImg1(), product.getPrice()));
             }
             List<TempProduct> list = user.getTemps();
+            String[] size = request.getParameterValues("size");
+            if(size != null){
+                for(int i = 0; i < size.length ;i++){
+                    list.get(i).setSize(Integer.parseInt(size[i]));
+                }
+            }
             request.setAttribute("list", list);
             int amount = list.size();
             request.setAttribute("amount", amount);
@@ -179,7 +185,7 @@
         <br><br>
         <div class="parent">
             <div class="left">
-                <form action="" method="post" name="buy">
+                <form action="SendMail3.jsp" method="post" name="buy">
                     <label>Họ và tên</label>
                     <input type="text" name="name" value="${u.name}"> <br><br>
                     <label>Email</label>
@@ -199,6 +205,7 @@
                         for(TempProduct t : list){
                             request.setAttribute("name", t.getName());
                             request.setAttribute("img", t.getImg());
+                            request.setAttribute("size", t.getSize());
                             request.setAttribute("price", Other.displayMoney((int)(t.getPrice())));     
                     %>
                     <div class="product">
@@ -209,7 +216,7 @@
                             <div>
                               ${name}  
                             </div>
-                            40
+                            ${size}
                         </div>
                         <div class="price">
                             ${price} VND
@@ -268,7 +275,8 @@
                     <hr>
                     <%
                         double costOfBill = price * (100 + 10 - discount) / 100;
-                        request.setAttribute("costOfBill", costOfBill);
+                        String costBill = Other.displayMoney((int)costOfBill);
+                        request.setAttribute("costOfBill", costBill);
                     %>
                     <div class="below">
                         <div class="left1" style="text-align: left">

@@ -41,9 +41,11 @@
               <!-- end-search -->
               <%
                   User user = (User) session.getAttribute("currentUser");
-                  request.setAttribute("u", user);
-                  int amount = user.getSizeTemps();
-                  request.setAttribute("amount", amount);
+                  if(user != null){
+                      request.setAttribute("u", user);
+                      int amount = user.getSizeTemps();
+                      request.setAttribute("amount", amount);
+                  }
               %>
               <c:choose>
                   <c:when test="${u eq null}">

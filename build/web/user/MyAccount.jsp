@@ -66,7 +66,7 @@
                   </a>
                 </div>
                     <div class="logout">
-                        <a href="/ShoeShop/LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
               </div>
           </div>
@@ -161,15 +161,15 @@
     <c:if test="${user.role eq 'admin' || user.role eq 'employee'}">
           <div class="func">
             
-            <a href="/employee/ListCus.jsp" ><button class="button1">Quản lý khách hàng</button></a>
+            <a href="/ShoeShop/user/employee/ListCus.jsp" ><button class="button1">Quản lý khách hàng</button></a>
 
-            <a href="/employee/ListProduct.jsp" ><button class="button1">Quản lý sản phẩm</button></a>
+            <a href="/ShoeShop/user/employee/ListProduct.jsp" ><button class="button1">Quản lý sản phẩm</button></a>
 
 
-            <a href="/employee/ListBill.jsp" ><button class="button1">Quản lý hóa đơn</button></a>
+            <a href="/ShoeShop/user/employee/ListBill.jsp" ><button class="button1">Quản lý hóa đơn</button></a>
             
             <c:if test="${user.role eq 'admin'}">
-                <a href="/employee/admin/ListEmployee.jsp" ><button class="button1">Quản lý nhân viên</button></a>
+                <a href="/ShoeShop/user/employee/admin/ListEmployee.jsp" ><button class="button1">Quản lý nhân viên</button></a>
             </c:if>
         </div>
     </c:if>

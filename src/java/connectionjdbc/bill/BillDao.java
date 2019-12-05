@@ -9,10 +9,12 @@ import connectionjdbc.GetConnection;
 import connectionjdbc.product.ProductDao;
 import connectionjdbc.product.ProductService;
 import connectionjdbc.user.UserDao;
+import connectionjdbc.user.UserService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
 import model.Bill;
 import model.Product;
 import model.ProductInBill;
+import model.TempProduct;
 import model.User;
 
 /**
@@ -58,7 +61,30 @@ public class BillDao {
         return bills;
     }
     
-    public List<ProductInBill> getDetail(int idBill){
+    public List<Bill> getAllBillApproving(){
+        List<Bill> bills = new ArrayList();
+        
+        String sql = "Select * from bill where status = approving";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Bill bill = new Bill();
+                int id_bill = rs.getInt("id_bill");
+                bill.setId(id_bill);
+                bill.setCustomer(new UserService().getUserById(rs.getInt("id_customer")));
+                bill.setList(getDetailBill(id_bill));
+                bill.setDate(rs.getString("date"));
+                bill.setTime(rs.getString("time"));
+                bills.add(bill);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bills;
+    }
+    
+    public List<ProductInBill> getDetailBill(int idBill){
         String sql = "select * from detail_bill where id_bill = ?";
         List<ProductInBill> list = new ArrayList();
         try {
@@ -78,26 +104,6 @@ public class BillDao {
     }
     
 
-    public List<ProductInBill> getDetailBill(int id){
-        List<ProductInBill> list = new ArrayList();
-        String sql = "Select * from list_product_bill where id_bill = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                ProductInBill pb = new ProductInBill();
-                pb.setSize(rs.getInt("quantity"));
-                int idProduct = rs.getInt("id_product");
-                Product pt = new ProductService().searchProductById(idProduct);
-                pb.setProduct(pt);
-                list.add(pb);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return list;
-    }
     
     
     public List<Bill> getBillForDay(int day, int month, int year){
@@ -171,26 +177,62 @@ public class BillDao {
         return bills;
     }
     
-    //haven't yet done
-    public void createBill(Bill bill){
+
+    public void createBill(Bill bill, List<TempProduct> list){
         
-        String sql = "insert into bill(id_customer,id_employee,date,time,status)"
-                + " values(?,?,?,?,?)";
-        
+        String sql1 = "insert into bill(id_customer,date,time)"
+                + " values(?,?,?);";
+        int id = 0;
         try {
-            PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setInt(1,bill.getCustomer().getId());
-            pst.setInt(2, bill.getEmployee().getId());
-            pst.setString(3, bill.getDate());
-            pst.setString(4, bill.getTime());
-            pst.setString(5, bill.getStatus());
+            PreparedStatement ps = connection.prepareStatement(sql1,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,bill.getCustomer().getId());
+            ps.setString(2, bill.getDate());
+            ps.setString(3, bill.getTime());
             
-            int rs = pst.executeUpdate(); 
+            int rs = ps.executeUpdate();
+            if(rs == 0){
+                throw new SQLException("Creating user failed, no rows affected!");
+            }
+            try(ResultSet generatedKey = ps.getGeneratedKeys()){
+                if(generatedKey.next()){
+                    id = generatedKey.getInt(1);
+                }else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         } catch (SQLException  ex) {
             Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        for(TempProduct t : list){
+            String sql2 = "insert into detail_bill(id_bill,id_product,size) "
+                + " values(?,?,?)";
+            try{
+                PreparedStatement ps = connection.prepareStatement(sql2);
+                ps.setInt(1,id);
+                ps.setInt(2, t.getId());
+                ps.setInt(3, t.getSize());
+                
+                int rs = ps.executeUpdate();
+            }catch(SQLException ex){
+                Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE,null,ex);
+            }
+        }
     }
-    
+ 
+    public void changeStatusBill(int id){
+        String sql = "update bill set status = approved where id = ?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            int rs = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     private String setTimeForMonth(int month, int year){
         switch(month){

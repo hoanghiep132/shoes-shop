@@ -172,9 +172,10 @@
                 <div id="ava_div">
                     <label>Avatar</label>
                     <img  src="${u.avatar}" width="200px" height="200px">
-                    <input type="file" name="file" accept="*/img" style="align-content: center">
+                    <input type="file" name="file" accept="*/img" style="margin-left: 350px">
                 </div>
-                <input type="submit" value="Thay đổi av">
+                <br>   
+                <input type="submit" value="Thay đổi av" style="margin-left: 400px">
             </form>
             <br><br><br>
             <form  action="EditUserPost.jsp" onsubmit="return Validation()" name="register" method="post"> 

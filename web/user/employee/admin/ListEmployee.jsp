@@ -46,7 +46,7 @@
                 </a>
               </div>
               <div class="logout">
-                        <a href="LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
           </div>
       </div>
@@ -160,7 +160,7 @@
                 <td class="in">${em.email}</td>
                 <td class="in">${em.phoneNumber}</td>
                 <td>
-                    <a href="ViewUser2.jsp?id=${em.id}"><button>Detail</button></a> 
+                    <a href="/ShoeShop/user/employee/ViewUser2.jsp?id=${em.id}"><button>Detail</button></a> 
                 </td>
             </tr>
             </c:forEach>

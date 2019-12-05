@@ -1,4 +1,3 @@
-
 .header{
     width: 100%;
     height: 70px;
@@ -224,7 +223,18 @@ input[type=submit]{
     text-decoration: none;
     color: black;
 }
-
+/* end-menu */
+#slide{
+    margin: auto;
+   width: 1500px;
+   height: 850px;
+}
+#slide img{
+    width:1500px;
+    height: 800px;
+   
+}
+/* end-slide */
 .title{
     width:100% ;
     margin: auto;
@@ -270,6 +280,57 @@ input[type=text] {
 input[type=text]:focus {
      border: 3px solid #555;
 }
+
+label {
+    font-size: 20px;
+}
+
+.cen{
+    width: 1200px;
+    margin: auto;
+}
+
+tr{
+    margin: 20px;
+    border: 1px solid black;
+}
+
+table {
+    margin:auto ;
+    border: 1px solid black;
+    width: 1000px;
+}
+
+th .id{
+    margin-left:20px;
+    margin-right: 20px;
+    border: 1px solid black;
+    width:50px;
+}
+
+td .id{
+    margin-left:20px;
+    margin-right: 20px;
+    border: 1px solid black;
+    width:50px;
+}
+
+th .in{
+    margin-left:20px;
+    margin-right: 20px;
+    border: 1px solid black;
+    width:250px;
+}
+
+td .in{
+    margin-left:20px;
+    margin-right: 20px;
+    border: 1px solid black;
+    width:250px;
+}
+
+
+
 
 .information{
     width: 100%;
@@ -403,103 +464,6 @@ input[type=text]:focus {
     top:0px;
     position: fixed;
     z-index: 8000;
-}
-
-a {
-    text-decoration: none;
-}
-
-h2 {
-    margin-left: 20px;
-}
-
-.parent{
-    display: flex;
-    width:1300px;
-    margin: auto;
-}
-
-
-.left{
-    width: 60%;
-}
-
-.right{
-    width: 35%;
-}
-
-th{
-    padding: 5px;
-    font-size: 20px;
-    color: #55595c;
-    background-color: #eceeef;
-    border-bottom: none;
-    border: 1px #e1e1e1 black;
-}
-
-td{
-    padding: 5px;
-    font-size: 18px;
-    border: 1px #e1e1e1 black;
-}
-
-table{
-    border-collapse: collapse;
-}
-
-
-.right .block{
-    width: 400px;
-    padding: 20px;
-    border: 1px #e1e1e1 solid;
-    border-radius: 5px;
-}
-
-.right .block p{
-    margin: 10px 0px;
-    line-height: 24px;
-    padding: 0px;
-    overflow: hidden;
-}
-
-.btn_div{
-    display:flex;
-    width: 100%;
-    margin: auto;
-}
-
-.btn_left{
-    width: 45%;
-    margin: auto;
-}
-
-.btn_right{
-    width: 45%;
-    margin: auto;
-}
-
-button:hover .btn_left {
-    border: 1px solid blue;
-    background-color: black;
-    color:white;
-}
-
-button:hover .btn_right {
-    border: 1px solid blue;
-    background-color: black;
-    color:white;
-}
-
-button.button1{
-    font-size: 16px;
-    padding: 6px;
-    border-radius: 6px;
-    display: inline-block;
-    border: 1px solid #19b5fe;
-    text-align: center;
-    width: 150px;
-    height: 50px;
-    margin-left: 170px;
 }
 
 

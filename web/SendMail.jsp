@@ -63,7 +63,6 @@
                 session.setAttribute("username", username);
                 session.setAttribute("password", password);
                 session.setAttribute("confirmCode", confirmCode);
-                System.out.println("Send Mail :" + confirmCode);
                 response.sendRedirect("/ShoeShop/Confirm.jsp");
                 
             } catch (javax.mail.MessagingException ex) {

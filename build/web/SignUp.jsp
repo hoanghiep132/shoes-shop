@@ -156,23 +156,22 @@
         </div>
         <!-- end-linked -->
         <%
-            //String error = request.getParameter("error");
-            
-            String error = "";
+            String error = request.getParameter("error");
             String username = "";
             String password = "";
             User user = null;
-            if (!"".equals(error)) {
+            if (error != null) {
                 username = request.getParameter("username");
                 password = request.getParameter("password");
                 user = (User) request.getAttribute("user");
                 request.setAttribute("err", error);
+                request.setAttribute("user", user);
             }
         %>
         <br><br>
         ${err}
         <c:choose>
-            <c:when test="${err eq ''}">
+            <c:when test="${err eq null}">
                 <div id="wrapper">
                     <form action="SendMail.jsp" onsubmit="return Validation()" name="register" method="post" >
                         <div id="username_div">
@@ -224,14 +223,15 @@
             </c:when>
             <c:otherwise>
                 <c:if test="${err eq '1'}">
-                    <h3>Email đã tồn tại</h3>
+                    <h5 style="margin-left: 150px;color: red">Email đã tồn tại</h5>
                 </c:if>
                 <c:if test="${err eq '2'}">
-                    <h3>Số điện thoại đã tồn tại</h3>
+                    <h5 style="margin-left: 150px;color: red">Số điện thoại đã tồn tại</h5>
                 </c:if>
                 <c:if test="${err eq '3'}">
-                    <h3>Tài khoản đã tồn tại</h3>
+                    <h5 style="margin-left: 150px;color: red">Tài khoản đã tồn tại</h5>
                 </c:if>
+                <br>
             <div id="wrapper">
             <form method="POST" action="SendMail.jsp" onsubmit="return Validation()" name="register" >
                 <div id="username_div">

@@ -173,7 +173,8 @@
                     </ul>
             </div>
       </div>
-
+          
+    <form action="BuyNow.jsp" method="post">  
         <div class="table">
             <div class="head">
                 <div style="width:25%;text-align: center;">Sản phẩm</div>
@@ -203,7 +204,7 @@
                         <button class="minus-btn" type="button" name="button" style="margin-left: 40px;">
                            <img src="icon/minus.svg" alt="" width="7px" height="7px"/>
                         </button>               
-                           <input type="number" name="quantity" value="36" min="36" max="45">
+                           <input type="number" name="size" value="36" min="36" max="45">
                         <button class="plus-btn" type="button" name="button" >
                             <img src="icon/plus.svg" alt="" width="7px" height="7px"/>
                         </button>
@@ -231,18 +232,17 @@
     <div class="cost" style="margin-left: 1000px;margin-top: 20px;">
         <h4 style="margin-left: 50px;">Tổng tiền : ${cost}</h4>
     </div>
-    <div class="button" style="margin-left: 1000px;">
         <a href="/ShoeShop/home.jsp">
             <button class="btn_left" style="background-color: #f2f1ef;color: black;
                     font-size: 18px;padding: 6px;border-radius: 6px;display: inline-block;
-                    border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;">Tiếp tục mua hàng</button>
+                    border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;
+                    margin-left: 1000px;">Tiếp tục mua hàng</button>
         </a>
-        <a href="BuyNow.jsp">
-            <button class="btn_right" style="background-color: black;color: white;font-size: 18px;
-                    padding: 6px;border-radius: 6px;display: inline-block;
-                    border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;">Tiến hành đặt hàng</button>
-        </a>
-    </div>
+        
+        <input type="submit" class="btn_right" style="background-color: black;color: white;font-size: 18px;
+                padding: 6px;border-radius: 6px;display: inline-block;
+                border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;" value="Tiến hành đặt hàng">
+    </form>    
           
     <div class="information">
         <div class="package">

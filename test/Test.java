@@ -1,5 +1,5 @@
 
-import upload.Upload;
+import connectionjdbc.product.ProductService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,10 +15,7 @@ public class Test {
    
 
     public static void main(String[] args) {
-        String file = "/home/hiepnguyen/Pictures/ava/ava1.jpg";
-        String ava = new Upload().uploadAvatarToCloud(file);
-        System.out.println(ava);
-       
+        new ProductService().updateQuantity(5);
     }
 }
 
