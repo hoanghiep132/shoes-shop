@@ -23,6 +23,10 @@ public class BillTransaction {
         billDao = new BillDao();
     }
     
+    public Bill getBillById(int id){
+        return billDao.getBillById(id);
+    }
+    
     public List<Bill> getListBill(int id){
         return billDao.getAllBillForCustomer(id);
     }
@@ -47,6 +51,10 @@ public class BillTransaction {
     
     public void createBill(Bill bill, List<TempProduct> list){
         billDao.createBill(bill,list);
+    }
+    
+    public void createBill2(Bill bill, List<TempProduct> list,String discountCode){
+        billDao.createBill2(bill,list,discountCode);
     }
     
 

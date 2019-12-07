@@ -28,7 +28,7 @@
                 session.removeAttribute("password");
                 session.removeAttribute("newUser");
                 session.removeAttribute("confirmCode");
-                response.sendRedirect("/ShoeShop/SignIn.jsp");
+                response.sendRedirect("/ShoeShop/SignIn.jsp?error=0");
             }else{
                 response.sendRedirect("/ShoeShop/Confirm.jsp?err=1");
             }

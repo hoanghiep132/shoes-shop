@@ -59,7 +59,7 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
     display: none; 
 }
- a{
+body a{
     text-decoration: none;
 }
 input[type=search] {
@@ -447,9 +447,4 @@ button.button1{
 
 .logout a:hover{
     color: blue;
-}
-
-a{
-    text-decoration: none;
-    color : #bf55ec;
 }

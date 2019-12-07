@@ -21,11 +21,30 @@ public class Bill {
     private String status;
     List<ProductInBill> list;
     private double cost;
+    private int discountCode;
+
+    public int getDiscountCode() {
+        return discountCode;
+    }
+
+    public void setDiscountCode(int discountCode) {
+        this.discountCode = discountCode;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public Bill(User customer, String date, String time) {
+        this.customer = customer;
+        this.date = date;
+        this.time = time;
+    }
     
     
 
-    public void addProductToBill(Product product, int quantity){
-        ProductInBill pb = new ProductInBill(product, quantity);
+    public void addProductToBill(Product product, int size){
+        ProductInBill pb = new ProductInBill(product, size);
         list.add(pb);
     }
 

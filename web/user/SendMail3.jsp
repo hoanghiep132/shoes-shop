@@ -4,6 +4,13 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="connectionjdbc.bill.BillTransaction"%>
+<%@page import="connectionjdbc.product.ProductService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.ProductInBill"%>
+<%@page import="model.Bill"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="model.User"%>
 <%@page import="model.TempProduct"%>
@@ -25,7 +32,24 @@
     <body>
         <%
             User user = (User) session.getAttribute("currentUser");
-            String msg = user.sendEmail();
+            String address = request.getParameter("address");
+            String phoneNumber = request.getParameter("phone_number");
+            String msg = user.sendEmail(phoneNumber, address);
+            String discountCode =(String) session.getAttribute("code");
+            //create bill
+            Date day = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss");
+            String str = format.format(day);
+            String date = str.substring(0,10);
+            String time = str.substring(12,19);
+            Bill bill = new Bill(user,date,time);
+            List<TempProduct> temps = user.getTemps();
+            if(session != null){
+                new BillTransaction().createBill2(bill, temps,discountCode);
+            }else{
+                new BillTransaction().createBill(bill, temps);
+            }
+            user.getTemps().clear();
             //Get properties object    
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");

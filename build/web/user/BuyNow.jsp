@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="logout" style="height:100px; margin-top:28px;margin-left:10px">
-                    <a href="/ShoeShop/LogOut.jsp">Đăng xuất</a>
+                    <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                 </div>
             </div>
         </div>
@@ -189,10 +189,15 @@
                     <label>Họ và tên</label>
                     <input type="text" name="name" value="${u.name}"> <br><br>
                     <label>Email</label>
-                    <input type="text" name="name" value="${u.email}"> <br><br>
+                    <input type="email" name="email" value="${u.email}"> <br><br>
                     <label>Số điện thoại</label>
-                    <input type="text" name="name" value="${u.phoneNumber}"><br><br>
-                    
+                    <input type="number" name="phone_number" value="${u.phoneNumber}"><br><br>
+                    <label>Địa chỉ</label>
+                    <input type="text" name="address" value="${u.address}"><br>
+                    <label style="font-size: 13px;margin-left: 200px;">
+                        Yêu cầu quý khách điền đúng địa chỉ để thuận tiện cho việc vận chuyển
+                    </label>
+                    <br> <br> 
                     <input type="submit" value="Đặt hàng" style="margin-left: 200px">
                 </form>
             </div>
@@ -254,7 +259,7 @@
                         </div>
                         <div class="right1" style="text-align: right">
                             <span >
-                                10%
+                                +10%
                             </span>
                         </div>
                     </div>

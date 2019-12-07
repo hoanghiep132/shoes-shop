@@ -44,10 +44,10 @@
                   <a href="/ShoeShop/user/MyAccount.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                 </a>
+                <div class="logout">
+                    <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
+                </div>
               </div>
-              <div class="logout">
-                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
-                    </div>
           </div>
       </div>
           <!-- end-header -->

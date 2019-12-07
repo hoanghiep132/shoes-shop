@@ -46,10 +46,10 @@
                   <a href="/ShoeShop/user/MyAccount.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                 </a>
+                <div class="logout">
+                    <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
+                </div>
               </div>
-              <div class="logout">
-                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
-                    </div>
           </div>
       </div>
           <!-- end-header -->
@@ -155,7 +155,7 @@
         <br><br>
         <div class="func">
             
-            <a href="ListProduct.jsp" ><button class="button1">Tất cả sản phẩm</button></a>
+            <a href="ListProduct.jsp" style="margin-left: 200px;"><button class="button1">Tất cả sản phẩm</button></a>
 
             <a href="ListProduct.jsp?option=1" ><button class="button1">Giày</button></a>
 
@@ -174,17 +174,17 @@
                 <th>Tùy chọn </th>
             </tr>
             <c:forEach items = "${list}" var= "pro">
-            <tr>
-                <td class="id">${pro.id}</td>
-                <td class="in">${pro.name}</td>
-                <td class="in">${pro.price}</td>
-                <td class="in">${pro.discount}</td>
-                <td class="in">${pro.brand}</td>
-                <td class="in">${pro.amountOfProduct}</td>
-                <td>
-                    <a href="EditProduct.jsp?id=${pro.id}"><button>Chỉnh sửa</button></a> 
-                </td>
-            </tr>
+                <tr>
+                    <td class="id">${pro.id}</td>
+                    <td class="in">${pro.name}</td>
+                    <td class="in">${pro.price}</td>
+                    <td class="in">${pro.discount}</td>
+                    <td class="in">${pro.brand}</td>
+                    <td class="in">${pro.amountOfProduct}</td>
+                    <td>
+                        <a href="EditProduct.jsp?id=${pro.id}"><button>Chỉnh sửa</button></a> 
+                    </td>
+                </tr>
             </c:forEach>
             </table>
         </div>

@@ -73,7 +73,7 @@ input[type=search] {
     transition: all .5s;
 }
 input[type=search]:focus {
-    width: 130px;
+    width: 110px;
     background-color: #fff;
     border-color: #66CC75;
     

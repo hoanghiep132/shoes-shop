@@ -3,9 +3,6 @@
     height: 70px;
 }
 
-body a{
-    text-decoration: none;
-}
 .header .package{
     margin: auto;
     width: 80%;
@@ -31,11 +28,11 @@ body a{
 .header .package .box_search{
     margin-top: -1px;
     width: 33.3333%;
-    height: 100px;
+    height: 100%;
     display: flex;
     margin: auto;
 }
-
+.header .package .box_search{}
 .header .package .box_search span{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
@@ -122,7 +119,7 @@ input[type=submit]{
     visibility: visible;
     opacity: 1;
 }
-
+.header .package .infor .product{}
 .header .package .infor .product a.cart{
     text-decoration: none;
     color: black;
@@ -225,6 +222,48 @@ input[type=submit]{
 }
 /* end-menu */
 
+
+
+h1 {
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+
+button.button1{
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    display: inline-block;
+    border: 1px solid #19b5fe;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    margin-left: 170px;
+}
+
+
+input[type=text] {
+    width: 200px;
+    height: 37px;
+    font-size: 25px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=text]:focus {
+     border: 3px solid #555;
+}
+
+
+
+
+
+
 .information{
     width: 100%;
     background-color: black;
@@ -251,6 +290,7 @@ input[type=submit]{
     display: block;
     font-size: 13px;
 }
+.information .package .information1>div{}
 .information .package .information1>ul{
     margin-left: -37px;
     font-size: 13px;
@@ -296,7 +336,9 @@ input[type=submit]{
 .information .package .payment>ul>li>img{
     width:40px;
 }
-
+.information .package .payment>span{}
+.information .package .payment>span>img{
+}
 /* end-information */
 .banner-end{
     margin: auto;
@@ -356,65 +398,15 @@ input[type=submit]{
     z-index: 8000;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-
-.table{
-    width: 80%;
-    margin:auto;
-}
-
-.head{
-    height: 40px;;
-    display: flex;
-    margin:auto;
-    width: 100%;
-    font-weight: bold;
-    font-size: 20px;
-    clear: both;
-    border: 1px solid #ebebeb;
-    float: left;
-}
-
-.list{
-    width: 100%;
-    float: left;
-    margin-top: 10px;
-    border: 1px solid #ebebeb;
-    border-bottom: none;
-}
-
-.product{
-    height: 100px;
-    display:flex;
-    border-bottom: 1px solid #ebebeb;
-    width: 100%;
-    float: left;
-}
-
-.minus-btn img {
-  margin-bottom: 3px;
-}
-.plus-btn img {
-  margin-top: 2px;
-}
-
-.quantity {
-  padding-top: 20px;
-  margin-right: 60px;
+body a{
+    text-decoration: none;
 }
 
 
 
-.quantity input {
-  -webkit-appearance: none;
-  border: none;
-  text-align: center;
-  width: 32px;
-  font-size: 16px;
-  color: #43484D;
-  font-weight: 300;
-}
+
+
+
+
+
+

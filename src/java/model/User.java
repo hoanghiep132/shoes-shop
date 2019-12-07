@@ -152,7 +152,7 @@ public class User {
         }
     }
     
-    public String sendEmail(){
+    public String sendEmail(String phoneNumber, String address){
         String msg = "\tMiaShoe xin kính chào quý khách! \nCảm ơn quý khách đã đặt hàng trên trang web của chúng tôi! \n"
                 + "\tDanh sách sản phẩm của quý khách bao gồm : \n";
         for(TempProduct t : temps){
@@ -160,6 +160,8 @@ public class User {
             String sub ="\t" + t.getName() + "\t" + price + "\t" + t.getSize() + "\n";
             msg += sub;
         }
+        msg += "\tĐịa chỉ nhận hàng : " + address + "\n";
+        msg += "\tSố điện thoại : " + phoneNumber + "\n";
         msg += "\t Sản phẩm sẽ được vận chuyển đến địa chỉ một cách sớm nhất! Trân thành cảm ơn!";
         return msg;
     }

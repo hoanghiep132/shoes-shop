@@ -90,9 +90,9 @@ input::-webkit-input-placeholder {
 input[type=submit]{
     background: #ededed  no-repeat 9px center;
     border: solid 1px #ccc;
-    width:40px;
+    width:80px;
     height: 40px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 /* end search */
 .header .package .infor{
@@ -407,14 +407,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-right: 60px;
 }
 
-button[class*=btn] {
-    width: 30px;
-    height: 30px;
-    background-color: #E1E8EE;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
+
 
 .quantity input {
   -webkit-appearance: none;

@@ -333,13 +333,12 @@ public class UserDao {
             while (rs.next()) {
                 id = rs.getInt("id_account");
             }
-            return getUserById(id);
+            return (id != 0)?(getUserById(id)):null;
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-
-        return null;
     }
 
     public boolean changePassword(int id, String old, String newPas) {

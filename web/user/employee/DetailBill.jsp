@@ -1,33 +1,31 @@
 <%-- 
-    Document   : BuyNow
-    Created on : Nov 28, 2019, 3:15:35 PM
+    Document   : DetailBill
+    Created on : Dec 6, 2019, 5:29:08 PM
     Author     : hiepnguyen
 --%>
 
-<%@page import="other.Other"%>
 <%@page import="java.util.List"%>
-<%@page import="model.TempProduct"%>
-<%@page import="model.User"%>
-<%@page import="connectionjdbc.product.ProductService"%>
-<%@page import="connectionjdbc.user.UserService"%>
-<%@page import="model.Product"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="model.ProductInBill"%>
+<%@page import="model.Bill"%>
+<%@page import="connectionjdbc.bill.BillTransaction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>MiaShoes</title>
+        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
               integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="buyNow.css">
+        <link rel="stylesheet" href="detailBill.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+
         <div class="header">
             <div class="package">
                 <div class="shop_name">
@@ -35,7 +33,7 @@
                 </div>
                 <div class="box_search">
                     <span>Tìm Kiếm Sản Phẩm</span>
-                    <div class="search" style="height: 100px">
+                    <div class="search">
                         <form action="/ShoeShop/Search.jsp?type=1" method="post">
                             <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
@@ -44,20 +42,12 @@
                 </div>
                 <!-- end-search -->
                 <div class="infor">
-                    <a href="MyAccount.jsp" class="account">
+                    <a href="/ShoeShop/user/MyAccount.jsp" class="account">
+                        <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                     </a>
-                    <div class="product" style="margin-top: 0px;">
-                        <a href="YourCart.jsp" class="cart">
-                            <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                            <ul>
-                                <li>Giỏ hàng</li>
-                                <li>${amount} Sản phẩm</li>
-                            </ul>
-                        </a>
+                    <div class="logout">
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
-                </div>
-                <div class="logout" style="height:100px; margin-top:28px;margin-left:10px">
-                    <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                 </div>
             </div>
         </div>
@@ -134,10 +124,10 @@
                         </ul>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=sales&type=4" class="item1">SALES</a>
+                        <a href="" class="item1">SALES</a>
                     </li>
                     <li id="menu1">
-                        <a href="/ShoeShop/Search.jsp?str=shock&type=3" class="item1">PHỤ KIỆN</a>
+                        <a href="" class="item1">PHỤ KIỆN</a>
                     </li>
                     <li id="menu1">
                         <a href="" class="item1">NHẬN THÔNG BÁO SALES</a>
@@ -145,160 +135,13 @@
                 </ul>
             </div>
         </div>
-        <%
-            User user = (User) session.getAttribute("currentUser");
-            request.setAttribute("u", user);
-            String id = request.getParameter("id");
-            if(id != null){
-                Product product = new ProductService().getProductById(Integer.parseInt(id));
-                user.addTempProduct(new TempProduct(Integer.parseInt(id), product.getName(), 
-                        product.getImg1(), product.getPrice()));
-            }
-            List<TempProduct> list = user.getTemps();
-            String[] size = request.getParameterValues("size");
-            if(size != null){
-                for(int i = 0; i < size.length ;i++){
-                    list.get(i).setSize(Integer.parseInt(size[i]));
-                }
-            }
-            request.setAttribute("list", list);
-            int amount = list.size();
-            request.setAttribute("amount", amount);
-            
-            String discountStr = request.getParameter("discount");
-            int discount = 0;
-            if(discountStr != null){
-                discount = Integer.parseInt(discountStr);
-                request.setAttribute("discount", discount);
-            }
-            int price = 0;
-            for(TempProduct p : list){
-                price += p.getPrice();
-            }
-            String cost = Other.displayMoney( (int) price);
-            request.setAttribute("cost", cost);
-        %>
-        <br>
-        <a href="YourCart.jsp" style="font-size: 20px;color: blue;margin-left: 100px;">
-            Quay lại giỏ hàng
-        </a>
-        <br><br>
-        <div class="parent">
-            <div class="left">
-                <form action="SendMail3.jsp" method="post" name="buy">
-                    <label>Họ và tên</label>
-                    <input type="text" name="name" value="${u.name}"> <br><br>
-                    <label>Email</label>
-                    <input type="email" name="email" value="${u.email}"> <br><br>
-                    <label>Số điện thoại</label>
-                    <input type="number" name="phone_number" value="${u.phoneNumber}"><br><br>
-                    <label>Địa chỉ</label>
-                    <input type="text" name="address" value="${u.address}"><br>
-                    <label style="font-size: 13px;margin-left: 200px;">
-                        Yêu cầu quý khách điền đúng địa chỉ để thuận tiện cho việc vận chuyển
-                    </label>
-                    <br> <br> 
-                    <input type="submit" value="Đặt hàng" style="margin-left: 200px">
-                </form>
-            </div>
-            
-            <div class="right">
-                <div class="block">
-                    <h3>Đơn hàng (${amount} sản phẩm)</h3>
-                    <hr style="width: 100%">
-                    <%
-                        for(TempProduct t : list){
-                            request.setAttribute("name", t.getName());
-                            request.setAttribute("img", t.getImg());
-                            request.setAttribute("size", t.getSize());
-                            request.setAttribute("price", Other.displayMoney((int)(t.getPrice())));     
-                    %>
-                    <div class="product">
-                        <div class="img">
-                            <img src="${img}">
-                        </div>
-                        <div class="name">
-                            <div>
-                              ${name}  
-                            </div>
-                            ${size}
-                        </div>
-                        <div class="price">
-                            ${price} VND
-                        </div>
-                    </div>
-                    <br>
-                    <%
-                        }
-                    %>
-                    <hr>    
-                    <form action="CheckDiscountCode.jsp" method="post">
-                        <input type="text" name="code" placeholder="Nhập mã giảm giá" 
-                               style="width:270px;height: 50px; ">
-                        <input type="submit" value="Áp dụng" 
-                               style="width:80px;height: 50px;background-color: #3498db;color: white ">
-                    </form>
-                    <hr>
-                    <div class="below">
-                        <div class="left1" style="text-align: left">
-                            <span >
-                                Đơn giá
-                            </span>
-                        </div>
-                        <div class="right1" style="text-align: right">
-                            <span>
-                                ${cost}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="below">
-                        <div class="left1" style="text-align: left">
-                            <span >
-                                VAT
-                            </span>
-                        </div>
-                        <div class="right1" style="text-align: right">
-                            <span >
-                                +10%
-                            </span>
-                        </div>
-                    </div>
-                    <c:if test="${discount != null && discount != 0}">
-                        <div class="below">
-                            <div class="left1" style="text-align: left">
-                                <span >
-                                    Mã giảm giá
-                                </span>
-                            </div>
-                            <div class="right1" style="text-align: right;color: red">
-                                <span>
-                                    -${discount}%
-                                </span>
-                            </div>
-                        </div>
-                    </c:if> 
-                    <hr>
-                    <%
-                        double costOfBill = price * (100 + 10 - discount) / 100;
-                        String costBill = Other.displayMoney((int)costOfBill);
-                        request.setAttribute("costOfBill", costBill);
-                    %>
-                    <div class="below">
-                        <div class="left1" style="text-align: left">
-                            <span >
-                                Tổng cộng
-                            </span>
-                        </div>
-                        <div class="right1" style="text-align: right">
-                            <span style="font-size: 20px;">
-                                ${costOfBill}
-                            </span>
-                        </div>
-                    </div>      
-                </div>
-            </div>
-        </div>
 
+        <%
+            String id = request.getParameter("id");
+            List<ProductInBill> products = new BillTransaction().getDetailBill(Integer.parseInt(id));
+            
+        %>
+        
         
         <div class="information">
             <div class="package">
@@ -364,6 +207,7 @@
                     </ul>
                 </div>
             </div>
-        </div>  
+        </div>
+        <!-- end-banner -->
     </body>
 </html>

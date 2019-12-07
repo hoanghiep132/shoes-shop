@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -47,16 +48,7 @@
                       </a>
                     </div>
                 </a>
-<!--                <div class="product">
-                  <a href="" class="cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                    <ul>
-                      <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
-                    </ul>
-                  </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
+
               </div>
           </div>
       </div>
@@ -146,9 +138,21 @@
       </div>
           
       <!-- end-menu -->
+      
+      <%
+          String error = request.getParameter("error");
+          if(error != null){
+              request.setAttribute("e", error);
+          }
+      %>
         <h1 class="title-head">
             <span>Đăng nhập tài khoản</span>
         </h1>
+      <c:if test="${e eq '0'}">
+          <h4 style="color: blue;margin-left: 50px;">
+              Bạn đã đăng kí thành công
+          </h4>
+      </c:if>
         <div class="row">
             <div class="col-lg-6">
                 <div class="page-login margin-bottom-30">
@@ -156,6 +160,12 @@
                         <span>
                             Nếu bạn đã có tài khoản, đăng nhập tại đây.
                         </span>
+                        <c:if test="${e eq '1'}">
+                        <br>
+                        <span style="color: red">
+                            Tài khoản hoặc mật khẩu không đúng!
+                        </span> 
+                        </c:if>
                         <form accept-charset="UTF-8" action="Filter.jsp" id="customer_login"  method="post">
                             <input name="FormType" type="hidden" value="customer_login">
                             <input name="utf8" type="hidden" value="true">
@@ -175,8 +185,9 @@
 
 
                                 <div class="pull-xs-left" style="margin-top: 25px;">
-                                    <input class="btn btn-style btn-primary rebtn" type="submit" value="Đăng nhập">
-                                    <a href="SignUp.jsp" class="btn-link-style btn-register" style="margin-left: 20px;text-decoration: none; ">Đăng ký</a>
+                                    <input class="btn btn-style btn-primary rebtn" style="background-color: black;width: 150px;" type="submit" value="Đăng nhập">
+                                    <a href="SignUp.jsp" class="btn-link-style btn-register" style="margin-left: 20px;text-decoration: none;
+                                       ">Đăng ký</a>
                                 </div>
                             </div>
                         </form>
@@ -204,7 +215,8 @@
                             </fieldset>
                         </div>
                         <div class="action_bottom">
-                            <input class="btn btn-style btn-dark rebtn" style="margin-top: 25px;" width="100px" type="submit" value="Lấy lại mật khẩu">
+                            <input class="btn btn-style btn-dark rebtn" style="margin-top: 25px;background-color: black;width: 150px;
+                                   " width="100px" type="submit" value="Lấy lại mật khẩu">
 
                         </div>
                     </form>

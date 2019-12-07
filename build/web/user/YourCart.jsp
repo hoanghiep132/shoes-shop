@@ -63,7 +63,7 @@
               </div>
               <div class="box_search">
                   <span>Tìm Kiếm Sản Phẩm</span>
-                  <div class="search" style="height: 100px;margin-top: 15px;">
+                  <div class="search" style="height: 100px;">
                       <form action="/ShoeShop/Search.jsp?type=1" method="post">
                             <input type="search" name="str" placeholder="Search">
                             <input type="submit" value="Tìm kiếm" >
@@ -85,7 +85,7 @@
                 </div>
               </div>
                     <div class="logout" style="height:100px; margin-top:28px;margin-left:10px">
-                        <a href="/ShoeShop/LogOut.jsp">Đăng xuất</a>
+                        <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
                     </div>
           </div>
       </div>
@@ -216,7 +216,7 @@
                             <img src="icon/plus.svg" width="48px" style="margin-left:50px">
                         </a>
                     </div>
-                    <div style="width:10%;line-height: 30px;"> 
+                    <div style="width:10%;line-height: 35px;"> 
                         <br><br> 
                         <a href="YourCart.jsp?remove=${id_pro}">
                             <img src="icon/trash.svg" width="48px" style="margin-left:50px">
@@ -232,14 +232,13 @@
     <div class="cost" style="margin-left: 1000px;margin-top: 20px;">
         <h4 style="margin-left: 50px;">Tổng tiền : ${cost}</h4>
     </div>
-        <a href="/ShoeShop/home.jsp">
-            <button class="btn_left" style="background-color: #f2f1ef;color: black;
-                    font-size: 18px;padding: 6px;border-radius: 6px;display: inline-block;
-                    border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;
-                    margin-left: 1000px;">Tiếp tục mua hàng</button>
+        <a href="/ShoeShop/home.jsp" style="background-color: #f2f1ef;color: black;
+            font-size: 18px;padding: 10px;border-radius: 6px;display: inline-block;
+            border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;
+            margin-left: 1000px; text-decoration: none">
+           Tiếp tục mua hàng
         </a>
-        
-        <input type="submit" class="btn_right" style="background-color: black;color: white;font-size: 18px;
+        <input type="submit"  style="background-color: black;color: white;font-size: 18px;
                 padding: 6px;border-radius: 6px;display: inline-block;
                 border: 1px solid #19b5fe;text-align: center;width: 200px;height: 50px;" value="Tiến hành đặt hàng">
     </form>    

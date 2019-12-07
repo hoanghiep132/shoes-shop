@@ -44,9 +44,9 @@
                     <a href="/ShoeShop/user/MyAccount.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
                     </a>
-                </div>
-                <div class="logout">
+                    <div class="logout">
                     <a href="/ShoeShop/user/LogOut.jsp">Đăng xuất</a>
+                </div>
                 </div>
             </div>
         </div>
@@ -137,13 +137,48 @@
 
         <%
             List<Bill> bills = new BillTransaction().getListApproving();
-            
         %>
         <br><br>
         <h3 style="text-align: center">
             Danh sách các hóa đơn đang chờ được xét duyệt
         </h3>
-
+        <br><br>
+        <div class="cen">
+            <table>
+            <tr>
+                <th class="id">ID </th>
+                <th class="in">Tên khách hàng</th>
+                <th class="in">Tổng tiền</th>
+                <th class="in"> Giá trị mã Giảm giá</th>
+                <th class="in">Hãng</th>
+                <th>Tùy chọn </th>
+            </tr>
+            <%
+                for(Bill bill : bills){
+                    request.setAttribute("id", bill.getId());
+                    request.setAttribute("name", bill.getCustomer().getName());
+                    request.setAttribute("cost", bill.getCost());
+                    if(bill.getDiscountCode() != 0){
+                        request.setAttribute("code", bill.getDiscountCode());
+                    }
+            %>
+            <tr>
+                <td class="id">${id}</td>
+                <td class="in">${name}</td>
+                <td class="in">${cost}</td>
+                <td class="in">${bill.discount}</td>
+                <td class="in">${pro.brand}</td>
+                <td class="in">${pro.amountOfProduct}</td>
+                <td>
+                    <a href="DetailBill.jsp?id=${pro.id}"><button>Chỉnh sửa</button></a> 
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            </table>
+        </div>
+        <br><br><br><br><br><br>
         <div class="information">
             <div class="package">
                 <div class="information1">
