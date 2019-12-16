@@ -64,7 +64,7 @@ public class Upload {
     }
     
     //CLOUDINARY_URL=cloudinary://812912856824389:DoKmiWg4Kdmeor63MxfhAvWTo2w@hoangghiepp1302
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Cloudinary cloudinary = new Cloudinary("https://cloudinary.com/console");
         Map map = ObjectUtils.asMap( 
                 "cloud_name", "hoangghiepp1302",

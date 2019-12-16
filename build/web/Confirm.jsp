@@ -12,7 +12,7 @@
     <head>
         <title>MiaShoes</title>
         <!-- Required meta tags -->
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" 
               integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
@@ -41,26 +41,7 @@
                 <div class="infor">
                     <a href="SignIn.jsp" class="account">
                         <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                        <div id="hide">
-                            <a href="SignUp.jsp">
-                                <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                            </a>
-                            <br>
-                            <a href="SignIn.jsp">
-                                <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                            </a>
-                        </div>
                     </a>
-                    <!--                <div class="product">
-                                      <a href="" class="cart">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                                        <ul>
-                                          <li>Giỏ hàng</li>
-                                          <li>(0) Sản phẩm</li>
-                                        </ul>
-                                      </a>
-                                      <span>Không có sản phẩm nào trong giỏ hàng</span>
-                                    </div>-->
                 </div>
             </div>
         </div>
@@ -158,7 +139,7 @@
         <br>
         <form name="con" action="AddUserPost.jsp">
             <c:if test="${err != null}">
-                <label style="color:red;font-size: 20px">Mã xác nhận không hợp lệ</label>
+                <label style="color:red;font-size: 20px">Mã xác nhận không hợp lệ</label><br>
             </c:if>
             <label>Confirm Email :</label><input name="code" type="text" placeholder="Confirm email">
             <input type="submit" value="Confirm">

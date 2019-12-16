@@ -8,11 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="en">
+<html lang="vi">
     <head>
         <title>Sign Up</title>
         <!-- Required meta tags -->
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
         <!-- Bootstrap CSS -->
@@ -39,26 +39,7 @@
               <div class="infor">
                 <a href="SignIn.jsp" class="account">
                     <i class="fa fa-user" aria-hidden="true" id="show"> Tài Khoản</i>
-                    <div id="hide">
-                        <a href="SignUp.jsp">
-                            <i class="fa fa-user-plus" aria-hidden="true"> Đăng Ký</i>
-                        </a>
-                      <br>
-                      <a href="SignIn.jsp">
-                          <i class="fa fa-sign-out" aria-hidden="true"> Đăng Nhập</i>
-                      </a>
-                    </div>
                 </a>
-<!--                <div class="product">
-                  <a href="" class="cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true" id="cart"></i>
-                    <ul>
-                      <li>Giỏ hàng</li>
-                      <li>(0) Sản phẩm</li>
-                    </ul>
-                  </a>
-                  <span>Không có sản phẩm nào trong giỏ hàng</span>
-                </div>-->
               </div>
           </div>
       </div>
@@ -161,9 +142,9 @@
             String password = "";
             User user = null;
             if (error != null) {
-                username = request.getParameter("username");
-                password = request.getParameter("password");
-                user = (User) request.getAttribute("user");
+                username = (String) session.getAttribute("username");
+                password = (String) session.getAttribute("password");
+                user = (User) session.getAttribute("newUser");
                 request.setAttribute("err", error);
                 request.setAttribute("user", user);
             }
@@ -241,7 +222,7 @@
                 </div>
                 <div id="password_div">
                     <label>Mật khẩu</label>
-                    <input type="password" name="password" class="textInput" value="${user.password}">
+                    <input type="password" name="password" class="textInput" value="${password}">
                     <div id="password_error" class="err">  </div>
                   </div>
                 <div id="name_div">

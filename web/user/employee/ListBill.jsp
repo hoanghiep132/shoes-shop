@@ -4,6 +4,7 @@
     Author     : hiepnguyen
 --%>
 
+<%@page import="other.Other"%>
 <%@page import="model.Bill"%>
 <%@page import="java.util.List"%>
 <%@page import="connectionjdbc.bill.BillTransaction"%>
@@ -149,15 +150,19 @@
                 <th class="id">ID </th>
                 <th class="in">Tên khách hàng</th>
                 <th class="in">Tổng tiền</th>
-                <th class="in"> Giá trị mã Giảm giá</th>
-                <th class="in">Hãng</th>
+                <th class="in"> Giá trị mã giảm giá</th>
+                <th class="in">Giờ</th>
+                <th class="in">Ng</th>
                 <th>Tùy chọn </th>
             </tr>
             <%
                 for(Bill bill : bills){
                     request.setAttribute("id", bill.getId());
                     request.setAttribute("name", bill.getCustomer().getName());
-                    request.setAttribute("cost", bill.getCost());
+                    request.setAttribute("date", bill.getDate());
+                    request.setAttribute("time", bill.getTime());
+                    String cost = Other.displayMoney((int)bill.getCost());
+                    request.setAttribute("cost", cost);
                     if(bill.getDiscountCode() != 0){
                         request.setAttribute("code", bill.getDiscountCode());
                     }
@@ -167,10 +172,10 @@
                 <td class="in">${name}</td>
                 <td class="in">${cost}</td>
                 <td class="in">${bill.discount}</td>
-                <td class="in">${pro.brand}</td>
-                <td class="in">${pro.amountOfProduct}</td>
+                <td class="in">${time}</td>Giờ
+                <td class="in">${date}</td>Ngày
                 <td>
-                    <a href="DetailBill.jsp?id=${pro.id}"><button>Chỉnh sửa</button></a> 
+                    <a href="DetailBill.jsp?id=${id}"><button>Xem Chi tiết</button></a> 
                 </td>
             </tr>
             <%

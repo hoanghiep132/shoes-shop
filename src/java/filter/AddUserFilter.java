@@ -57,9 +57,9 @@ public class AddUserFilter implements Filter{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = new User(name,email,phoneNumber,gender,address,birthday);
-        req.setAttribute("newUser", user);
-        req.setAttribute("username", username);
-        req.setAttribute("password", password);
+        request.setAttribute("newUser", user);
+        request.setAttribute("username", username);
+        request.setAttribute("password", password);
         if(userService.getUserByEmail(email) != null){
             res.sendRedirect("/ShoeShop/SignUp.jsp?error=1");
         } else if(userService.getUserByPhonenNumber(phoneNumber) != null){

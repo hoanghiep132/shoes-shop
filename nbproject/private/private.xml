@@ -12,16 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/SignIn.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/model/Bill.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/SendMail3.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/connectionjdbc/bill/BillDao.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/ListCus.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/BuyNow.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/employee/ListBill.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/model/TempProduct.java</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/CheckDiscountCode.jsp</file>
-            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/signIn.css</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/SignUp.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/src/java/filter/AddUserFilter.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/AddUserPost.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/SendMail.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/test/Test.java</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/Confirm.jsp</file>
+            <file>file:/home/hiepnguyen/NetBeansProjects/ShoeShop/web/user/DetailBill.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,6 @@
 package connectionjdbc.bill;
 
 import connectionjdbc.GetConnection;
-import connectionjdbc.product.ProductDao;
 import connectionjdbc.product.ProductService;
 import connectionjdbc.user.UserDao;
 import connectionjdbc.user.UserService;
@@ -84,9 +83,10 @@ public class BillDao {
     public List<Bill> getAllBillApproving(){
         List<Bill> bills = new ArrayList();
         
-        String sql = "Select * from bill where status = approving";
+        String sql = "Select * from bill where status = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "approving");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Bill bill = new Bill();
