@@ -23,7 +23,8 @@ public class GetConnection {
     }
 
     public static Connection getConnection() {
-        final String URL = "jdbc:mysql://localhost:3306/shoes_shop?autoReconnect=true&useSSL=false";
+        final String URL = "jdbc:mysql://localhost:3306/shoes_shop?autoReconnect=true&useSSL=false"
+                + "&useUnicode=yes&characterEncoding=UTF-8";
         final String USERNAME = "root";
         final String PASSWORD = "hiepnguyen132";
         try {

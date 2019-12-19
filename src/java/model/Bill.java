@@ -132,7 +132,7 @@ public class Bill {
         for(ProductInBill pb : list){
             cost += pb.getSize() * pb.getProduct().getPrice() / 100 * (100 - pb.getProduct().getDiscount());
         }
-        return cost;
+        return cost/10;
     }
     
 }

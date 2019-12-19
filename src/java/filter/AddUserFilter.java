@@ -37,25 +37,26 @@ public class AddUserFilter implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        
-        String name  = request.getParameter("name");
-        String email = request.getParameter("email");
-        String phoneNumber = request.getParameter("phone_number");
-        String address = request.getParameter("address");
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html;charset=UTF-8");
+        String name  = req.getParameter("name");
+        String email = req.getParameter("email");
+        String phoneNumber = req.getParameter("phone_number");
+        String address = req.getParameter("address");
         //user.setBirthday(request.getParameter("birthday"));
-        String day = request.getParameter("day");
+        String day = req.getParameter("day");
         if(day.length() == 1){
             day = "0" + day;
         }
-        String month = request.getParameter("month");
+        String month = req.getParameter("month");
         if(month.length() == 1){
             month = "0" + month;
         }
-        String year = request.getParameter("year");
+        String year = req.getParameter("year");
         String birthday = year+"/"+month+"/"+day;
-        String gender = request.getParameter("gender");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String gender = req.getParameter("gender");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         User user = new User(name,email,phoneNumber,gender,address,birthday);
         request.setAttribute("newUser", user);
         request.setAttribute("username", username);
